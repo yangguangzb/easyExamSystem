@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+/*自己写的普通区的css*/
+/*按钮button样式*/
+.btn{
+	width:80px;
+	height:30px;
+	color:black;
+	font-size:15px;
+	background-color:#2da5ec;
+	margin-right:30px;
+}

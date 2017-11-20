@@ -1,0 +1,46 @@
+package com.san.model;
+
+public class User {
+	private int userId;		     //用户编号
+	private String userName;	 //用户名
+	private int userTpye;	     //用户类型
+	private String e_mail;	     //邮箱
+	private String password;	 //密码
+	private int verification;	 //是否验证邮箱
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public int getUserTpye() {
+		return userTpye;
+	}
+	public void setUserTpye(int userTpye) {
+		this.userTpye = userTpye;
+	}
+	public String getE_mail() {
+		return e_mail;
+	}
+	public void setE_mail(String eMail) {
+		e_mail = eMail;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getVerification() {
+		return verification;
+	}
+	public void setVerification(int verification) {
+		this.verification = verification;
+	}
+}
