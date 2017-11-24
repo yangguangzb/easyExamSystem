@@ -51,9 +51,6 @@
 				<input type="text" name="userName" id="userName"  placeholder="用户名/邮箱"/>
 				<input type="password" name="password" id="password"  placeholder="请输入密码"/>
 				<input type="button" value="登录" class="btn" onclick="change()"/>
-				<!--  
-				<a href="javascript:void(0)" class="wapper" onclick='obj.sweep()'>扫码登录</a>
-				 -->
 				<a class="wapper" href="forgetPassword.jsp">忘记密码</a>
 			</form>	
 		</div>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=userName&userName="+userName);
+			xhr.open("get","/servlet/registerServlet?flag=userName&userName="+userName);
 			xhr.send(null);
 		}
 	}
@@ -40,7 +43,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=e_mail&e_mail="+e_mail);
+			xhr.open("get","/servlet/registerServlet?flag=e_mail&e_mail="+e_mail);
 			xhr.send(null);
 		}
 	}
@@ -54,7 +57,7 @@
 					
 				}
 			}
-			xhr.open("get","registerServlet?flag=password&password="+password);
+			xhr.open("get","/servlet/registerServlet?flag=password&password="+password);
 			xhr.send(null);
 		}
 	}

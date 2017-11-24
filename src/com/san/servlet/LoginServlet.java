@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.san.dao.UserDao;
+import com.san.dao.Impl.UserDaoImpl;
+import com.san.model.User;
 import com.san.utils.ActivationCode;
 import com.san.utils.DBUtil;
 import com.san.utils.SendJMail;
@@ -19,29 +20,26 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
-		UserDao userDao=new UserDao();
+		UserDaoImpl userDao=new UserDaoImpl();
 		Connection conn=null;
 		String flag="";
 		//登录验证
 		if(request.getParameter("userName")!=null&&request.getParameter("password")!=null){
 			String userName=request.getParameter("userName");
 			String password=request.getParameter("password");
-			conn=DBUtil.getconn();
 			try {
-				boolean b=userDao.loginVerification(userName, password, conn);
-				if(b){
-					//用户名密码正确，登录成功
+				User user=userDao.loginVerification(userName, password);
+				if(user!=null){
+					//登录成功
+					request.getSession().setAttribute("user", user);
 					out.write("登录成功");
 				}else{
 					out.write("登录失败");
 				}
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}finally{
-				DBUtil.closeConn(null, null, conn);
 			}
 		}
 		//忘记密码时，通过邮箱发送验证码.重置密码。

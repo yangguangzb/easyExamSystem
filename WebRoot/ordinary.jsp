@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<%@page import="com.san.model.Subject"%><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,9 +16,10 @@
 	<link rel="stylesheet" type="text/css" href="css/login.css"/>
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<!-- 自己写的普通区的css -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="css/myOrdinary.css" />
 	<script type="text/javascript">
-		 window.onload=function(){
+		 function isTrue(){
 		 	//获取用户选择的课程
 			var courseName=document.getElementById("courseName");
 			var courseNameText=courseName.options[courseName.selectedIndex].text;
@@ -25,29 +29,39 @@
 			//获取用户选择的题型
 			var subjectType=document.getElementById("subjectType");
 			var subjectTypeText=subjectType.options[subjectType.selectedIndex].text;
-			//传输用户的选择数据
-			var xhr=new XMLHttpRequest();
-			xhr.onreadystatechange=function(){
-				if(xhr.readyState==4&&xhr.status==200){
-					
-				}
+			if(courseNameText=="请选择课程"){
+				alert("请选择课程");
+				return false;
 			}
-			xhr.open();
-			xhr
+			if(subjectIdText=="题目编号"){
+				alert("请选择题目编号");
+				return false;
+			}
+			if(subjectTypeText=="请选择题型"){
+				alert("请选择题型");
+				return false;
+			}
+			return true;			
 		}
-		
+		//显示解析
+		function displayParsing(){
+			var analysis=document.getElementById("analysis").style.display;
+			if(analysis=="none"){
+				document.getElementById("analysis").style.display='block';
+			}else{
+				document.getElementById("analysis").style.display='none';
+			}
+		}
 	</script>
 </head>
 <body>
-
 <div class="boxed_wrapper">
-
 <header class="top-bar">
     <div class="container">
         <div class="clearfix">
             <div class="col-left float_left">
                 <div id="polyglotLanguageSwitcher" class="">
-                    <form action="#">
+                    <!--<form action="#">
                         <select id="polyglot-language-options">
                             <option id="en" value="计算机网络" selected>计算机网络</option>
                             <option id="fr" value="软件工程">软件工程</option>
@@ -56,27 +70,13 @@
                             <option id="es" value="大学英语">大学英语</option>
                         </select>
                     </form>
-                </div>
-				<!--  
-                <ul class="top-bar-info">
-                    <li><i class="icon-technology"></i>Phone: (123) 0200 12345</li>
-                    <li><i class="icon-note2"></i>Mailus@TheExperts.com</li>
-                </ul>
-                -->
+                --></div>
+				
             </div>
             <div class="col-right float_right">
-            	<!--  
-                <ul class="social">
-                    <li>Stay Connected: </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-                -->
+            	
                 <div class="link">
-                	<!--  
-                    <a href="contact.html" class="thm-btn">get a quote</a>
-                    -->
+                	
                     <a href="login.jsp">登录</a>
                     <a href="register.jsp">注册</a>
                 </div>
@@ -100,8 +100,8 @@
             <div class="col-md-8 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                       <li class="active"><a href="index.jsp">首页</a></li>
-						<li><a href="ordinary.jsp">普通区</a></li>
+                       <li><a href="index.jsp">首页</a></li>
+						<li  class="active"><a href="ordinary.jsp">普通区</a></li>
                         <li><a href="boutique.jsp">精品区</a></li>
 						<li><a href="data.jsp">资料</a></li>
 						<li><a href="share.jsp">分享交流</a></li>
@@ -149,58 +149,88 @@
     	<div style="width:70%;height:800px;border: 1px #999 solid;">
     		<!-- 选择部分 -->
     		<div style="height:50px; border:1px #999 solid;">
-    			<select id="courseName" style="height:50px;width:120px; margin-right:25px;">
-    				<option selected>请选择课程</option>
-    				<option>C语言</option>
-    				<option>数据结构</option>
-    			</select>
-    			<select id="subjectId" style="height:50px;width:120px; margin-right:25px;">
-    				<option selected>题目编号</option>
-    				<option>1-20</option>
-    				<option>21-40</option>
-    			</select>
-    			<select id="subjectType" style="height:50px;width:120px; ">
-    				<option selected>请选择题型</option>
-    				<option>选择题</option>
-    				<option>填空题</option>
-    			</select>
+    			<form action="subjectServlet?flag=display" method="post" onsubmit="return isTrue()" style="margin:0px;display:inline;">
+	    			<select name="courseName" id="courseName" style="height:50px;width:120px; margin-right:25px;">
+	    				<option selected>请选择课程</option>
+	    				<option>大学英语</option>
+	    				<option>数据结构</option>
+	    			</select>
+	    			<select name="subjectId" id="subjectId" style="height:50px;width:120px; margin-right:25px;">
+	    				<option selected>题目编号</option>
+	    				<option>1-20</option>
+	    				<option>21-40</option>
+	    			</select>
+	    			<select name="subjectType" id="subjectType" style="height:50px;width:120px; ">
+	    				<option selected>请选择题型</option>
+	    				<option>选择题</option>
+	    				<option>填空题</option>
+	    			</select>
+    				<input type="submit" class="btn btn-primary" value="题目"/>
+    			</form>
     		</div>
     		
-    		
-    		<!-- 题目内容部分 -->
-    		<div style="height:200px;width:70%;border:1px #999 solid;">
-    			这是题目部分
-    		</div>
-    		
-    		
-    		<!-- 显示ABCD选项部分 -->
-    		<div style="height:200px;width:70%;border:1px #999 solid;">
-    			<div style="height:auto; border:1px red solid;">
-    				<input type="radio"  name="choice" value="A"/>A题目
-    			</div>
-    			<div style="height:auto; border:1px red solid;">
-    				<input type="radio" name="choice" value="B"/>B题目
-    			</div>
-    			<div style="height:auto; border:1px red solid;">
-    				<input type="radio" name="choice" value="C"/>C题目
-    			</div>
-    			<div style="height:auto; border:1px red solid;">
-    				<input type="radio" name="choice" value="D"/>D题目
-    			</div>
-    		</div>
-    		
-    		
-    		<!-- 选择上下题按钮,查看解析按钮-->
-    		<div style="width:45% height:150px; border:1px #999 solid;">
-    			<input type="button" class="btn" value="上一题" onclick="lastSubject()"/>
-    			<input type="button" class="btn" value="下一题" onclick="nextSubject()"/>
-    			<input type="button" class="btn" value="查看解析"/>
-    		</div>
-    		
-    		
+    	
+ 			<!-- 题目内容部分 -->
+ 			<div id="content">
+ 				<div style="height:200px;width:70%;border:1px #999 solid;">
+ 					<p>第${sessionScope.nowSubject.subjectId }题</p>
+    				${sessionScope.nowSubject.subjectTitle}
+	    		</div>
+	    		<!-- 显示ABCD选项部分 -->
+	    		<div style="height:250px;width:70%;border:1px #999 solid;">
+	    			<form action="subjectServlet?flag=displayNext" method="post">
+		    			<div style="height:auto; border:1px red solid;">
+		    				<input type="radio"  name="choice" value="A"/>
+		    				${sessionScope.nowSubject.optionA }
+		    			</div>
+		    			<div style="height:auto; border:1px red solid;">
+		    				<input type="radio" name="choice" value="B"/>
+		    				${sessionScope.nowSubject.optionB }
+		    			</div>
+		    			<div style="height:auto; border:1px red solid;">
+		    				<input type="radio" name="choice" value="C"/>
+		    				${sessionScope.nowSubject.optionC }
+		    				
+		    			</div>
+		    			<div style="height:auto; border:1px red solid;">
+		    				<input type="radio" name="choice" value="D"/>
+		    				${sessionScope.nowSubject.optionD }
+		    			</div>
+		    			<div style="padding-left:450px;margin-top:20px;">
+		    				<input type="submit" class="btn btn-primary" value="下一题" onclick="nextSubject()"/>
+		    			</div>
+	    			</form>
+	    		</div>
+	    		
+	    		<!-- 选择上下题按钮,查看解析按钮-->
+	    		<table>
+	    			<tr>
+	    				<td>
+	    					<!-- 上一题 -->
+	    					<form action="subjectServlet?flag=displayLast" method="post">
+	    						<input type="submit" class="btn btn-primary" value="上一题" onclick="lastSubject()"/>
+	    					</form>
+	    				</td>
+	    				<td width="20px;"></td>
+	    				<td>
+	    					<!-- 查看解析 -->
+	    					<form action="" method="post">
+	    						<input type="button" class="btn btn-primary" value="查看解析" onclick="displayParsing()"/>
+	    					</form>
+	    				</td>
+	    				<td width="20px;"></td>
+	    				<td>
+	    					<!-- 提交 -->
+	    					<form action="">
+	    						<input type="submit" class="btn btn-primary" value="提交" onclick="gradeByOption()"/>
+	    					</form>
+	    				</td>
+	    			</tr>
+	    		</table>
+
     		<!-- 显示解析部分 -->
-    		<div style="width:45% height:150px; border:1px #red solid;">
-    			
+    		<div  id="analysis" style="display:none;">
+    			${sessionScope.nowSubject.analysis }
     		</div>
     	</div>
     

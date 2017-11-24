@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.san.dao.UserDao;
+import com.san.dao.Impl.UserDaoImpl;
 import com.san.model.User;
 import com.san.utils.DBUtil;
 import com.san.utils.SendJMail;
@@ -24,12 +24,10 @@ public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
 		HttpSession session = request.getSession();
 		String flag="";
-		UserDao userDao=new UserDao();
+		UserDaoImpl userDao=new UserDaoImpl();
 		User user=new User();
 		Connection conn=null;
 		int k;

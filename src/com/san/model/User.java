@@ -7,6 +7,13 @@ public class User {
 	private String e_mail;	     //邮箱
 	private String password;	 //密码
 	private int verification;	 //是否验证邮箱
+	private int integralNumber;  //用户积分数目
+	public int getIntegralNumber() {
+		return integralNumber;
+	}
+	public void setIntegralNumber(int integralNumber) {
+		this.integralNumber = integralNumber;
+	}
 	public int getUserId() {
 		return userId;
 	}

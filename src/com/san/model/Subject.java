@@ -13,7 +13,7 @@ public class Subject {
 	private String optionB;			//选项B	
 	private String optionC;			//选项C	
 	private String optionD;			//选项D	
-	private String optionAnswer;	//答案	
+	private String subjectAnswer;	//答案	
 	private String analysis;		//答案解析	
 	public int getSubjectId() {
 		return subjectId;
@@ -69,17 +69,26 @@ public class Subject {
 	public void setOptionD(String optionD) {
 		this.optionD = optionD;
 	}
-	public String getOptionAnswer() {
-		return optionAnswer;
+	public String getSubjectAnswer() {
+		return subjectAnswer;
 	}
-	public void setOptionAnswer(String optionAnswer) {
-		this.optionAnswer = optionAnswer;
+	public void setSubjectAnswer(String subjectAnswer) {
+		this.subjectAnswer = subjectAnswer;
 	}
 	public String getAnalysis() {
 		return analysis;
 	}
 	public void setAnalysis(String analysis) {
 		this.analysis = analysis;
+	}
+	@Override
+	public String toString() {
+		return "Subject [analysis=" + analysis + ", brushName=" + brushName
+				+ ", courseName=" + courseName + ", optionA=" + optionA
+				+ ", optionB=" + optionB + ", optionC=" + optionC
+				+ ", optionD=" + optionD + ", subjectAnswer=" + subjectAnswer
+				+ ", subjectId=" + subjectId + ", subjectTitle=" + subjectTitle
+				+ ", subjectType=" + subjectType + "]";
 	}
 	
 }

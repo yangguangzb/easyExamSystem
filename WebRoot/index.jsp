@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +24,7 @@
     <div class="container">
         <div class="clearfix">
             <div class="col-left float_left">
-                <div id="polyglotLanguageSwitcher" class="">
+                <div id="polyglotLanguageSwitcher" class=""><!--
                     <form action="#">
                         <select id="polyglot-language-options">
                             <option id="en" value="计算机网络" selected>计算机网络</option>
@@ -31,7 +34,7 @@
                             <option id="es" value="大学英语">大学英语</option>
                         </select>
                     </form>
-                </div>
+                --></div>
 				<!--  
                 <ul class="top-bar-info">
                     <li><i class="icon-technology"></i>Phone: (123) 0200 12345</li>

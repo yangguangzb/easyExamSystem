@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
         <div class="clearfix">
             <div class="col-left float_left">
                 <div id="polyglotLanguageSwitcher" class="">
-                    <form action="#">
+                    <!--<form action="#">
                         <select id="polyglot-language-options">
                             <option id="en" value="计算机网络" selected>计算机网络</option>
                             <option id="fr" value="软件工程">软件工程</option>
@@ -31,7 +34,7 @@
                             <option id="es" value="大学英语">大学英语</option>
                         </select>
                     </form>
-                </div>
+                --></div>
 				<!--  
                 <ul class="top-bar-info">
                     <li><i class="icon-technology"></i>Phone: (123) 0200 12345</li>
@@ -75,9 +78,9 @@
             <div class="col-md-8 menu-column">
                 <nav class="menuzord" id="main_menu">
                    <ul class="menuzord-menu">
-                       <li class="active"><a href="index.jsp">首页</a></li>
+                       <li ><a href="index.jsp">首页</a></li>
 						<li><a href="ordinary.jsp">普通区</a></li>
-                        <li><a href="boutique.jsp">精品区</a></li>
+                        <li class="active"><a href="boutique.jsp">精品区</a></li>
 						<li><a href="data.jsp">资料</a></li>
 						<li><a href="share.jsp">分享交流</a></li>
                         <li><a href="problem.jsp">随问即答</a></li>
