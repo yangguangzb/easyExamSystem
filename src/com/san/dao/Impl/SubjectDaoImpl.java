@@ -17,8 +17,8 @@ import com.san.utils.C3p0Util;
 public class SubjectDaoImpl implements SubjectDao{
 	/**
 	 * @param courseName	课程名称
-	 * @param startPage		开始页(记录)
-	 * @param endPage		结束
+	 * //@param startPage		开始页(记录)
+	 * // @param endPage		结束
 	 * @return list
 	 * @throws SQLException
 	 */

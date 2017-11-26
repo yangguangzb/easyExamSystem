@@ -64,7 +64,7 @@ public class UserDaoImpl implements UserDao{
 	 * 登录时，验证用户
 	 * @param userName
 	 * @param password
-	 * @param conn
+	 * //@param conn
 	 * @return user	登录成功
 	 * @return null	用户名或密码错误
 	 * @throws SQLException

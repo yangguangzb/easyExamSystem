@@ -1,0 +1,12 @@
+package com.san.service;
+
+import com.san.dao.ResourceDao;
+import com.san.model.Resource;
+import com.san.model.User;
+
+import java.util.List;
+
+public interface ResourceService {
+    public List<Resource> listAllResourceInTable();//列出所有资料
+  //  public List<Resource> listAllResourceInTable(Resource resource,User user)
+}
