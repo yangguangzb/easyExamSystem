@@ -1,0 +1,297 @@
+
+
+@media (max-width: 1200px) and (min-width: 992px) {
+	.menuzord-menu > li > a {
+	    padding: 49px 6px 41px;
+	}
+	.theme_menu.stricky-fixed .menuzord-menu > li > a {
+	    padding: 35px 6px 30px;
+	}
+	.theme_menu .thm-btn {
+		padding: 0 15px;
+	}
+	.nav_side_content .search_option>button {
+		padding-left: 15px;
+	}
+
+}
+
+@media (max-width: 1199px) {
+	.top-bar .col-left,
+	.top-bar .col-right {
+		width: 100%;
+	}
+	.our-history ul.nav-link {
+	    display: none;
+	}
+}
+@media (max-width: 1199px) {
+	.subscribe-form input {
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.awards .service-list li {
+		width: 45%;
+	}
+}
+
+@media (max-width: 1199px) and (min-width:992px){
+	.why-choose .item:hover .inner-box {
+	    padding: 0px 15px 0px 75px;
+	    transition: .5s ease;
+	}
+	.why-choose .item:hover .icon_box span {
+	    margin-top: -40px;
+	}
+	
+
+}
+
+@media (min-width: 992px) {
+	.menuzord-menu li .indicator {
+		display: none;
+	}
+	.rev_slider_wrapper .tparrows {
+		top: 57%!important;
+	}
+}
+
+@media (max-width: 991px) {
+	.default-section .text-content {
+		margin-bottom: 40px
+	}
+	.our-history .img-box {
+		float: none;
+	}
+	.tabs-style-two .tab .text-content .text {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+}
+	.menuzord-menu > li > .megamenu-style2 {
+		display: none;
+	}
+
+	.menuzord-responsive.menuzord {
+	    padding: 0 15px;
+	    background: #fff;
+	    min-height: 66px;
+	}
+	.menuzord .showhide {
+	    height: 60px;
+	    width: 30px;
+	    padding: 18px 0 41px;
+	    float: none;
+	}
+	.menuzord .showhide span {
+	    display: block;
+	    width: 100%;
+	    height: 2px;
+	    margin: 4px 0;
+	    background: #48c7ec;
+	}
+	.menuzord-menu > li a {
+	    padding: 12px 0px !important;
+	    margin: 0;
+	}
+
+	.menuzord-menu ul.dropdown {
+		padding: 0;
+		background: #1c2b36!important;
+	}
+	.menuzord-responsive .menuzord-menu.menuzord-indented > li > ul.dropdown > li:hover > a {
+	    padding-left: 20px !important;
+	}
+	.menuzord-responsive .menuzord-menu li:last-child a {
+	}
+	.theme_menu.stricky-fixed .main-logo {
+	    display: none;
+	}
+	.menuzord-menu > li.active a {
+		border-color: #f0f0f0
+	}
+	.right-area {
+	    position: absolute;
+	    right: 15px;
+	    top: -17px;
+	}
+	.nav_side_content .search_option form {
+	    width: 250px;
+	    right: 0;
+	    top: 47px;
+	}
+	.theme_menu {
+		background: #f7f7f7;
+	}
+	.main-logo {
+	    margin: 15px 0 15px;
+	    text-align: center;
+	}
+	.nav_side_content {
+		margin-top: 39px;
+		right: 10px;
+	}
+	.why-choose .item:hover .inner-box {
+	    padding: 11px 21px 32px 80px;
+	    transition: .5s ease;
+	}
+	.theme_menu .menu-column {
+		padding: 0;
+	}
+	.theme_menu.stricky-fixed .nav_side_content {
+		margin-top: 36px;
+	}
+
+
+/*menu*/
+
+.call-out h4 {
+    margin-top: 20px;
+    line-height: 33px;
+}
+.call-out {
+	text-align: center;
+}
+.call-out .float_right {
+	float: none;
+}
+.about-faq .img-box {
+	margin-top: 30px;
+}
+
+.top-bar .social {
+	margin: 10px 0;
+	text-align: center;
+	
+}
+.why-choose {
+	padding-bottom: 30px;
+}
+.why-choose .item {
+	margin-bottom: 40px;
+}
+.about-faq .about-info {
+	margin-bottom: 50px;
+}
+
+.latest-project .link {
+	margin-bottom: 40px;
+}
+
+.awards .service-list li {
+	width: 48%;
+}
+.awards:after {
+	display: none;
+}
+.awards .service-list {
+	text-align: center;
+}
+.awards .award-logo img {
+	margin-bottom: 50px;
+}
+
+.sidebar_search {
+    margin-top: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+@media (max-width: 768px) {
+
+.top-bar .top-bar-text {
+	width: 100%;
+	float: none;
+	text-align: center;
+}
+.why-choose {
+	text-align: center;
+}
+.why-choose .item {
+	display: inline-block;
+}
+.why-choose .item:hover .inner-box {
+    padding: 30px 21px 57px 80px;
+    transition: .5s ease;
+}
+
+
+
+
+
+
+
+
+
+}
+
+@media (max-width: 767px) {
+	.rev_slider_wrapper {
+	  margin-top: 0px;
+	}
+
+}
+
+@media (max-width: 640px) {
+
+
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 575px) {
+	.nav_side_content .search_option form {
+		right: 0;
+	}
+	.rev_slider_wrapper .tp-caption {
+		display: none;
+	}
+}
+
+@media (max-width: 550px) {
+	.megamenu .default-form.register-form {
+		width: 100%;
+	}
+	.default-form-area {
+		width: 100%;
+	}
+}
+@media (max-width: 500px) {
+	#polyglotLanguageSwitcher {
+		margin-right: 0px;
+	}
+	.top-bar {
+		text-align: center;
+		padding: 15px 0;
+		line-height: 40px;
+	}
+
+}
+
+@media (max-width: 420px) {
+
+	.whychoos-us .section-title:after,
+	.whychoos-us .section-title:before {
+		top: 90px;
+	}
+
+}
+
+
