@@ -12,8 +12,8 @@ public class Resource {
 
 
 
-	private int downNumber=0;
-	private int integration=0;
+	private int downNumber;
+	private int integration;
 	public int getResourceId() {
 		return resourceId;
 	}

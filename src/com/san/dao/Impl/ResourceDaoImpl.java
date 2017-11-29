@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.san.model.Subject;
+import com.san.model.UseRecord;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
@@ -65,8 +66,16 @@ public class ResourceDaoImpl implements ResourceDao {
     * return List<Resource>
     * */
 	@Override
-	public Resource getResource(String resourceId) {
+	public Resource getResource(int resourceId) {
 		// TODO Auto-generated method stub
+		try{
+			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+			String sql="select * from resource where resourceId=?";
+			return (Resource) runner.query(sql,resourceId,new BeanHandler(Resource.class));
+		}
+		catch (SQLException ex){
+			ex.printStackTrace();
+		}
 		return null;
 	}
 	/*
@@ -100,7 +109,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="insert into resource(resourceId,uploadId,courseName,resourceName,resourceDescription,resource,downNumber,integration) values(?,?,?,?,?,?,?,?)";
+			String sql="insert into resource(resourceId,uploadId,courseName,resourceName,resourceDescription,resourcePath,downNumber,integration) values(?,?,?,?,?,?,?,?)";
 			Object[] params= {resource.getResourceId(),resource.getUploadId(),resource.getCourseName(),resource.getResourceName(),resource.getResourceDescription(),resource.getResourcePath(),resource.getDownNumber(),resource.getIntegration()};
 			runner.update(sql,params);
 		}
@@ -120,8 +129,8 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="update resource set resourceId=?,uploadId=?,courseId=?,courseName=?,resource=?,downNumber=?,integration=?";
-			Object[] params= {resource.getResourceId(),resource.getUploadId(),resource.getCourseName(),resource.getResourceName(),resource.getResourceDescription(),resource.getResourcePath(),resource.getDownNumber(),resource.getIntegration()};
+			String sql="update resource set  ResourceDescription=? where ResourceId=?";
+			Object[] params= {resource.getResourceDescription(),resource.getResourceId()};
 			runner.update(sql,params);
 		}
 		catch(SQLException ex) {
@@ -129,6 +138,19 @@ public class ResourceDaoImpl implements ResourceDao {
 		}
 	}
 
-	
+	@Override
+	public void updateDownNumber(Resource resource) {
+		try{
+		    QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+		    String sql="update resource set downNumber=?+1 where resourceId=?";
+		    Object[] params={resource.getDownNumber(),resource.getResourceId()};
+		    runner.update(sql,params);
+        }
+        catch (SQLException ex){
+		    ex.printStackTrace();
+		}
+
+	}
+
 
 }

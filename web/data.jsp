@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="css/login.css" />
 <link rel="stylesheet" href="css/bootstrap.min.css"/>
 <link rel="stylesheet" href="css/bootstrap-table.min.css">
-
 </head>
 <body>
 
@@ -191,7 +191,9 @@
 				<div class="section-title">
 					<h2>轻松考</h2>
 				</div>
-<div><table id="table">
+<div>
+	<h1>${user.userName}</h1>
+	<table id="table">
     
 </table></div>
 			<!-- 	<div class="service_carousel"></div> -->
@@ -818,7 +820,7 @@
 		  <script>
       $('#table').bootstrapTable({
     	  method:"get",
-    	  url: "/resourceServlet",
+    	  url: "/resourceServlet?method=listResource",
           dataType: "json",
           striped: true,
           showColumns: true,
@@ -944,8 +946,15 @@
         }, 
         ],*/
         onClickCell:function(field, value, row, $element){
-            if(field=="resourcePath")
-                window.location.href=value;
+            if(field=="resourcePath"){
+              /*  console.log(field);
+                console.log(value);
+                console.log(row);
+                console.log($element);
+                console.log(row.resourceId);*/
+				window.location.href="/resourceServlet?method=getResource&resourceId="+row.resourceId.toString();
+			}
+
         },
     });
     function operateFormatter(value, row, index) {

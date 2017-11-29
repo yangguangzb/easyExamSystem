@@ -112,7 +112,33 @@ public class UserDaoImpl implements UserDao{
 		}
 		return 0;
 	}
-	//后台用户数据管理
+
+    @Override
+    public void  addIntegralNumber(User user, int IntegralNumber) {
+        try{
+            QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+            String sql="update user set integralNumber=?+? where userId=?";
+            Object[] params={user.getIntegralNumber(),IntegralNumber,user.getUserId()};
+            runner.update(sql,params);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void minusIntegralNumber(User user, int IntegralNumber) {
+        try{
+            QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+            String sql="update user set integralNumber=?-? where userId=?";
+            Object[] params={user.getIntegralNumber(),IntegralNumber,user.getUserId()};
+            runner.update(sql,params);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+    //后台用户数据管理
 	/**
 	 * 分页查询用户
 	 * @return list
@@ -132,5 +158,6 @@ public class UserDaoImpl implements UserDao{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("delete from user where userId=?",3);
 	}
+
 	
 }
