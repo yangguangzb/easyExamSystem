@@ -192,7 +192,6 @@
 					<h2>轻松考</h2>
 				</div>
 <div>
-	<h1>${user.userName}</h1>
 	<table id="table">
     
 </table></div>
