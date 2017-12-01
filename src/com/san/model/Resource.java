@@ -9,9 +9,6 @@ public class Resource {
 	private String resourceName;
 	private String resourceDescription;
 	private String resourcePath;
-
-
-
 	private int downNumber;
 	private int integration;
 	public int getResourceId() {

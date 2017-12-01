@@ -42,18 +42,18 @@ public class ResourceServiceImpl implements ResourceService {
         ResourceDao resourceDao=new ResourceDaoImpl();
         UseRecordDao useRecordDao=new UseRecordDaoImpl();
         //获取当前时间
-        Date d = new Date();
+       // Date d = new Date();
       /*  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");*/
         //得到resource对象
         Resource resource=resourceDao.getResource(resourceId);
         //设置useRecord
         int useNumber=0-resource.getIntegration();
         String useType="下载"+resource.getResourceName();
-        useRecord.setUserId(0);
+        useRecord.setRecordId(0);
         useRecord.setUserId(user.getUserId());
         useRecord.setUseType(useType);
         useRecord.setUseNumber(useNumber);
-        useRecord.setUseTime(d);
+      //  useRecord.setUseTime(d);
         //下载次数加一
         resourceDao.updateDownNumber(resource);
         //更新用户积分

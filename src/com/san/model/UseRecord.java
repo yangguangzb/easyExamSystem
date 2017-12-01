@@ -1,6 +1,5 @@
 package com.san.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UseRecord {

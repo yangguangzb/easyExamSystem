@@ -45,8 +45,8 @@ public class UseRecordDaoImpl implements UseRecordDao {
     public void insertUseRecord(UseRecord useRecord) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="insert into useRecord(recordId,userId,useType,useNumber,useTime) values(?,?,?,?,?)";
-            Object[] params= {useRecord.getRecordId(),useRecord.getUserId(),useRecord.getUseType(),useRecord.getUseNumber(),useRecord.getUseTime()};
+            String sql="insert into useRecord(recordId,userId,useType,useNumber) values(?,?,?,?)";
+            Object[] params= {useRecord.getRecordId(),useRecord.getUserId(),useRecord.getUseType(),useRecord.getUseNumber()};
             runner.update(sql,params);
         }
         catch(SQLException ex) {

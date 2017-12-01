@@ -8,14 +8,16 @@ import com.san.model.UseRecord;
 import com.san.model.User;
 import com.san.service.Impl.ResourceServiceImpl;
 import com.san.service.ResourceService;
+import com.san.utils.DownloadUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.List;
 
 @WebServlet(name = "ResourceServlet")
@@ -43,9 +45,29 @@ public class ResourceServlet extends HttpServlet {
             int resourceIds=Integer.parseInt(resourceId);
             if(user!=null){
                UseRecord useRecord=new UseRecord();
-                ResourceService resourceService=new ResourceServiceImpl();
-                resourceService.getResource(user,resourceIds,useRecord);
+              /*ResourceService resourceService=new ResourceServiceImpl();
+                resourceService.getResource(user,resourceIds,useRecord);*/
+                ResourceDao resourceDao=new ResourceDaoImpl();
+                Resource resource=resourceDao.getResource(resourceIds);
+                String filename=resource.getResourceName();//文件名字
+                filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
+                response.setContentType(getServletContext().getMimeType(filename));//设置文件mine
+                response.setHeader("Content-Disposition", "attachment;filename="+filename);
+                String fullfileName=getServletContext().getRealPath("/WEB-INF"+resource.getResourcePath());
+                InputStream in = new FileInputStream(fullfileName);
+                OutputStream out = response.getOutputStream();
+
+                //写文件
+                int b;
+                while((b=in.read())!= -1)
+                {
+                    out.write(b);
+                }
+
+                in.close();
+                out.close();
                 request.getRequestDispatcher("data.jsp").forward(request,response);
+
             }
             else{
                 response.sendRedirect("login.jsp");
