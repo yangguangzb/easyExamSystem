@@ -45,8 +45,8 @@ public class ResourceServlet extends HttpServlet {
             int resourceIds=Integer.parseInt(resourceId);
             if(user!=null){
                UseRecord useRecord=new UseRecord();
-              /*ResourceService resourceService=new ResourceServiceImpl();
-                resourceService.getResource(user,resourceIds,useRecord);*/
+              ResourceService resourceService=new ResourceServiceImpl();
+                resourceService.getResource(user,resourceIds,useRecord);
                 ResourceDao resourceDao=new ResourceDaoImpl();
                 Resource resource=resourceDao.getResource(resourceIds);
                 String filename=resource.getResourceName();//文件名字
@@ -66,7 +66,8 @@ public class ResourceServlet extends HttpServlet {
 
                 in.close();
                 out.close();
-                request.getRequestDispatcher("data.jsp").forward(request,response);
+                response.sendRedirect("data.jsp");
+
 
             }
             else{

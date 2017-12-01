@@ -59,10 +59,13 @@
     <servlet-name>ResourceServlet</servlet-name>
     <servlet-class>com.san.servlet.ResourceServlet</servlet-class>
 </servlet>
+    <servlet>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>com.san.servlet.ResourceUploadServlet</servlet-class>
+    </servlet>
 
 
-
-  <servlet-mapping>
+    <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/loginServlet</url-pattern>
   </servlet-mapping>
@@ -81,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>ResourceServlet</servlet-name>
         <url-pattern>/resourceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/resourceuploadservlet</url-pattern>
     </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -61,4 +61,18 @@ public class ResourceServiceImpl implements ResourceService {
         //增加一条积分使用记录
         useRecordDao.insertUseRecord(useRecord);
     }
+
+    @Override
+    public void uploadResource(User user, Resource resource, UseRecord useRecord) {
+        UserDao userDao=new UserDaoImpl();
+        ResourceDao resourceDao=new ResourceDaoImpl();
+        UseRecordDao useRecordDao=new UseRecordDaoImpl();
+        //更新用户积分
+        userDao.addIntegralNumber(user,resource.getIntegration());
+        //增加一条积分使用记录
+        useRecordDao.insertUseRecord(useRecord);
+        //增加一条资源信息
+        resourceDao.insertResource(resource);
+
+    }
 }
