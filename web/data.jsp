@@ -21,7 +21,6 @@
 <body>
 
 	<div class="boxed_wrapper">
-
 		<header class="top-bar">
 			<div class="container">
 				<div class="clearfix">

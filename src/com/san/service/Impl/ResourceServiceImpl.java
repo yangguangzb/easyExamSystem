@@ -63,10 +63,18 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void uploadResource(User user, Resource resource, UseRecord useRecord) {
+    public void uploadResource(User user, Resource resource) {
+        String useType="上传"+resource.getResourceName();
+        UseRecord useRecord=new UseRecord();
         UserDao userDao=new UserDaoImpl();
         ResourceDao resourceDao=new ResourceDaoImpl();
         UseRecordDao useRecordDao=new UseRecordDaoImpl();
+        useRecord.setRecordId(0);
+        useRecord.setUserId(user.getUserId());
+        useRecord.setUseType(useType);
+        //上传一个资料得5个积分
+        useRecord.setUseNumber(5);
+
         //更新用户积分
         userDao.addIntegralNumber(user,resource.getIntegration());
         //增加一条积分使用记录

@@ -11,5 +11,5 @@ public interface ResourceService {
     public List<Resource> listAllResourceInTable();//列出所有资料
   //  public List<Resource> listAllResourceInTable(Resource resource,User user)
     public void getResource(User user, int resourceId, UseRecord useRecord);//下载资料
-    public void uploadResource(User user,Resource resource,UseRecord useRecord);//上传资料
+    public void uploadResource(User user,Resource resource);//上传资料
 }

@@ -109,8 +109,8 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="insert into resource(uploadId,courseName,resourceName,resourceDescription,resourcePath,downNumber,integration) values(?,?,?,?,?,?,?)";
-			Object[] params= {resource.getUploadId(),resource.getCourseName(),resource.getResourceName(),resource.getResourceDescription(),resource.getResourcePath(),resource.getDownNumber(),resource.getIntegration()};
+			String sql="insert into resource(resourceId,uploadId,courseName,resourceName,resourceDescription,resourcePath,downNumber,integration) values(?,?,?,?,?,?,?,?)";
+			Object[] params= {resource.getResourceId(),resource.getUploadId(),resource.getCourseName(),resource.getResourceName(),resource.getResourceDescription(),resource.getResourcePath(),resource.getDownNumber(),resource.getIntegration()};
 			runner.update(sql,params);
 		}
 		catch(SQLException ex) {
