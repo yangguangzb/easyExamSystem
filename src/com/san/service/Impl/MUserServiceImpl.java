@@ -26,4 +26,18 @@ public class MUserServiceImpl {
 		}
 		return 0;
 	}
+	//管理员修改用户信息
+	public int modifyUserService(String userId,String userType,String verification,String integralNumber){
+		try {
+			int iter=0;
+			//将String的用户积分转化为int
+			if(integralNumber!=""){
+				iter=Integer.parseInt(integralNumber);
+			}
+			return userDaoImpl.mmodifyUserDaoImpl(Integer.parseInt(userId), userType, verification, iter);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
