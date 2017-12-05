@@ -41,14 +41,17 @@ public class ResourceServiceImpl implements ResourceService {
         UserDao userDao=new UserDaoImpl();
         ResourceDao resourceDao=new ResourceDaoImpl();
         UseRecordDao useRecordDao=new UseRecordDaoImpl();
-        //获取当前时间
-       // Date d = new Date();
-      /*  SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");*/
         //得到resource对象
         Resource resource=resourceDao.getResource(resourceId);
         //设置useRecord
-        int useNumber=0-resource.getIntegration();
         String useType="下载"+resource.getResourceName();
+        int useNumber=0;//记录使用积分数目
+        //记录相同useType 相同userId的记录条数
+        int count=useRecordDao.getRecordByUseType(user.getUserId(),useType);
+        //当count为0则需要扣积分
+        if(count==0){
+            useNumber=0-resource.getIntegration();
+        }
         useRecord.setRecordId(0);
         useRecord.setUserId(user.getUserId());
         useRecord.setUseType(useType);
@@ -57,7 +60,7 @@ public class ResourceServiceImpl implements ResourceService {
         //下载次数加一
         resourceDao.updateDownNumber(resource);
         //更新用户积分
-        userDao.minusIntegralNumber(user,resource.getIntegration());
+        userDao.minusIntegralNumber(user,0-useNumber);
         //增加一条积分使用记录
         useRecordDao.insertUseRecord(useRecord);
     }
@@ -81,6 +84,5 @@ public class ResourceServiceImpl implements ResourceService {
         useRecordDao.insertUseRecord(useRecord);
         //增加一条资源信息
         resourceDao.insertResource(resource);
-
     }
 }

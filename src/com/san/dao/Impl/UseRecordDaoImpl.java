@@ -17,7 +17,7 @@ public class UseRecordDaoImpl implements UseRecordDao {
     public List<UseRecord> listUseRecord() {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="select * from resource";
+            String sql="select * from useRecord";
             return (List<UseRecord>) runner.query(sql,new BeanListHandler<UseRecord>(UseRecord.class));
         }
         catch (SQLException ex) {
@@ -84,11 +84,26 @@ public class UseRecordDaoImpl implements UseRecordDao {
     }
 
     @Override
-    public int getTotalRecord(int userId) {
+    public int getRecordByUser(int userId) {
         try{
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="select count(*) from useRecord ";
-            long totalrecord=(long)runner.query(sql, new ScalarHandler());
+            String sql="select count(*) from useRecord where userId=?";
+            long totalrecord=(long)runner.query(sql, new ScalarHandler(),userId);
+            return (int) totalrecord;
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getRecordByUseType(int userId, String useType) {
+        try{
+            QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+            String sql="select count(*) from useRecord where userId=? and useType=?";
+            Object[] params={userId,useType};
+            long totalrecord=(long)runner.query(sql, new ScalarHandler(),params);
             return (int) totalrecord;
         }
         catch (SQLException ex){

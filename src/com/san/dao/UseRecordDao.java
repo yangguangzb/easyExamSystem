@@ -14,5 +14,6 @@ public interface UseRecordDao {
   //  public void updateUseRecord(UseRecord useRecord);//更新某一积分使用记录
     public UseRecord getUseRecord(int RecordId);//得到某一条积分使用记录
     public int getTotalRecord();//得到积分使用记录数目
-    public int getTotalRecord(int userId);//得到某一用户的使用记录数目
+    public int getRecordByUser(int userId);//得到某一用户的使用记录数目
+    public int getRecordByUseType(int userId,String useType);//得到某一用户 某一个使用方式的使用记录数目
 }
