@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
-<%@page import="com.san.model.BrushList"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-	<!-- 登录 -->
-	<link rel="stylesheet" type="text/css" href="css/login.css"/>
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<!-- 自己的css -->
-	<link rel="stylesheet" type="text/css" href="css/myBoutique.css"/>
 </head>
-<body>
-<!-- 判断精品信息session是否存在 -->
-<c:if test="${sessionScope.brushlist==null}">
-	<jsp:forward page="boutiqueServlet?flag=display"></jsp:forward>
-</c:if>
+<body>		<!-- 购买积分界面 -->
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -43,27 +33,36 @@
         <div class="section-title">
             <h2>轻松考</h2>
         </div>
-        <div style="width:75%;height:820px;">
-        	<ul class="boutiqueUl">
-        		<c:forEach items="${brushlist}" var="BrushList" begin="">
-        			<li style="margin-right:20px;">
-        				<!-- 图片信息 -->
-        				<div class="imgs">
-        					<a href="boutiqueServlet?flag=detail&courseName=${BrushList.courseName}"><img src="${BrushList.imageSource}"/></a>
-        				</div>
-        				<!-- 价格信息 -->
-        				<div class="info">
-        					<p class="integral">
-								<del style="color:gray;font-size:12px;">积分:${BrushList.brushIntegral}</del>
-								&nbsp;&nbsp;&nbsp;&nbsp;积分:${BrushList.brushIntegral-3}
-							</p>
-							<p class="describe">
-								<a href="boutiqueServlet?flag=detail&courseName=${BrushList.courseName}" title="历年${BrushList.courseName}考题,考试必做">历年${BrushList.courseName}考题,考试必做</a>
-							</p>
-        				</div>
-        			</li>
-        		</c:forEach>
-        	</ul>
+        <div style="width:75%;height:500px;border:1px #999 solid;">
+        	<div style="height:40px;width:200px;margin-top:20px;">
+        		<a>您的当前积分:${sessionScope.userintegralNumber }</a>
+        	</div>
+        	<div>
+        		<a>1元/10积分</a>
+        	</div>
+        	<div style="width:75%;height:400px;border:1px #999 solid;">
+        	<form action="">
+        		<div>
+        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+        				<input type="radio" name="money"/>1元/10积分
+        			</div>
+        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+        				<input type="radio" name="money"/>5元/50积分
+        			</div>
+        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+        				<input type="radio" name="money"/>10元/100积分
+        			</div>
+        		</div>
+        		<div>
+        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+        				<input type="radio" name="money"/>20元/250积分
+        			</div>
+        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+        				<input type="radio" name="money"/>50元/650积分
+        			</div>
+        		</div>
+        	</form>
+        </div>
         </div>
     </div>
 </section>
@@ -123,8 +122,6 @@
     <script src="js/imagezoom.js"></script> 
     <script id="map-script" src="js/default-map.js"></script>
     <script src="js/custom.js"></script>
-	<!-- 登录js -->
-	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
 </div>
     
 </body>
