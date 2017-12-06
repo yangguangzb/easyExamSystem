@@ -108,8 +108,12 @@ public class RegisterServlet extends HttpServlet {
 						} catch (SQLException e) {
 							e.printStackTrace();
 						}
+					}else{
+						//验证码输入错误
+						out.write("-1");
 					}
 				}else{
+					//没有发验证码
 					out.write("-1");
 				}
 			}

@@ -40,4 +40,15 @@ public class MUserServiceImpl {
 		}
 		return 0;
 	}
+	//管理员删除用户
+	public int mdelUserService(String userId){
+		try {
+			return userDaoImpl.deleteUser(Integer.parseInt(userId));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

@@ -19,94 +19,10 @@
 <body>
 
 <div class="boxed_wrapper">
-
-<header class="top-bar">
-    <div class="container">
-        <div class="clearfix">
-            <div class="col-left float_left">
-                <div id="polyglotLanguageSwitcher" class=""><!--
-                    <form action="#">
-                        <select id="polyglot-language-options">
-                            <option id="en" value="计算机网络" selected>计算机网络</option>
-                            <option id="fr" value="软件工程">软件工程</option>
-                            <option id="de" value="数据结构">数据结构</option>
-                            <option id="it" value="高等数学">高等数学</option>
-                            <option id="es" value="大学英语">大学英语</option>
-                        </select>
-                    </form>
-                --></div>
-				<!--  
-                <ul class="top-bar-info">
-                    <li><i class="icon-technology"></i>Phone: (123) 0200 12345</li>
-                    <li><i class="icon-note2"></i>Mailus@TheExperts.com</li>
-                </ul>
-                -->
-            </div>
-            <div class="col-right float_right">
-            	<!--  
-                <ul class="social">
-                    <li>Stay Connected: </li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-                -->
-                <div class="link">
-                	<!--  
-                    <a href="contact.html" class="thm-btn">get a quote</a>
-                    -->
-                    <a href="login.jsp">登录</a>
-                    <a href="register.jsp">注册</a>
-                </div>
-            </div>
-                
-                
-        </div>
-            
-
-    </div>
-</header>
-
-<section class="theme_menu stricky">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="main-logo">
-                    <a href="index.jsp"><img src="images/logo/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-md-8 menu-column">
-                <nav class="menuzord" id="main_menu">
-                   <ul class="menuzord-menu">
-                       <li class="active"><a href="index.jsp">首页</a></li>
-						<li><a href="ordinary.jsp">普通区</a></li>
-                        <li><a href="boutique.jsp">精品区</a></li>
-						<li><a href="data.jsp">资料</a></li>
-						<li><a href="share.jsp">分享交流</a></li>
-                        <li><a href="problem.jsp">随问即答</a></li>
-                    </ul><!-- End of .menuzord-menu -->
-                </nav> <!-- End of #main_menu -->
-            </div>
-            <div class="right-column">
-                <div class="right-area">
-                    <div class="nav_side_content">
-                        <div class="search_option">
-                            <button class="search tran3s dropdown-toggle color1_bg" id="searchDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-search" aria-hidden="true"></i></button>
-                            <form action="#" class="dropdown-menu" aria-labelledby="searchDropdown">
-                                <input type="text" placeholder="搜索...">
-                                <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                            </form>
-                       </div>
-                   </div>
-                </div>
-                    
-            </div>
-        </div>
-                
-
-   </div> <!-- End of .conatiner -->
-</section>
-  
+<!-- 头部 -->
+<jsp:include page="header.jsp"></jsp:include>
+<!-- 导航栏 -->
+<jsp:include page="nav.jsp"></jsp:include>
 <section class="rev_slider_wrapper">
     <div id="slider1" class="rev_slider"  data-version="5.0">
         <ul>
@@ -894,17 +810,18 @@
     </div>
 </div>
 -->
-<footer class="main-footer">
-    
-    
+
+<jsp:include page="foot.jsp"></jsp:include>
+
+<!--<footer class="main-footer">
     <div class="widgets-section">
         <div class="container">
             <div class="row">
-                <!--Big Column-->
+                Big Column
                 <div class="big-column col-md-6 col-sm-12 col-xs-12">
                     <div class="row clearfix">
                         
-                        <!--Footer Column-->
+                        Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget about-widget">
                                 <h3 class="footer-title">关于我们</h3>
@@ -920,7 +837,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Footer Column-->
+                        Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget links-widget">
                                 <h3 class="footer-title">轻松考</h3>
@@ -939,12 +856,12 @@
                     </div>
                 </div>
                 
-                <!--Big Column-->
+                Big Column
                 <div class="big-column col-md-6 col-sm-12 col-xs-12">
                     <div class="row clearfix">
                         
 
-                        <!--Footer Column-->
+                        Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget contact-widget">
                                 <h3 class="footer-title">联系我们</h3>
@@ -955,25 +872,25 @@
                                         <li><span class="icon-e-mail-envelope"></span>邮箱:123@qq.com</li>
                                     </ul>
                                 </div>
-                                <!--  
+                                  
                                 <ul class="social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                                 </ul>
-                                -->
+                                
                             </div>
                         </div>
 
-                        <!--Footer Column-->
+                        Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget news-widget">
                                 <h3 class="footer-title">通讯</h3>
                                 <div class="widget-content">
-                                    <!--Post-->
+                                    Post
                                     <div class="text"><p>订阅我们您将获得最新的提示<br>最新的试题等</p></div>
-                                    <!--Post-->
+                                    Post
                                     <form action="#" class="default-form">
                                         <input type="email" placeholder="邮箱地址">
                                         <button type="submit" class="thm-btn">定于我们</button>
@@ -990,7 +907,9 @@
          </div>
      </div>
      
-     <!--Footer Bottom-->
+     
+     
+     --><!--Footer Bottom-->
      <!--  
      <section class="footer-bottom">
         <div class="container">

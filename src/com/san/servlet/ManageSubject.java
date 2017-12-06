@@ -33,6 +33,10 @@ public class ManageSubject extends HttpServlet {
 			if(flag.equals("manageSubject")){
 				manageSubject(request, response);
 			}
+			//删除一道题目
+			if(flag.equals("delSubject")){
+				delSubject(request, response);
+			}
 		}
 	}
 	//根据条件查询题目
@@ -58,5 +62,13 @@ public class ManageSubject extends HttpServlet {
 		Subject subjectById=subjectServiceImpl.checkSubjectByIdService(subjectId);
 		request.getSession().setAttribute("subjectById",subjectById);
 		response.sendRedirect("../admin2/subject-detail.jsp");
+	}
+	//删除一道题目
+	public void delSubject(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String subjectId=request.getParameter("subjectId");
+		String i=subjectServiceImpl.delSubjectService(subjectId)+"";
+		//向浏览器响应信息
+		response.getWriter().write(i);
 	}
 }

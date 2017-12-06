@@ -77,7 +77,7 @@
           </div>
       </form>
     </div>
-    <script>
+     <script>
         layui.use(['form','layer'], function(){
             $ = layui.jquery;
           var form = layui.form
@@ -110,7 +110,7 @@
             	url:'../servlet/ManageUsers?flag=addUser',
             	data:$("#maddUser").serialize(),
             	cache:false,
-            	dataType:'json',
+            	//dataType:'json',
             	success:function(msg){
             		if(msg==1){
 						//添加成功
@@ -131,12 +131,14 @@
           });
         });
        </script>
-    <script>var _hmt = _hmt || []; (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();</script>
   </body>
 
 </html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

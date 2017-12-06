@@ -3,13 +3,20 @@ import java.sql.*;
 public class DBUtil {
 	//判断是否为空
 	public static boolean isEmpty(String str){
-		boolean b=false;
 		if("".equals(str)||str==null){
-			b=true;
+			return true;
 		}else{
-			b=false;
+			return false;
 		}
-		return b;
+	}
+	//判断字符串是否全为数字
+	public static boolean isNumeric(String str){
+		for(int i = 0; i < str.length(); i++){
+			if(!Character.isDigit(str.charAt(i))){
+				return false;
+			}
+		}
+		return true;
 	}
 	private static String driverClass="com.mysql.jdbc.Driver";
 	private static String url="jdbc:mysql://119.29.151.185:3306/java_review?useUnicode=true&characterEncoding=UTF8";
