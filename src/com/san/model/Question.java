@@ -12,6 +12,7 @@ public class Question {
 	private Date questionCreationTime;	//创建时间
 	private int questionReward; 		//提问设置积分
 	private String courseName;			//课程
+	private int questionState;			//问题状态
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -67,6 +68,13 @@ public class Question {
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
+	
+	public int getQuestionState() {
+		return questionState;
+	}
+	public void setQuestionState(int questionState) {
+		this.questionState = questionState;
+	}
 	@Override
 	public String toString() {
 		return "Question [courseName=" + courseName + ", creatorId="
@@ -74,7 +82,7 @@ public class Question {
 				+ questionContent + ", questionCreationTime="
 				+ questionCreationTime + ", questionId=" + questionId
 				+ ", questionPath=" + questionPath + ", questionReward="
-				+ questionReward + ", questionTitle=" + questionTitle + "]";
+				+ questionReward + ", questionState=" + questionState
+				+ ", questionTitle=" + questionTitle + "]";
 	}
-	
 }
