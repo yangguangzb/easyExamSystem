@@ -55,7 +55,7 @@
                   <span class="x-red">*</span>标题
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="questionTitle" name="questionTitle" required="" lay-verify="required"
+                  <input type="text" id="questionTitle" name="questionTitle" maxlength="40" style="width:500px;" required="" lay-verify="required"
                   autocomplete="off" class="layui-input">
               </div>
           </div>
@@ -81,7 +81,6 @@
             $ = layui.jquery;
           var form = layui.form
           ,layer = layui.layer;
-        
           //自定义验证规则
           form.verify({
             courseName: function(value){
@@ -105,13 +104,13 @@
                 }
             }
           });
-
           //监听提交
           form.on('submit(add)', function(data){
             //发异步，把数据提交给servlet
             $.ajax({
             	type:'post',
             	url:'questionServlet?flag=putQuestion',
+            	data:$("#problem").serialize(),
             	cache:false,
             	success:function(msg){
 					if(msg==1){
@@ -130,8 +129,6 @@
             });
             return false;
           });
-          
-          
         });
     </script>
 </body>
