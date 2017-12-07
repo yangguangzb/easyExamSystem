@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.junit.Test;
 
 import com.san.model.Question;
 import com.san.utils.C3p0Util;
@@ -17,8 +18,6 @@ public class QuestionDaoImpl {
 	 * @param questionContent	//问题内容
 	 * @param questionReward	//问题积分
 	 * @param courseName		//问题学科
-	 * @return
-	 * @throws SQLException
 	 */
 	public int insertQuestion(int creatorId,String questionTitle,String questionContent,
 			String questionReward,String courseName)throws SQLException{
@@ -36,8 +35,11 @@ public class QuestionDaoImpl {
 			new BeanListHandler<Question>(Question.class));
 	}
 	//查看待答问题,即问题状态为0
-	public List<Question> notAnswerQuestion() throws SQLException{
+	@Test
+	public List<Question> notAnswerQuestionDaoImpl() throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		List<Question> t=qr.query("select * from question where questionState=0",
+				new BeanListHandler<Question>(Question.class));
 		return qr.query("select * from question where questionState=0",
 				new BeanListHandler<Question>(Question.class));
 	}
@@ -47,5 +49,4 @@ public class QuestionDaoImpl {
 		return qr.query("select * from question where creatorId=?", 
 			new BeanListHandler<Question>(Question.class),userId);
 	}
-	
 }
