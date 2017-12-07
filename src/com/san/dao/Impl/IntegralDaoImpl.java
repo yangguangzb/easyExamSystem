@@ -41,16 +41,17 @@ public class IntegralDaoImpl implements IntegralDao{
 	 * @return
 	 * @throws SQLException
 	 */
-	public int isQuestionPoints(int userId,int questionReward) throws SQLException{
+	public User isQuestionPoints(int userId,int questionReward) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		User user=qr.query("select * from user where userId=?",new BeanHandler<User>(User.class),userId);
 		if(user.getIntegralNumber()<questionReward){
 			//用户积分不足，不能设置该积分来提问
-			return -1;
+			return null;
 		}else{
 			//积分够,扣除积分
 			qr.update("update user set integralNumber=integralNumber-? where userId=?",questionReward,userId);
-			return 1;
+			//查询用户信息，并更新
+			return qr.query("select * from user where userId=?",new BeanHandler<User>(User.class),userId);
 		}
 	}
 }
