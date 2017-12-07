@@ -3,6 +3,7 @@ package com.san.service.Impl;
 import java.sql.SQLException;
 
 import com.san.dao.Impl.IntegralDaoImpl;
+import com.san.model.User;
 
 public class IntegralServiceImpl {
 	//积分使用记录处理
@@ -23,21 +24,22 @@ public class IntegralServiceImpl {
 		return 0;
 	}
 	//问题积分是否够
-	public int isQuestionPointsService(int userId,String questionReward,
+	public User isQuestionPointsService(int userId,String questionReward,
 			String questionTitle,String questionContent,String courseName){
 		int intquestionReward=Integer.parseInt(questionReward);
 		try {
-			int i= integralDaoImpl.isQuestionPoints(userId, intquestionReward);
-			if(i==1){
+			User user= integralDaoImpl.isQuestionPoints(userId, intquestionReward);
+			if(user!=null){
 				//积分够用,插入问题信息
 				questionServiceImpl.insertQuestServiceImpl(userId, questionTitle, questionContent, questionReward, courseName);
-				return i;
+				//更新用户积分使用记录
+				integralDaoImpl.boutiqueReducePoints(userId, "提出问题:"+questionTitle, -intquestionReward);
+				return user;
 			}
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
 		}
-		return 0;
+		return null;
 	}
 
 }
