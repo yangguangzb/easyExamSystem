@@ -530,7 +530,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <figure class="logo">
-                    <a href="index.html"><img src="images/logo/logo2.png" alt=""></a>
+                    <a href="index.jsp"><img src="images/logo/logo2.png" alt=""></a>
                 </figure>
             </div>
             <div class="col-md-9 col-sm-12">
