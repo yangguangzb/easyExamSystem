@@ -4,9 +4,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Test;
 
+import com.san.model.Answer;
 import com.san.model.Question;
 import com.san.utils.C3p0Util;
 
@@ -35,7 +38,6 @@ public class QuestionDaoImpl {
 			new BeanListHandler<Question>(Question.class));
 	}
 	//查看待答问题,即问题状态为0
-	@Test
 	public List<Question> notAnswerQuestionDaoImpl() throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		List<Question> t=qr.query("select * from question where questionState=0",
@@ -48,5 +50,28 @@ public class QuestionDaoImpl {
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.query("select * from question where creatorId=?", 
 			new BeanListHandler<Question>(Question.class),userId);
+	}
+	//插入问题回答的内容
+	public int answerQuestionDaoImpl(String questionId,int userId,String answerContent) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("insert into answer(questionId,reviewerId,replyContent) values(?,?,?)",questionId,userId,answerContent);
+	}
+	//显示某一题所有答案
+	public List<Answer> showAllAnswerDaoImpl(int questionId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query("select * from answer where questionId=?",new BeanListHandler<Answer>(Answer.class),questionId);
+	}
+	//查看某道题被回答的次数
+	public int answerNumber(int questionId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		Object o=qr.query("select count(*) from answer where questionId=?",new ScalarHandler(1),questionId);
+		String number=o.toString();
+		int intnumber=Integer.parseInt(number);
+		return intnumber;
+	}
+	//根据问题编号，查看某道题的详细信息
+	public Question questionByIdDaoImpl(int questionId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query("select * from question where questionId=?",new BeanHandler<Question>(Question.class),questionId);
 	}
 }
