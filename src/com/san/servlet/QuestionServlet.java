@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.junit.Test;
+
+import com.san.model.Answer;
 import com.san.model.Question;
 import com.san.model.User;
 import com.san.service.Impl.IntegralServiceImpl;
@@ -26,6 +29,10 @@ public class QuestionServlet extends HttpServlet {
 			if(flag.equals("putQuestion")){
 				putQuestion(request, response);
 			}
+			//用户回答问题
+			if(flag.equals("answerQuestion")){
+				answerQuestion(request, response);
+			}
 		}
 	}
 	//get提交处理
@@ -37,10 +44,11 @@ public class QuestionServlet extends HttpServlet {
 			if(flag.equals("notAnswerQuestion")){
 				notAnswerQuestion(request, response);
 			}
+			if(flag.equals("showAllAnswer")){
+				showAllAnswer(request, response);
+			}
 		}
 	}
-//get提交处理
-	
 	public void putQuestion(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//获取课程名,问题积分,问题标题,问题内容
@@ -48,9 +56,8 @@ public class QuestionServlet extends HttpServlet {
 		String questionReward=request.getParameter("questionReward");
 		String questionTitle=request.getParameter("questionTitle");
 		String questionContent=request.getParameter("questionContent");
-		//获得用户id(获得的积分没有用，需要在查询，在存储)
-		User user=(User) request.getSession().getAttribute("user");
 		//判断用户提出问题设置积分是否够
+		User user=(User) request.getSession().getAttribute("user");
 		User newUser=integralServiceImpl.isQuestionPointsService(user.getUserId(),questionReward,questionTitle,questionContent,courseName);
 		//动态修改用户积分并保存
 		if(newUser==null){
@@ -66,6 +73,31 @@ public class QuestionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		List<Question> notAnswer=questionServiceImpl.notAnswerService();
 		request.setAttribute("notAnswer", notAnswer);
-		request.getRequestDispatcher("notAnswerQuestion.jsp").forward(request, response);
+		request.getRequestDispatcher("problem.jsp").forward(request, response);
+	}
+	//用户回答问题处理
+	public void answerQuestion(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//回答内容
+		String answerContent=request.getParameter("answerContent");
+		//问题编号
+		String questionId=request.getParameter("questionId");
+		User user=(User)request.getSession().getAttribute("user");
+		questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent);
+	}
+	//显示网友回答的答案showAllAnswer
+	public void showAllAnswer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String questionId=request.getParameter("questionId");
+		List<Answer> showAllAnswer=questionServiceImpl.showAllAnswerService(questionId);
+		Question questionById=questionServiceImpl.questionByIdService(questionId);
+		if(showAllAnswer.size()==0){
+			//没有网友答案
+			request.setAttribute("showAllAnswer",0);
+		}else{
+			request.setAttribute("showAllAnswer", showAllAnswer);
+		}
+		request.setAttribute("questionById", questionById);
+		request.getRequestDispatcher("answerQuestion.jsp").forward(request, response);
 	}
 }
