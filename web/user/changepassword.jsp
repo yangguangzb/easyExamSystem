@@ -24,7 +24,7 @@
   
   <body>
     <div class="x-body">
-        <form class="layui-form">
+        <form class="layui-form" method="post" action="/changePasswordServlet">
           <div class="layui-form-item">
               <!--
               <label for="username" class="layui-form-label">
@@ -122,7 +122,7 @@
           });
 
           //监听提交
-          form.on('submit(add)', function(data){
+          /*form.on('submit(add)', function(data){
             console.log(data);
             //发异步，把数据提交给php
             layer.alert("增加成功", {icon: 6},function () {
@@ -132,9 +132,9 @@
                 parent.layer.close(index);
             });
             return false;
-          });
+          });*/
           
-          
+          form.submit();
         });
     </script>
     <script>var _hmt = _hmt || []; (function() {

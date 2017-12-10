@@ -138,7 +138,20 @@ public class UserDaoImpl implements UserDao{
             ex.printStackTrace();
         }
     }
-    //后台用户数据管理
+
+	@Override
+	public void updateUserByPassword(User user) {
+		try {
+			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+			String sql="update user set  password=? where userId=?";
+			Object[] params= {user.getPassword(),user.getUserId()};
+			runner.update(sql,params);
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	//后台用户数据管理
 	/**
 	 * 分页查询用户
 	 * @return list
