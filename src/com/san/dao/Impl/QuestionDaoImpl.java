@@ -32,18 +32,17 @@ public class QuestionDaoImpl {
 	 * 查看高分问题,积分在15，20分
 	 * 问题未被采纳,即问题状态为0
 	 */
-	public List<Question> checkHeightQuestion() throws SQLException{
+	public List<Question> checkHighQuestion(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("select * from question where questionState=0 and questionReward>10",
-			new BeanListHandler<Question>(Question.class));
+		return qr.query("select * from question where questionState=0 and questionReward>10 and creatorId!=?",
+			new BeanListHandler<Question>(Question.class),userId);
 	}
 	//查看待答问题,即问题状态为0
-	public List<Question> notAnswerQuestionDaoImpl() throws SQLException{
+	public List<Question> notAnswerQuestionDaoImpl(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		List<Question> t=qr.query("select * from question where questionState=0",
-				new BeanListHandler<Question>(Question.class));
-		return qr.query("select * from question where questionState=0",
-				new BeanListHandler<Question>(Question.class));
+		//查询未被回答且不是自己提的问题,且积分小于15分
+		return qr.query("select * from question where questionState=0 and creatorId!=? and questionReward<15",
+				new BeanListHandler<Question>(Question.class),userId);
 	}
 	//查看我的问题
 	public List<Question> myQuestion(int userId) throws SQLException{
@@ -59,7 +58,7 @@ public class QuestionDaoImpl {
 	//显示某一题所有答案
 	public List<Answer> showAllAnswerDaoImpl(int questionId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("select * from answer where questionId=?",new BeanListHandler<Answer>(Answer.class),questionId);
+		return qr.query("select * from answer where questionId=? ORDER BY answerTime DESC",new BeanListHandler<Answer>(Answer.class),questionId);
 	}
 	//查看某道题被回答的次数
 	public int answerNumber(int questionId) throws SQLException{
