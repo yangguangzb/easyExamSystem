@@ -34,16 +34,16 @@
 	                		</button>
 	                		<ul class="dropdown-menu" role="menu">
 	                			<li>
-						            <a href="buyPoints.jsp">充值积分</a>
+						            <a href="/user/buyintegrations.jsp">充值积分</a>
 						        </li>
-						        <li>
+						       <!-- <li>
 						            <a href="#">下载记录</a>
+						        </li>-->
+						        <li>
+						            <a href="/user/resourcehistory.jsp">资料记录</a>
 						        </li>
 						        <li>
-						            <a href="#">上传记录</a>
-						        </li>
-						        <li>
-						            <a href="personCenter.jsp">个人中心</a>
+						            <a href="/user/index.jsp">个人中心</a>
 						        </li>
 	                		</ul>
                 		</div>
