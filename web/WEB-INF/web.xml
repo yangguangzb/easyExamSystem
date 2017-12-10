@@ -63,7 +63,18 @@
         <servlet-name>upload</servlet-name>
         <servlet-class>com.san.servlet.ResourceUploadServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>com.san.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>com.san.servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+   <servlet>
+       <servlet-name>IntegrationHistoryServlet</servlet-name>
+       <servlet-class>com.san.servlet.IntegrationHistoryServlet</servlet-class>
+   </servlet>
 
     <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -89,6 +100,18 @@
         <servlet-name>upload</servlet-name>
         <url-pattern>/resourceuploadservlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/changePasswordServlet</url-pattern>
+    </servlet-mapping>
+   <servlet-mapping>
+       <servlet-name>IntegrationHistoryServlet</servlet-name>
+       <url-pattern>/integrationHistoryServlet</url-pattern>
+   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

@@ -135,7 +135,7 @@
       });
 
        /*用户-停用*/
-      function member_stop(obj,id){
+     /* function member_stop(obj,id){
           layer.confirm('确认要停用吗？',function(index){
 
               if($(obj).attr('title')=='启用'){
@@ -156,20 +156,20 @@
               }
               
           });
-      }
+      }*/
 
       /*用户-删除*/
-      function member_del(obj,id){
+     /* function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
               $(obj).parents("tr").remove();
               layer.msg('已删除!',{icon:1,time:1000});
           });
-      }
+      }*/
 
 
 
-      function delAll (argument) {
+   /*  function delAll (argument) {
 
         var data = tableCheck.getData();
   
@@ -178,7 +178,7 @@
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
-      }
+      }*/
     </script>
     <script>var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");
