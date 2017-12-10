@@ -20,11 +20,11 @@ public class QuestionServiceImpl {
 		}
 		return 0;
 	}
-	//待回答问题service
+	//待回答问题service(可以多加一个参数，和高分问题一起处理)
 	@Test
-	public List<Question> notAnswerService(){
+	public List<Question> notAnswerService(int userId){
 		try {
-			List<Question> questions=questionDaoImpl.notAnswerQuestionDaoImpl();
+			List<Question> questions=questionDaoImpl.notAnswerQuestionDaoImpl(userId);
 			for (Question question : questions) {
 				//将数据库中的时间转化
 				question.setShowTime(DBUtil.getTimeByDate(question.getQuestionCreationTime()));
@@ -41,7 +41,7 @@ public class QuestionServiceImpl {
 	//回答问题的service
 	public int answerQuestionService(String questionId,int userId,String answerContent){
 		try {
-			questionDaoImpl.answerQuestionDaoImpl(questionId, userId, answerContent);
+			return questionDaoImpl.answerQuestionDaoImpl(questionId, userId, answerContent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +61,27 @@ public class QuestionServiceImpl {
 	public Question questionByIdService(String questionId){
 		try {
 			int intquestionId=Integer.parseInt(questionId);
-			questionDaoImpl.questionByIdDaoImpl(intquestionId);
+			//将时间转化
+			Question question=questionDaoImpl.questionByIdDaoImpl(intquestionId);
+			question.setShowTime(DBUtil.getTimeByDate(question.getQuestionCreationTime()));
+			return question;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	//查询高积分题目
+	public List<Question> highQuestionService(int userId){
+		try {
+			List<Question> highQuestions=questionDaoImpl.checkHighQuestion(userId);
+			for (Question question : highQuestions) {
+				//将数据库中的时间转化
+				question.setShowTime(DBUtil.getTimeByDate(question.getQuestionCreationTime()));
+				//设置问题回答次数
+				int number=questionDaoImpl.answerNumber(question.getQuestionId());
+				question.setAnswerNumber(number);
+			}
+			return highQuestions;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
