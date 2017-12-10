@@ -47,6 +47,10 @@ public class QuestionServlet extends HttpServlet {
 			if(flag.equals("showAllAnswer")){
 				showAllAnswer(request, response);
 			}
+			//高积分问题
+			if(flag.equals("highQuestion")){
+				highQuestion(request, response);
+			}
 		}
 	}
 	public void putQuestion(HttpServletRequest request, HttpServletResponse response)
@@ -71,7 +75,8 @@ public class QuestionServlet extends HttpServlet {
 	//待回答问题处理
 	public void notAnswerQuestion(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Question> notAnswer=questionServiceImpl.notAnswerService();
+		User user=(User) request.getSession().getAttribute("user");
+		List<Question> notAnswer=questionServiceImpl.notAnswerService(user.getUserId());
 		request.setAttribute("notAnswer", notAnswer);
 		request.getRequestDispatcher("problem.jsp").forward(request, response);
 	}
@@ -83,7 +88,8 @@ public class QuestionServlet extends HttpServlet {
 		//问题编号
 		String questionId=request.getParameter("questionId");
 		User user=(User)request.getSession().getAttribute("user");
-		questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent);
+		String i=questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent)+"";
+		response.getWriter().write(i);
 	}
 	//显示网友回答的答案showAllAnswer
 	public void showAllAnswer(HttpServletRequest request, HttpServletResponse response)
@@ -99,5 +105,13 @@ public class QuestionServlet extends HttpServlet {
 		}
 		request.setAttribute("questionById", questionById);
 		request.getRequestDispatcher("answerQuestion.jsp").forward(request, response);
+	}
+	//高分问题
+	public void highQuestion(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user=(User)request.getSession().getAttribute("user");
+		List<Question> highQuestion=questionServiceImpl.highQuestionService(user.getUserId());
+		request.setAttribute("highQuestion", highQuestion);
+		request.getRequestDispatcher("highQuestion.jsp").forward(request, response);
 	}
 }
