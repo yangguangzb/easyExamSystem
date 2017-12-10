@@ -1,9 +1,10 @@
-<%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>后台系统管理</title>
+	<title>用户中心</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -38,13 +39,13 @@
         </ul>-->
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">${user.userName}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
-              <dd><a href="./login.html">退出</a></dd>
+              <dd><a href="/logoutServlet">退出</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
+          <li class="layui-nav-item to-index"><a href="../index.jsp">前台首页</a></li>
         </ul>
         
     </div>
@@ -218,7 +219,7 @@
                 <i class="iconfont">&#xe6b8;</i>
                 <cite>成绩记录</cite>
             </a>-->
-            <dd><a onclick="x_admin_show('成绩记录','gradehistory.html')"><i class="iconfont">&#xe6b8;</i>成绩记录</a></dd>
+            <dd><a onclick="x_admin_show('成绩记录','gradehistory.jsp')"><i class="iconfont">&#xe6b8;</i>成绩记录</a></dd>
            <!-- <a href="javascript:;">
                 <i class="iconfont">&#xe6b8;</i>
                 <cite>资料记录</cite>
@@ -233,13 +234,13 @@
             </a>
             <ul class="sub-menu">
                 <li>
-                    <a _href="integrationhistory.html">
+                    <a _href="integrationhistory.jsp">
                         <i class="iconfont">&#xe6a7;</i>
                         <cite>积分记录</cite>
                     </a>
                 </li >
                 <li>
-                    <a _href="buyintegrations.html">
+                    <a _href="buyintegrations.jsp">
                         <i class="iconfont">&#xe6a7;</i>
                         <cite>购买积分</cite>
                         
@@ -254,13 +255,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="talknotify.html">
+                        <a _href="talknotify.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>讨论区通知</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="sharenotify.html">
+                        <a _href="sharenotify.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>分享区通知</cite>
                         </a>
@@ -271,7 +272,7 @@
                         <i class="iconfont">&#xe6b8;</i>
                         <cite>修改密码</cite>
                     </a>-->
-                    <dd><a onclick="x_admin_show('修改密码','changepassword.html')"><i class="iconfont">&#xe6b8;</i>修改密码</a></dd>
+                    <dd><a onclick="x_admin_show('修改密码','changepassword.jsp')"><i class="iconfont">&#xe6b8;</i>修改密码</a></dd>
                 </li>
         </ul>
       </div>
@@ -286,7 +287,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='./gradehistory.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>
