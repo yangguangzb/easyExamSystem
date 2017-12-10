@@ -13,6 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UseRecordDaoImpl implements UseRecordDao {
+    /*
+    * 列出所有的使用记录
+    * */
     @Override
     public List<UseRecord> listUseRecord() {
         try {
@@ -26,12 +29,14 @@ public class UseRecordDaoImpl implements UseRecordDao {
             return null;
         }
     }
-
+        /*
+        * 列出某一用户的所有积分使用记录
+        * */
     @Override
     public List<UseRecord> listUseRecord(int userId) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="select * from resource where userId=?";
+            String sql="select * from useRecord where userId=?";
             return (List<UseRecord>) runner.query(sql,new BeanListHandler<UseRecord>(UseRecord.class),userId);
         }
         catch (SQLException ex) {
@@ -40,7 +45,9 @@ public class UseRecordDaoImpl implements UseRecordDao {
             return null;
         }
     }
-
+        /*
+        * 增加积分使用记录
+        * */
     @Override
     public void insertUseRecord(UseRecord useRecord) {
         try {
@@ -110,5 +117,21 @@ public class UseRecordDaoImpl implements UseRecordDao {
             ex.printStackTrace();
         }
         return 0;
+    }
+    /*
+    * 列出某一用户的资料上传下载记录
+    * */
+    @Override
+    public List<UseRecord> listResourceUseRecord(int userId) {
+        try {
+            QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+            String sql="SELECT * FROM java_review.useRecord where userId=? and useType like '下载%' or useType like '上传%'";
+            return (List<UseRecord>) runner.query(sql,new BeanListHandler<UseRecord>(UseRecord.class),userId);
+        }
+        catch (SQLException ex) {
+            // TODO: handle exception
+            ex.printStackTrace();
+            return null;
+        }
     }
 }
