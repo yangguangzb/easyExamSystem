@@ -23,6 +23,7 @@
 	
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
+	<link rel="stylesheet" href="css/myQuestion.css"/>
 	<script type="text/javascript">
 	/*弹出层*/
 	/*
@@ -90,7 +91,7 @@
         	<div class="top">
         		<ul class="topul">
         			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp">高分问题</a></li>
+        			<li><a href="hightQuestion.jsp" style="color:#999">高分问题</a></li>
         			<li><a href="myQuestion.jsp">我的问题</a></li>
         			<li><a href="myAnswer.jsp">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
