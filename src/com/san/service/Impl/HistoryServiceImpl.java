@@ -20,4 +20,11 @@ public class HistoryServiceImpl implements HistoryService {
         useRecordList=useRecordDao.listUseRecord(userId);
       return   useRecordList;
     }
+
+    @Override
+    public List<UseRecord> listResourceUseRecord(int userId) {
+        UseRecordDao useRecordDao=new UseRecordDaoImpl();
+        List<UseRecord> useRecordList=useRecordDao.listResourceUseRecord(userId);
+        return useRecordList;
+    }
 }

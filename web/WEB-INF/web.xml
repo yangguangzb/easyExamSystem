@@ -75,6 +75,14 @@
         <servlet-name>IntegrationHistoryServlet</servlet-name>
         <servlet-class>com.san.servlet.IntegrationHistoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResourceHistoryServlet</servlet-name>
+        <servlet-class>com.san.servlet.ResourceHistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GradeHistoryServlet</servlet-name>
+        <servlet-class>com.san.servlet.GradeHistoryServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -113,6 +121,14 @@
     <servlet-name>IntegrationHistoryServlet</servlet-name>
     <url-pattern>/integrationHistoryServlet</url-pattern>
 </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResourceHistoryServlet</servlet-name>
+        <url-pattern>/resourceHistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GradeHistoryServlet</servlet-name>
+        <url-pattern>/gradeHistoryServlet</url-pattern>
+    </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
