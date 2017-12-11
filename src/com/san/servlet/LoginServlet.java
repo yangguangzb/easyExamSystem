@@ -106,7 +106,15 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}
-		
+		//用户退出时,跳转到登录界面,销毁session
+		if(request.getParameter("sign")!=null&&"isSignOut".equals(request.getParameter("sign"))){
+			request.getSession().invalidate();
+			response.sendRedirect("index.jsp");
+		}
+		//个人中心中用户修改密码
+		if(request.getParameter("personRegister")!=null){
+			String password=request.getParameter("");
+		}
 		
 		
 		

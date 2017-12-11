@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- 必须 -->
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -102,7 +103,7 @@
 	              <a title="详情"  onclick="x_admin_show('查看详情','subject-detail.jsp?subjectId=${manageSubject.subjectId}')" href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
-	              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+	              <a title="删除" onclick="member_del(this,${manageSubject.subjectId})" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
 	              </a>
 	            </td>
@@ -165,9 +166,21 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+              $.ajax({
+              	type:'post',
+              	url:'../servlet/ManageSubject?flag=delSubject&subjectId='+id,
+              	cache:false,
+              	success:function(msg){
+					if(msg==1){
+						//删除成功
+						$(obj).parents("tr").remove();
+              			layer.msg('已删除!',{icon:1,time:1000});
+					}else{
+						//删除失败
+						layer.alert("删除失败");
+					}              	
+              	}
+              });
           });
       }
 

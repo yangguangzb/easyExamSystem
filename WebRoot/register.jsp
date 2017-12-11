@@ -26,7 +26,7 @@
 					}
 				}
 			}
-			xhr.open("get","/servlet/registerServlet?flag=userName&userName="+userName);
+			xhr.open("get","registerServlet?flag=userName&userName="+userName);
 			xhr.send(null);
 		}
 	}
@@ -43,7 +43,7 @@
 					}
 				}
 			}
-			xhr.open("get","/servlet/registerServlet?flag=e_mail&e_mail="+e_mail);
+			xhr.open("get","registerServlet?flag=e_mail&e_mail="+e_mail);
 			xhr.send(null);
 		}
 	}
@@ -57,7 +57,7 @@
 					
 				}
 			}
-			xhr.open("get","/servlet/registerServlet?flag=password&password="+password);
+			xhr.open("get","registerServlet?flag=password&password="+password);
 			xhr.send(null);
 		}
 	}
@@ -96,7 +96,7 @@
 						$(".part4").show();
 						$(".step li").eq(2).addClass("on");
 						countdown({
-							maxTime:10,
+							maxTime:10000,
 							ing:function(c){
 								$("#times").text(c);
 							},

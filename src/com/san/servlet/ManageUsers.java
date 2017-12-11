@@ -42,6 +42,11 @@ public class ManageUsers extends HttpServlet {
 			if(flag.equals("modifyUser")){
 				modifyUser(request, response);
 			}
+			//管理员删除用户
+			if(flag.equals("delUser")){
+				delUser(request, response);
+			}
+			
 		}
 	}
 	//查询所有用户,并显示
@@ -72,6 +77,13 @@ public class ManageUsers extends HttpServlet {
 		String integralNumber = request.getParameter("integralNumber");
 		String i=mUserService.modifyUserService(userId, userType, verification, integralNumber)+"";
 		//响应回浏览器
+		response.getWriter().write(i);
+	}
+	//管理员删除用户
+	public void delUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String userId=request.getParameter("userId");
+		String i=mUserService.mdelUserService(userId)+"";
 		response.getWriter().write(i);
 	}
 }

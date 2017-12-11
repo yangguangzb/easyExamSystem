@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.san.dao.UserDao;
 import com.san.model.User;
 import com.san.utils.C3p0Util;
+import com.san.utils.DBUtil;
 /**
  * 关于用户的数据库操作
  * @author Administrator
@@ -54,7 +55,7 @@ public class UserDaoImpl implements UserDao{
 		}
 		if(flag==3){
 			//注册
-			sql="insert into user values("+null+",'"+userName+"',"+1+",'"+e_mail+"','"+password+"',"+1+")";
+			sql="insert into user values("+null+",'"+userName+"',1,'"+e_mail+"','"+password+"',1,10)";
 			return stmt.executeUpdate(sql);
 		}
 		return 0;
@@ -112,25 +113,62 @@ public class UserDaoImpl implements UserDao{
 		}
 		return 0;
 	}
-	//后台用户数据管理
-	/**
-	 * 分页查询用户
-	 * @return list
-	 */
-	public List<User> checkAllUser(int pageNow) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		int a=(pageNow-1)*10;
-		List<User> list=qr.query("select * from user limit "+a+",10", new BeanListHandler<User>(User.class));
-		return list;
-	}
+	//后台用户数据管
 	/**
 	 * 删除用户
 	 * @return int
 	 */
 	@Test
-	public int deleteUser(int id) throws SQLException{
+	public int deleteUser(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.update("delete from user where userId=?",3);
+		return qr.update("delete from user where userId=?",userId);
 	}
-	
+	//根据条件查询用户
+	public List<User> mcheckUser(String userType,String userId,String verification) throws SQLException{
+		StringBuffer sql=new StringBuffer("select * from user");
+		if(userType!=""&&userType!=null){
+			sql.append(" and userType="+userType+"");
+		}
+		if(userId!=""&&userId!=null){
+			if(DBUtil.isNumeric(userId)){
+				//输入的是用户编号
+				int id=Integer.parseInt(userId);
+				sql.append(" and userId="+id+"");
+			}else{
+				//输入的是用户名
+				sql.append(" and userName="+userId+"");
+			}
+		}
+		if(verification!=""&&verification!=null){
+			int ve=0;
+			if(verification.equals("1")){
+				ve=1;
+			}
+			sql.append(" and verification="+ve+"");
+		}
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query(sql.toString().replaceFirst("and","where"),new BeanListHandler<User>(User.class));
+	}
+	//添加用户
+	public int maddUserDaoImpl(String userName,String e_mail,String password) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		User user;
+		user=qr.query("select * from user where userName=?",new BeanHandler<User>(User.class),userName);
+		if(user!=null){
+			//用户名已存在
+			return -1;
+		}
+		user=qr.query("select * from user where e_mail=?",new BeanHandler<User>(User.class),e_mail);
+		if(user!=null){
+			//邮箱已存在
+			return -2;
+		}
+		return qr.update("insert into user(userName,e_mail,password) values(?,?,?)",userName,e_mail,password);
+	}
+	//修改用户信息
+	public int mmodifyUserDaoImpl(int userId,String userType,String verification,int integralNumber) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update user set userType=?,verification=?,integralNumber=? where userId=?"
+				,userType,verification,integralNumber,userId);
+	}
 }

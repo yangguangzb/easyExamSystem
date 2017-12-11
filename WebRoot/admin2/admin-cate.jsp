@@ -124,14 +124,16 @@
       }
 
       /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
-          });
+      function member_del(id){
+      		alert(id)
+          /*layer.confirm('确认要删除吗？',function(index){
+              $.ajax({
+              	
+              });
+          });*/
       }
-
+	//$(obj).parents("tr").remove();
+   //layer.msg('已删除!',{icon:1,time:1000});
 
 
       function delAll (argument) {

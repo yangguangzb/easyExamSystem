@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+.boutiqueUl {
+	
+	height:820px;
+	margin:auto;
+}
+.boutiqueUl li{
+	width:31%;
+	height:370px;
+	border:1px #999 solid;
+	margin:0 30px 30px 0;
+	float:left;
+}
+.imgs{
+	 height:65%;width:64%;margin: 20px auto;
+}
+.info{
+	border:1px red solid; height:80px;width:90%;margin:auto;
+}
+.integral{
+	margin-top:15px;
+	font-size:15px;
+	color: #ff4400;
+}

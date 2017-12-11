@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
+    
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
@@ -92,10 +93,12 @@
 	            <td>${mUser.verification}</td>
 	            <td >${mUser.integralNumber}</td>
 	            <td class="td-manage" width="110px;">
-	              <a title="修改"  onclick="x_admin_show('查看详情','')" href="javascript:;">
+	              <a title="修改"  onclick="x_admin_show('修改信息',
+	              './member-edit.jsp?userId=${mUser.userId}&userName=${mUser.userName}&email=${mUser.e_mail}&integralNumber=${mUser.integralNumber}')" 
+	              href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
-	              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+	              <a title="删除" onclick="member_del(this,${mUser.userId})" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
 	              </a>
 	            </td>
@@ -104,18 +107,47 @@
           </c:if>
         </tbody>
       </table>
-      <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
-      </div>
-
-    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+		
+	</fieldset>
+	<div id="demo3"></div>
+	<!-- 分页 -->
+	<script>
+		layui.use(['laypage', 'layer'], function(){
+		  var laypage = layui.laypage
+		  ,layer = layui.layer;
+		  //自定义首页、尾页、上一页、下一页文本
+		  /*laypage.render({
+		    elem: 'demo3'	
+		    ,count: ${fn:length(mUserList)}		//数据总数,从服务器得到
+		    ,first: '首页'
+		    ,last: '尾页'
+		    ,prev: '<em>←</em>'
+		    ,next: '<em>→</em>'
+		  });*/
+		  //调用分页
+		  laypage.render({
+		    elem: 'demo3'
+		    ,count: data.length		//数据总数,从服务器得到
+		    ,first: '首页'
+		    ,last: '尾页'
+		    ,prev: '<em>←</em>'
+		    ,next: '<em>→</em>'
+		    ,limit: 2
+		    ,jump: function(obj){
+		      //模拟渲染
+		      document.getElementById('biuuu_city_list').innerHTML = function(){
+		        var arr = []
+		        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
+		        layui.each(thisData, function(index, item){
+		          arr.push('<li>'+ item +'</li>');
+		        });
+		        return arr.join('');
+		      }();
+		    }
+		  });
+		});
+	</script>
     <script>
       layui.use('laydate', function(){
         var laydate = layui.laydate;
@@ -157,15 +189,23 @@
 
       /*用户-删除*/
       function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
+          	  layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+              $.ajax({
+              	type:'post',
+              	url:'../servlet/ManageUsers?flag=delUser&userId='+id,
+              	cache:false,
+              	success:function(msg){
+              		if(msg==1){
+              			$(obj).parents("tr").remove();
+             			layer.msg('已删除!',{icon:1,time:1000});
+              		}else{
+              			layer.alert("删除失败");
+              		}
+              	}
+              });
           });
       }
-
-
-
       function delAll (argument) {
         var data = tableCheck.getData();
         layer.confirm('确认要删除吗？'+data,function(index){

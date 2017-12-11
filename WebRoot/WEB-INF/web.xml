@@ -12,19 +12,31 @@
 		<filter-name>UserFilter</filter-name>
 		<filter-class>com.san.filter.UserFilter</filter-class>
 	</filter>
+	<filter>
+		<filter-name>Login</filter-name>
+		<filter-class>com.san.filter.Login</filter-class>
+	</filter>
 	
 	
+	
+	<!-- 编码过滤 -->
 	<filter-mapping>
 		<filter-name>CodeFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 用户过滤 -->
+	<!-- 用户是否登录过滤 -->
 	<!--<filter-mapping>
+		<filter-name>Login</filter-name>
+		<url-pattern>/*.java</url-pattern>	
+	</filter-mapping>
+	-->
+	<!-- 后台过滤 -->
+	<filter-mapping>
 		<filter-name>UserFilter</filter-name>
-		<url-pattern>/servlet/*</url-pattern>
+		<url-pattern>/admin2/*</url-pattern>
 	</filter-mapping>
 	
-	--><servlet>
+	<servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>LoginServlet</servlet-name>
@@ -51,9 +63,30 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>BackUser</servlet-name>
-    <servlet-class>com.san.servlet.BackUser</servlet-class>
+    <servlet-name>ManageUsers</servlet-name>
+    <servlet-class>com.san.servlet.ManageUsers</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>BoutiqueServlet</servlet-name>
+    <servlet-class>com.san.servlet.BoutiqueServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManageSubject</servlet-name>
+    <servlet-class>com.san.servlet.ManageSubject</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>QuestionServlet</servlet-name>
+    <servlet-class>com.san.servlet.QuestionServlet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -72,8 +105,20 @@
     <url-pattern>/subjectServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>BackUser</servlet-name>
-    <url-pattern>/servlet/BackUser</url-pattern>
+    <servlet-name>ManageUsers</servlet-name>
+    <url-pattern>/servlet/ManageUsers</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BoutiqueServlet</servlet-name>
+    <url-pattern>/boutiqueServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageSubject</servlet-name>
+    <url-pattern>/servlet/ManageSubject</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>QuestionServlet</servlet-name>
+    <url-pattern>/questionServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

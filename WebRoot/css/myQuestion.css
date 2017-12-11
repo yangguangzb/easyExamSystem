@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+.notAnswerQuestion{
+	text-align:center;
+	width:853px;
+	margin-left: 10px;
+}
+.notAnswerQuestion th{
+	border-bottom: 1px solid #D0D0D0;
+	color: #999999;
+	line-height: 40px;
+	text-align:center;
+}
+.notAnswerQuestion td{
+	border-bottom: 1px dashed #D0D0D0;
+	line-height: 40px;
+	text-align:center;
+}
+.notAnswerQuestion a{
+	color:#133DB6;
+	target:_blank;
+	text-decoration:underline;
+	font-size:14px;
+}
