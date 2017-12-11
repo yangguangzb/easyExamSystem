@@ -1,7 +1,10 @@
 package com.san.service.Impl;
 
+import com.san.dao.GradeDao;
+import com.san.dao.Impl.GradeDaoImpl;
 import com.san.dao.Impl.UseRecordDaoImpl;
 import com.san.dao.UseRecordDao;
+import com.san.model.Grade;
 import com.san.model.UseRecord;
 import com.san.service.HistoryService;
 
@@ -26,5 +29,12 @@ public class HistoryServiceImpl implements HistoryService {
         UseRecordDao useRecordDao=new UseRecordDaoImpl();
         List<UseRecord> useRecordList=useRecordDao.listResourceUseRecord(userId);
         return useRecordList;
+    }
+
+    @Override
+    public List<Grade> listGradeByUser(int userId) {
+        GradeDao gradeDao=new GradeDaoImpl();
+        List<Grade> gradeList=gradeDao.listGradeByUser(userId);
+        return gradeList;
     }
 }
