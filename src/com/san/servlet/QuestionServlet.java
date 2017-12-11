@@ -2,6 +2,7 @@ package com.san.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,12 +45,21 @@ public class QuestionServlet extends HttpServlet {
 			if(flag.equals("notAnswerQuestion")){
 				notAnswerQuestion(request, response);
 			}
+			//显示所有回答
 			if(flag.equals("showAllAnswer")){
 				showAllAnswer(request, response);
 			}
 			//高积分问题
 			if(flag.equals("highQuestion")){
 				highQuestion(request, response);
+			}
+			//我的问题
+			if(flag.equals("myQuestion")){
+				myQuestion(request, response);
+			}
+			//我的回答
+			if(flag.equals("myAnswer")){
+				myAnswer(request, response);
 			}
 		}
 	}
@@ -113,5 +123,25 @@ public class QuestionServlet extends HttpServlet {
 		List<Question> highQuestion=questionServiceImpl.highQuestionService(user.getUserId());
 		request.setAttribute("highQuestion", highQuestion);
 		request.getRequestDispatcher("highQuestion.jsp").forward(request, response);
+	}
+	//我的问题显示
+	public void myQuestion(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user=(User) request.getSession().getAttribute("user");
+	}
+	//我的回答
+	public void myAnswer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user=(User) request.getSession().getAttribute("user");
+		List<Map<String, Object>> myAnswer=questionServiceImpl.myAnswerService(user.getUserId());
+		if(myAnswer.size()==0){
+			//没有回答
+			request.setAttribute("myAnswer", 0);
+		}else{
+			//用户有回答
+			request.setAttribute("myAnswer", myAnswer);
+		}
+		//转发
+		request.getRequestDispatcher("myAnswer.jsp").forward(request, response);
 	}
 }
