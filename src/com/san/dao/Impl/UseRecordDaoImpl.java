@@ -125,7 +125,7 @@ public class UseRecordDaoImpl implements UseRecordDao {
     public List<UseRecord> listResourceUseRecord(int userId) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="SELECT * FROM java_review.useRecord where userId=? and useType like '下载%' or useType like '上传%'";
+            String sql="SELECT * FROM useRecord where userId=? and useType like '下载%' or useType like '上传%'";
             return (List<UseRecord>) runner.query(sql,new BeanListHandler<UseRecord>(UseRecord.class),userId);
         }
         catch (SQLException ex) {
@@ -134,4 +134,8 @@ public class UseRecordDaoImpl implements UseRecordDao {
             return null;
         }
     }
+ /*
+ * 分页
+ * */
+
 }
