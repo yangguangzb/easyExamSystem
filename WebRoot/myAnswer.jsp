@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,7 @@
 	
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
+	<link rel="stylesheet" href="css/myQuestion.css"/>
 	<script type="text/javascript">
 	/*弹出层*/
 	/*
@@ -63,6 +65,9 @@
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
+<c:if test="${requestScope.myAnswer==null}">
+	<jsp:forward page="questionServlet?flag=myAnswer"></jsp:forward>
+</c:if>
 <div class="boxed_wrapper">
 
 <!-- 头部 -->
@@ -87,13 +92,46 @@
         	<div class="top">
         		<ul class="topul">
         			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp">高分问题</a></li>
+        			<li><a href="highQuestion.jsp">高分问题</a></li>
         			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp">我的回答</a></li>
+        			<li><a href="myAnswer.jsp" style="color:#999">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>
-        
+        	<table class="notAnswerQuestion">
+        		<colgroup>
+        			<col style="color:#FF0000;width:50px"/>
+        			<col style="color:#333;width:100px"/>
+        			<col/>
+        			<col style="color:#666;width:50px"/>
+        			<col style="color:#666;width:100px"/>
+        			<col style="color:#666;width:50px"/>
+        		</colgroup>
+        		<thead>
+        			<tr>
+        				<th>积分</th>
+        				<th>课程</th>
+        				<th>标题</th>
+        				<th>回答</th>
+        				<th>时间</th>
+        				<th>采纳</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<c:forEach items="${myAnswer}" var="map">
+        				<tr>
+	        				<td>${map.questionReward}</td>
+	        				<td>[${map.courseName}]</td>
+	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${map.questionId}"
+	        				 style="color:#133DB6;" target="_blank">${map.questionTitle}</a></td>
+	        				<td>${map.answerNumber}</td>
+	        				<td style="font-size:14px;color:#999;">${map.answerTime}</td>
+	        				<c:if test="${map.questionState==0}"><td style="font-size:14px;color:#999;">否</td></c:if>
+	        				<c:if test="${map.questionState==1}"><td style="font-size:14px;color:blue;">是</td></c:if>
+        				</tr>
+        			</c:forEach>
+        		</tbody>
+        	</table>
         </div>
     </div>
 </section>
