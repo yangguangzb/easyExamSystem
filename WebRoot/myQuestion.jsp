@@ -23,6 +23,7 @@
 	
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
+	<link rel="stylesheet" href="css/myQuestion.css"/>
 	<script type="text/javascript">
 	/*弹出层*/
 	/*
@@ -87,13 +88,41 @@
         	<div class="top">
         		<ul class="topul">
         			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
+        			<li><a href="highQuestion.jsp">高分问题</a></li>
+        			<li><a href="myQuestion.jsp" style="color:#999">我的问题</a></li>
         			<li><a href="myAnswer.jsp">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>
-        
+        	<table class="notAnswerQuestion">
+        		<colgroup>
+        			<col style="color:#FF0000;width:50px"/>
+        			<col style="color:#333;width:100px"/>
+        			<col/>
+        			<col style="color:#666;width:50px"/>
+        			<col style="color:#666;width:100px"/>
+        		</colgroup>
+        		<thead>
+        			<tr>
+        				<th>积分</th>
+        				<th>课程</th>
+        				<th>标题</th>
+        				<th>回答</th>
+        				<th>时间</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<c:forEach items="${notAnswer}" var="question">
+        				<tr>
+	        				<td>${question.questionReward}</td>
+	        				<td>[${question.courseName}]</td>
+	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
+	        				<td>${question.answerNumber}</td>
+	        				<td>${question.showTime}</td>
+        				</tr>
+        			</c:forEach>
+        		</tbody>
+        	</table>
         </div>
     </div>
 </section>
