@@ -57,6 +57,10 @@ public class QuestionServlet extends HttpServlet {
 			if(flag.equals("myQuestion")){
 				myQuestion(request, response);
 			}
+			//我的某个问题的具体信息(答案)
+			if(flag.equals("myQuestionDetail")){
+				myQuestionDetail(request, response);
+			}
 			//我的回答
 			if(flag.equals("myAnswer")){
 				myAnswer(request, response);
@@ -114,6 +118,11 @@ public class QuestionServlet extends HttpServlet {
 			request.setAttribute("showAllAnswer", showAllAnswer);
 		}
 		request.setAttribute("questionById", questionById);
+		if(request.getParameter("flagdetail")!=null&&"detail".equals(request.getParameter("flagdetail"))){
+			//转发到我的某个问题的具体内容中
+			request.getRequestDispatcher("myQuestionDetail.jsp").forward(request, response);
+			return ;
+		}
 		request.getRequestDispatcher("answerQuestion.jsp").forward(request, response);
 	}
 	//高分问题
@@ -124,10 +133,31 @@ public class QuestionServlet extends HttpServlet {
 		request.setAttribute("highQuestion", highQuestion);
 		request.getRequestDispatcher("highQuestion.jsp").forward(request, response);
 	}
-	//我的问题显示
+	//我的所有问题显示
 	public void myQuestion(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		User user=(User) request.getSession().getAttribute("user");
+		List<Question> myQuestions=questionServiceImpl.myQuestion(user.getUserId());
+		if(myQuestions.size()==0){
+			request.setAttribute("myQuestions", 0);
+		}else{
+			request.setAttribute("myQuestions", myQuestions);
+		}
+		request.getRequestDispatcher("myQuestion.jsp").forward(request, response);
+		for (Question question : myQuestions) {
+			System.out.println(question);
+		}
+	}
+	//我的某一个问题具体显示(包含网友答案等)
+	public void myQuestionDetail(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//获得评论者Id(最好网友答案)
+		String reviewerId=request.getParameter("reviewerId");
+		//获得该问题Id
+		String questionId=request.getParameter("questionId");
+		questionServiceImpl.myQuestionDetailService(questionId, reviewerId);
+		//重定向(让其刷新)
+		response.sendRedirect("myQuestionDetail.jsp?questionId="+questionId);
 	}
 	//我的回答
 	public void myAnswer(HttpServletRequest request, HttpServletResponse response)
