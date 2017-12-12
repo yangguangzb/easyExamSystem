@@ -2,10 +2,12 @@ package com.san.dao.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.junit.Test;
 
@@ -44,12 +46,6 @@ public class QuestionDaoImpl {
 		return qr.query("select * from question where questionState=0 and creatorId!=? and questionReward<15",
 				new BeanListHandler<Question>(Question.class),userId);
 	}
-	//查看我的问题
-	public List<Question> myQuestion(int userId) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("select * from question where creatorId=?", 
-			new BeanListHandler<Question>(Question.class),userId);
-	}
 	//插入问题回答的内容
 	public int answerQuestionDaoImpl(String questionId,int userId,String answerContent) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
@@ -72,5 +68,27 @@ public class QuestionDaoImpl {
 	public Question questionByIdDaoImpl(int questionId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.query("select * from question where questionId=?",new BeanHandler<Question>(Question.class),questionId);
+	}
+	//查看我的问题
+	public List<Question> myQuestion(int userId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query("select * from question where creatorId=?", 
+			new BeanListHandler<Question>(Question.class),userId);
+	}
+	/*//我的某道题的所有信息
+	public void myQuestionDetailDaoImpl(int questionId){
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		qr.query("",);
+	}*/
+	//查看我的回答
+	public List<Map<String,Object>> myAnswerDaoImpl(int userId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query("SELECT * FROM answer,question WHERE answer.questionId=question.questionId and reviewerId=?",
+				new MapListHandler(),userId);
+	}
+	//更新问题的状态
+	public int updateQuestionState(int questionId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update question set questionState=1 where questionId=?",questionId);
 	}
 }
