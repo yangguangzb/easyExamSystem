@@ -48,10 +48,10 @@
           <tr>
             <th data-field="gradeId">成绩编号</th>
 
-            <th data-field="brushId">使用类型</th>
-            <th data-field="courseName">使用数目</th>
+            <th data-field="brushId">刷题区编号</th>
+            <th data-field="courseName">课程</th>
             <th data-field="grade">成绩</th>
-            <th data-field="gradetime">时间</th>
+            <th data-field="gradeTime">时间</th>
           </tr>
           </thead>
 
