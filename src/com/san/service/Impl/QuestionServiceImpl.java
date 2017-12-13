@@ -146,6 +146,10 @@ public class QuestionServiceImpl {
 			//更新该问题状态,设置为1(已解决)
 			questionDaoImpl.updateQuestionState(intQuestionId);
 			Question question=questionDaoImpl.questionByIdDaoImpl(intQuestionId);
+			/*//更新采纳表(可以暂时不需要)
+			questionDaoImpl.questionAdoption(intQuestionId, intRreviewerId);*/
+			//更新回答表,将该评论设置为被采纳
+			questionDaoImpl.answerIsAdoption(intQuestionId, intRreviewerId);
 			//给最好答案用户加积分(相当于购买了积分)
 			integralDaoImpl.buyPoints(intRreviewerId, question.getQuestionReward());
 			//更新最好答案用户积分记录
