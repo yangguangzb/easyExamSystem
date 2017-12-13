@@ -75,6 +75,16 @@ public class QuestionDaoImpl {
 		return qr.query("select * from question where creatorId=?", 
 			new BeanListHandler<Question>(Question.class),userId);
 	}
+	//问题解决时，更新采纳表
+	public int questionAdoption(int questionId,int reviewerId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("insert into adoption(questionId,reviewerId) values(?,?)",questionId,reviewerId);
+	}
+	//问题被采纳时,更新回答表,将该回答设为最好答案(1)
+	public int answerIsAdoption(int questionId,int reviewerId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update answer set isAdoption=1 where questionId=? and reviewerId=?",questionId,reviewerId);
+	}
 	/*//我的某道题的所有信息
 	public void myQuestionDetailDaoImpl(int questionId){
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
