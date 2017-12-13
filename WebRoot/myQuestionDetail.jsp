@@ -54,6 +54,10 @@
 	        content: url
 	    });
 	}
+	//判断评论是否被采纳
+	function isAdoption(){
+		
+	}
 	</script>
 	<style type="text/css">
 		.top{
@@ -126,11 +130,15 @@
 	        					<span style="color:#999;font-size:14px;">[${answer.answerTime}]</span>
 	        					<br/>
 	        					<span>${answer.replyContent}</span><br/>
-	        					<c:if test="">
-	        					
+	        					<c:if test="${requestScope.isAdoption=='1'}"><!-- 问题被采纳 -->
+	        						<c:if test="${answer.isAdoption==1}"><!-- 找到被采纳的评论 -->
+	        							<input type="button" value="被采纳" disabled="disabled" style="background-color:#999;font-size:14px; height:30px;width:80px;"/>	
+	        						</c:if>
 	        					</c:if>
-	        					<input type="button" value="最好答案" onclick="location.href='questionServlet?flag=myQuestionDetail&reviewerId=${answer.reviewerId}&questionId=${answer.questionId}'" 
-	        					style="background-color:pink;font-size:14px; height:30px;width:80px;"/>
+	        					<c:if test="${requestScope.isAdoption!='1'}"><!-- 问题没有被采纳 -->
+	        						<input type="button" value="采纳" onclick="location.href='questionServlet?flag=myQuestionDetail&reviewerId=${answer.reviewerId}&questionId=${answer.questionId}'" 
+	        						style="background-color:pink;font-size:14px; height:30px;width:80px;"/>
+	        					</c:if>
 	        					<hr style="border:1px dotted #999"/>
 	        				</li>
 	        			</c:forEach>
