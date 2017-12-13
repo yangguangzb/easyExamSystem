@@ -110,6 +110,13 @@ public class QuestionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String questionId=request.getParameter("questionId");
 		List<Answer> showAllAnswer=questionServiceImpl.showAllAnswerService(questionId);
+		for (Answer answer : showAllAnswer) {
+			if(answer.getIsAdoption()==1){
+				//该问题被采纳(设置值为回答Id唯一)
+				//request.getSession().setAttribute("isAdoption",answer.getAnswerId());
+				request.setAttribute("isAdoption",1);
+			}
+		}
 		Question questionById=questionServiceImpl.questionByIdService(questionId);
 		if(showAllAnswer.size()==0){
 			//没有网友答案
@@ -144,9 +151,6 @@ public class QuestionServlet extends HttpServlet {
 			request.setAttribute("myQuestions", myQuestions);
 		}
 		request.getRequestDispatcher("myQuestion.jsp").forward(request, response);
-		for (Question question : myQuestions) {
-			System.out.println(question);
-		}
 	}
 	//我的某一个问题具体显示(包含网友答案等)
 	public void myQuestionDetail(HttpServletRequest request, HttpServletResponse response)
