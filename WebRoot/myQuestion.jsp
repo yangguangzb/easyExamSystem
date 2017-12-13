@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title> 
+    <title>我的问题</title> 
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,6 +64,9 @@
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
+<c:if test="${requestScope.myQuestions==null}">
+	<jsp:forward page="questionServlet?flag=myQuestion"></jsp:forward>
+</c:if>
 <div class="boxed_wrapper">
 
 <!-- 头部 -->
@@ -101,6 +104,7 @@
         			<col/>
         			<col style="color:#666;width:50px"/>
         			<col style="color:#666;width:100px"/>
+        			<col style="color:#666;width:80px"/>
         		</colgroup>
         		<thead>
         			<tr>
@@ -109,18 +113,23 @@
         				<th>标题</th>
         				<th>回答</th>
         				<th>时间</th>
+        				<th>状态</th>
         			</tr>
         		</thead>
         		<tbody>
-        			<c:forEach items="${notAnswer}" var="question">
-        				<tr>
-	        				<td>${question.questionReward}</td>
-	        				<td>[${question.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
-	        				<td>${question.answerNumber}</td>
-	        				<td>${question.showTime}</td>
-        				</tr>
-        			</c:forEach>
+        			<c:if test="${requestScope.myQuestions!=null&&requestScope.myQuestions!='0'}">
+	        			<c:forEach items="${myQuestions}" var="myQuestion">
+	        				<tr>
+		        				<td>${myQuestion.questionReward}</td>
+		        				<td>[${myQuestion.courseName}]</td>
+		        				<td style="text-align:left;"><a href="myQuestionDetail.jsp?questionId=${myQuestion.questionId}" style="color:#133DB6;" target="_blank">${myQuestion.questionTitle}</a></td>
+		        				<td>${myQuestion.answerNumber}</td>
+		        				<td style="color:#999;font-size:14px;">${myQuestion.showTime}</td>
+		        				<c:if test="${myQuestion.questionState==0}"><td style="color:#133DB6;font-size:14px;">未解决</td></c:if>
+		        				<c:if test="${myQuestion.questionState==1}"><td style="color:#999;font-size:14px;">已解决</td></c:if>
+	        				</tr>
+	        			</c:forEach>
+        			</c:if>
         		</tbody>
         	</table>
         </div>
