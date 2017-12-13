@@ -122,7 +122,7 @@
 	        				<td>[${question.courseName}]</td>
 	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
 	        				<td>${question.answerNumber}</td>
-	        				<td>${question.showTime}</td>
+	        				<td style="color:#999;font-size:14px;">${question.showTime}</td>
         				</tr>
         			</c:forEach>
         		</tbody>
