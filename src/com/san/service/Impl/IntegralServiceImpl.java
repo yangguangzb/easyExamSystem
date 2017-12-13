@@ -41,5 +41,36 @@ public class IntegralServiceImpl {
 		}
 		return null;
 	}
-
+	//用户购买积分
+	public int buyPointsService(String buyNum,int userId){
+		int intBuyNum=0;
+		if(buyNum.equals("A")){
+			//1元10积分
+			intBuyNum=10;
+		}
+		if(buyNum.equals("B")){
+			//5元50积分
+			intBuyNum=10;
+		}
+		if(buyNum.equals("C")){
+			//10元100积分
+			intBuyNum=10;
+		}
+		if(buyNum.equals("D")){
+			//20元250积分
+			intBuyNum=10;
+		}
+		if(buyNum.equals("E")){
+			//50元650积分
+			intBuyNum=10;
+		}
+		try {
+			//更新用户积分记录表
+			integralDaoImpl.boutiqueReducePoints(userId, "购买积分", intBuyNum);
+			return integralDaoImpl.buyPoints(userId, intBuyNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
