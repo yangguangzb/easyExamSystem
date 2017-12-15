@@ -1,9 +1,5 @@
 package com.san.filter;
-
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,8 +8,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 public class CodeFilter implements Filter{
 	private FilterConfig filterConfig;
 	public void destroy() {
@@ -21,7 +15,6 @@ public class CodeFilter implements Filter{
 	}
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
 		HttpServletRequest req=(HttpServletRequest) request;
 		HttpServletResponse resp=(HttpServletResponse) response;
 		req.setCharacterEncoding("utf-8");
