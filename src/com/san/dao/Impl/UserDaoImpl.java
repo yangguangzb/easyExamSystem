@@ -171,4 +171,9 @@ public class UserDaoImpl implements UserDao{
 		return qr.update("update user set userType=?,verification=?,integralNumber=? where userId=?"
 				,userType,verification,integralNumber,userId);
 	}
+	//根据用户id查询用户信息
+	public User checkUserById(int userId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.query("select * from user where userId=?",new BeanHandler<User>(User.class),userId);
+	}
 }
