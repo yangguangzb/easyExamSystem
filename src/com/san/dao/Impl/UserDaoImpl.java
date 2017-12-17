@@ -151,7 +151,20 @@ public class UserDaoImpl implements UserDao{
 			ex.printStackTrace();
 		}
 	}
-	//后台用户数据管理
+
+    @Override
+    public User getUser(int userId) {
+        try{
+            QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
+            String sql="select * from user where userId=?";
+            return (User) runner.query(sql,new BeanHandler(User.class),userId);
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    //后台用户数据管理
 	/**
 	 * 分页查询用户
 	 * @return list
@@ -171,6 +184,7 @@ public class UserDaoImpl implements UserDao{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("delete from user where userId=?",3);
 	}
+
 
 	
 }
