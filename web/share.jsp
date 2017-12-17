@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
 	<!-- 登录 -->
 	<link rel="stylesheet" type="text/css" href="css/login.css"/>
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -27,9 +29,9 @@
 
 <section class="rev_slider_wrapper">
     <div id="slider1" class="rev_slider"  data-version="5.0">
-    	<u>
+    	<!--<u>
     		<li>nihao </li>
-    	</u>
+    	</u>-->
      	<p>资料区</p>
     </div>
 </section>
@@ -91,13 +93,25 @@
     </div>
 </section>
 -->
-<section class="service sec-padd2">
+<section class="service sec-padd2" style="margin-top:100px;">
     <div class="container">
         
         <div class="section-title">
             <h2>轻松考</h2>
         </div>
-        
+        <div>
+            <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="/shareAreaServlet">
+                <thead>
+                <tr>
+                    <th data-field="postCreationPerson">作者</th>
+                    <th data-field="postTitle">标题</th>
+                    <th data-field="commentCount">评论数目</th>
+                    <th data-field="latestPostCommentPerson">最新回复者</th>
+                    <th data-field="latestTime">最新评论时间</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
         <div class="service_carousel">
             
           
@@ -559,6 +573,9 @@
     <script src="js/jquery.js"></script>
     <!-- bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <!-- put your locale files after bootstrap-table.js -->
+    <script src="js/bootstrap-table-zh-CN.min.js"></script>
     <!-- jQuery ui js -->
     <script src="js/jquery-ui.js"></script>
     <!-- owl carousel js -->
