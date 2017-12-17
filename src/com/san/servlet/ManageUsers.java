@@ -23,7 +23,9 @@ public class ManageUsers extends HttpServlet {
 			throws ServletException, IOException {
 		if(request.getParameter("flag")!=null){
 			String flag=request.getParameter("flag");
-			
+			if(flag.equals("checkUsers")){
+				checkUsers(request, response);
+			}
 		}
 	}
 	//Post提交
