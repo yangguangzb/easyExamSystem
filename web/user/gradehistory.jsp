@@ -54,7 +54,6 @@
             <th data-field="gradeTime">时间</th>
           </tr>
           </thead>
-
         </table>
       </div>
 
