@@ -1,7 +1,10 @@
 package com.san.model;
 
 import java.util.Date;
-
+/*
+* @Author: zijieya
+* @Description: 用户记录
+* */
 public class UseRecord {
     private int recordId;//积分使用记录
     private int userId;//用户编号

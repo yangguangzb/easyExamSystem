@@ -1,16 +1,17 @@
 package com.san.model;
-
-import com.mysql.jdbc.Blob;
-
+/*
+* @Author: zijieya
+* @Description: 资源
+* */
 public class Resource {
-	private int resourceId;
-	private int uploadId;
-	private String courseName;
-	private String resourceName;
-	private String resourceDescription;
-	private String resourcePath;
-	private int downNumber;
-	private int integration;
+	private int resourceId;//资料编号
+	private int uploadId;//上传者编号
+	private String courseName;//课程名
+	private String resourceName;//资料名
+	private String resourceDescription;//资料描述
+	private String resourcePath;//资料路径
+	private int downNumber;//下载次数
+	private int integration;//积分数目
 	public int getResourceId() {
 		return resourceId;
 	}

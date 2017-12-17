@@ -10,8 +10,8 @@ import com.san.dao.CourseDao;
 import com.san.model.Course;
 import com.san.utils.C3p0Util;
 /*
-* 课程数据库操作
-* @author zi
+* @Author: zijieya
+* @Description:
 * */
 public class CourseDaoImpl implements CourseDao {
    /*

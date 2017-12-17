@@ -1,8 +1,9 @@
 package com.san.model;
 
 public class Course {
-	private String courseName;
-	private String courseIntroduction;
+
+	private String courseName;//课程名
+	private String courseIntroduction;//课程描述
 	public String getCourseName() {
 		return courseName;
 	}

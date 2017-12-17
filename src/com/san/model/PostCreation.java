@@ -1,11 +1,14 @@
 package com.san.model;
 
 import java.util.Date;
-
+/*
+* @Author: zijieya
+* @Description: 帖子创建
+* */
 public class PostCreation {
     private int postCreationId;//帖子创建编号
     private String postTitle;//帖子标题
-    private String postCreatorId;//帖子创建者编号
+    private int postCreatorId;//帖子创建者编号
     private String discussionName;//区域名称
     private String creationResourcePath;//创建资源路径
     private String postConent;//内容
@@ -26,14 +29,6 @@ public class PostCreation {
 
     public void setPostTitle(String postTitle) {
         this.postTitle = postTitle;
-    }
-
-    public String getPostCreatorId() {
-        return postCreatorId;
-    }
-
-    public void setPostCreatorId(String postCreatorId) {
-        this.postCreatorId = postCreatorId;
     }
 
     public String getDiscussionName() {
@@ -74,5 +69,13 @@ public class PostCreation {
 
     public void setPostTime(Date postTime) {
         this.postTime = postTime;
+    }
+
+    public int getPostCreatorId() {
+        return postCreatorId;
+    }
+
+    public void setPostCreatorId(int postCreatorId) {
+        this.postCreatorId = postCreatorId;
     }
 }

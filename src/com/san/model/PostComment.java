@@ -1,14 +1,17 @@
 package com.san.model;
 
 import java.util.Date;
-
+/*
+* @Author: zijieya
+* @Description: 帖子评论
+* */
 public class PostComment {
     private int postCommentId;//评论id;
     private int postCreationId;//帖子创建编号
     private int reviewerId;//评价者编号
     private String evaluationResourcePath;//评价资源路径
     private Date commentTime;//评价时间
-    private String commentContent;
+    private String commentContent;//评论内容
 
     public int getPostCommentId() {
         return postCommentId;
