@@ -1,6 +1,8 @@
 package com.san.service.Impl;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import com.san.dao.Impl.IntegralDaoImpl;
 import com.san.model.User;
@@ -72,5 +74,18 @@ public class IntegralServiceImpl {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	//后台查看积分
+	public List<Map<String,Object>> checkIntegralService(String start,String end,String integralNumber,String username){
+		int useNum=0;
+		if(!"".equals(integralNumber)){
+			useNum=Integer.parseInt(integralNumber);
+		}
+		try {
+			return integralDaoImpl.checkIntegralDaoImpl(start, end, useNum, username);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
