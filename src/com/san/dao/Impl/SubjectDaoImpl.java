@@ -84,4 +84,18 @@ public class SubjectDaoImpl implements SubjectDao{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("delete from subject2 where subjectId=?",subjectId);
 	}
+	//添加题目
+	public int addSubjectDaoImpl(String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("insert into subject2(brushName,courseName,subjectType,subjectTitle,optionA,optionB,optionC,optionD,subjectAnswer,analysis) " +
+				"values(?,?,?,?,?,?,?,?,?,?)",brushName,courseName,subjectType,title,Aoption,Boption,Coption,Doption,answer,analysis);
+	}
+	//修改题目信息
+	public int editSubjectDaoImpl(int subjectId,String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update subject2 set brushName=?,courseName=?,subjectType=?,subjectTitle=?,optionA=?,optionB=?,optionC=?,optionD=?,subjectAnswer=?,analysis=? where subjectId=?"
+				,brushName,courseName,subjectType,title,Aoption,Boption,Coption,Doption,answer,analysis,subjectId);
+	}
 }
