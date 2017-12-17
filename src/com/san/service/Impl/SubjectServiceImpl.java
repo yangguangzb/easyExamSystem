@@ -61,4 +61,31 @@ public class SubjectServiceImpl {
 		}
 		return 0;
 	}
+	//后台添加题目
+	public int addSubjectService(String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis){
+		try {
+			if("".equals(analysis)){
+				analysis="暂无解析";
+			}
+			return subjectDaoImpl.addSubjectDaoImpl(brushName, subjectType, courseName,title,Aoption, Boption, Coption, Doption, answer, analysis);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	//修改题目信息
+	public int editSubjectService(String subjectId,String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis){
+		int intSubjectId=Integer.parseInt(subjectId);
+		if("".equals(analysis)){
+			analysis="暂无解析";
+		}
+		try {
+			return subjectDaoImpl.editSubjectDaoImpl(intSubjectId, brushName, subjectType, courseName, title, Aoption, Boption, Coption, Doption, answer, analysis);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
