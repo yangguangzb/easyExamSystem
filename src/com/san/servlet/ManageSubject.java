@@ -37,6 +37,14 @@ public class ManageSubject extends HttpServlet {
 			if(flag.equals("delSubject")){
 				delSubject(request, response);
 			}
+			//添加题目
+			if(flag.equals("addSubject")){
+				addSubject(request, response);
+			}
+			//修改题目信息
+			if(flag.equals("editSubject")){
+				editSubject(request, response);
+			}
 		}
 	}
 	//根据条件查询题目
@@ -61,6 +69,10 @@ public class ManageSubject extends HttpServlet {
 		request.getSession().setAttribute("manageSubjectId", subjectId);
 		Subject subjectById=subjectServiceImpl.checkSubjectByIdService(subjectId);
 		request.getSession().setAttribute("subjectById",subjectById);
+		if(request.getParameter("flag2")!=null&&"edit".equals(request.getParameter("flag2"))){
+			response.sendRedirect("../admin2/subject-edit.jsp");
+			return ;
+		}
 		response.sendRedirect("../admin2/subject-detail.jsp");
 	}
 	//删除一道题目
@@ -69,6 +81,39 @@ public class ManageSubject extends HttpServlet {
 		String subjectId=request.getParameter("subjectId");
 		String i=subjectServiceImpl.delSubjectService(subjectId)+"";
 		//向浏览器响应信息
+		response.getWriter().write(i);
+	}
+	//添加题目addSubject
+	public void addSubject(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String brushName=request.getParameter("brushName");
+		String subjectType=request.getParameter("subjectType");
+		String courseName=request.getParameter("courseName");
+		String title=request.getParameter("title");
+		String Aoption=request.getParameter("Aoption");
+		String Boption=request.getParameter("Boption");
+		String Coption=request.getParameter("Coption");
+		String Doption=request.getParameter("Doption");
+		String answer=request.getParameter("answer");
+		String analysis=request.getParameter("analysis");
+		String i=""+subjectServiceImpl.addSubjectService(brushName, subjectType, courseName, title,"A "+Aoption, "B "+Boption, "C "+Coption, "D "+Doption, answer, analysis);
+		response.getWriter().write(i);
+	}
+	//修改题目信息editSubject
+	public void editSubject(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String subjectId=request.getParameter("subjectId");
+		String brushName=request.getParameter("brushName");
+		String subjectType=request.getParameter("subjectType");
+		String courseName=request.getParameter("courseName");
+		String title=request.getParameter("title");
+		String Aoption=request.getParameter("Aoption");
+		String Boption=request.getParameter("Boption");
+		String Coption=request.getParameter("Coption");
+		String Doption=request.getParameter("Doption");
+		String answer=request.getParameter("answer");
+		String analysis=request.getParameter("analysis");
+		String i=""+subjectServiceImpl.editSubjectService(subjectId, brushName, subjectType, courseName, title, Aoption, Boption, Coption, Doption, answer, analysis);
 		response.getWriter().write(i);
 	}
 }

@@ -2,13 +2,11 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title> 
-
+    <title>我的某个具体问题</title> 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,15 +14,12 @@
     <link rel="stylesheet" href="css/responsive.css">
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="./admin2/lib/layui/layui.js"></script>
-	
-    
     <!-- 必须 -->
     <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="admin2/js/xadmin.js"></script>
 	
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
-	<link rel="stylesheet" href="css/myQuestion.css"/>
 	<script type="text/javascript">
 	/*弹出层*/
 	/*
@@ -59,14 +54,29 @@
 	        content: url
 	    });
 	}
+	//判断评论是否被采纳
+	function isAdoption(){
+		
+	}
 	</script>
+	<style type="text/css">
+		.top{
+			height:30px;
+			border:1px #999 solid;
+			padding-left:10px;
+		}
+		.top span{
+			line-height:30px;
+			font-size:14px;
+		}
+	</style>
 </head> 
 <body>
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
-<c:if test="${requestScope.myAnswer==null}">
-	<jsp:forward page="questionServlet?flag=myAnswer"></jsp:forward>
+<c:if test="${showAllAnswer==null}">
+	<c:redirect url="questionServlet?flag=showAllAnswer&flagdetail=detail&questionId=${param.questionId}"></c:redirect>
 </c:if>
 <div class="boxed_wrapper">
 
@@ -90,48 +100,52 @@
         <div style="width:75%;height:820px;border:1px #999 solid;">
         	<!-- 头部按钮 -->
         	<div class="top">
-        		<ul class="topul">
-        			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="highQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp" style="color:#999">我的回答</a></li>
-        			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
-        		</ul>
+        		<span>提问者:<span style="color:blue">${requestScope.questionById.creatorName}</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        		<span>奖励积分:<span style="color:blue">${requestScope.questionById.questionReward}</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        		<span>时间:<span>${requestScope.questionById.showTime}</span></span>
         	</div>
-        	<table class="notAnswerQuestion">
-        		<colgroup>
-        			<col style="color:#FF0000;width:50px"/>
-        			<col style="color:#333;width:100px"/>
-        			<col/>
-        			<col style="color:#666;width:50px"/>
-        			<col style="color:#666;width:100px"/>
-        			<col style="color:#666;width:50px"/>
-        		</colgroup>
-        		<thead>
-        			<tr>
-        				<th>积分</th>
-        				<th>课程</th>
-        				<th>标题</th>
-        				<th>回答</th>
-        				<th>时间</th>
-        				<th>采纳</th>
-        			</tr>
-        		</thead>
-        		<tbody>
-        			<c:forEach items="${myAnswer}" var="map">
-        				<tr>
-	        				<td>${map.questionReward}</td>
-	        				<td>[${map.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${map.questionId}"
-	        				 style="color:#133DB6;" target="_blank">${map.questionTitle}</a></td>
-	        				<td>${map.answerNumber}</td>
-	        				<td style="font-size:14px;color:#999;">${map.answerTime}</td>
-	        				<c:if test="${map.questionState==0}"><td style="font-size:14px;color:#999;">否</td></c:if>
-	        				<c:if test="${map.questionState==1}"><td style="font-size:14px;color:blue;">是</td></c:if>
-        				</tr>
-        			</c:forEach>
-        		</tbody>
-        	</table>
+        	<!-- 提问内容 -->
+        	<div style="padding-left:10px;">
+        		<span style="color:red">*</span><span style="color:#999;">标题:</span><br/>
+        		&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:13px;">${requestScope.questionById.questionTitle}</span><br/>
+        		<span style="color:red">*</span><span style="color:#999;">内容描述:</span><br/>
+        		&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:13px;">${requestScope.questionById.questionContent}</span>
+        	</div>
+        	<!-- 回答 -->
+        	<br/>
+        	<!-- 网友回答 -->
+        	<div style="padding:0 10px;">
+        		<c:if test="${showAllAnswer!=null&&showAllAnswer!='0'}">
+	        	<div style="border-bottom: 2px solid #d0d0d0;font-weight:bold;font-size:14px;">
+	        		网友回答:
+	        	</div>
+	        	<div>
+	        		<ul>
+	        			<c:forEach items="${showAllAnswer}" var="answer" varStatus="go">
+	        				<li>
+	        					<span style="color:blue;font-size:20px;">${go.index+1}楼</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	        					<!-- 回答者编号 -->
+	        					<span>${answer.answerUserName}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	        					<!-- 回答时间 -->
+	        					<span style="color:#999;font-size:14px;">[${answer.answerTime}]</span>
+	        					<br/>
+	        					<span>${answer.replyContent}</span><br/>
+	        					<c:if test="${requestScope.isAdoption=='1'}"><!-- 问题被采纳 -->
+	        						<c:if test="${answer.isAdoption==1}"><!-- 找到被采纳的评论 -->
+	        							<input type="button" value="被采纳" disabled="disabled" style="background-color:#999;font-size:14px; height:30px;width:80px;"/>	
+	        						</c:if>
+	        					</c:if>
+	        					<c:if test="${requestScope.isAdoption!='1'}"><!-- 问题没有被采纳 -->
+	        						<input type="button" value="采纳" onclick="location.href='questionServlet?flag=myQuestionDetail&reviewerId=${answer.reviewerId}&questionId=${answer.questionId}'" 
+	        						style="background-color:pink;font-size:14px; height:30px;width:80px;"/>
+	        					</c:if>
+	        					<hr style="border:1px dotted #999"/>
+	        				</li>
+	        			</c:forEach>
+	        		</ul>
+	        	</div>
+	        	</c:if>
+        	</div>
         </div>
     </div>
 </section>

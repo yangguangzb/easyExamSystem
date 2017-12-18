@@ -13,6 +13,27 @@ public class Question {
 	private int questionReward; 		//提问设置积分
 	private String courseName;			//课程
 	private int questionState;			//问题状态
+	private String showTime;//新增时间转换
+	private int answerNumber;//新增问题回答次数,从answer表中查询得到
+	private String creatorName;//新增提问者名字
+	public String getCreatorName() {
+		return creatorName;
+	}
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
+	public int getAnswerNumber() {
+		return answerNumber;
+	}
+	public void setAnswerNumber(int answerNumber) {
+		this.answerNumber = answerNumber;
+	}
+	public String getShowTime() {
+		return showTime;
+	}
+	public void setShowTime(String showTime) {
+		this.showTime = showTime;
+	}
 	public int getQuestionId() {
 		return questionId;
 	}
@@ -77,12 +98,13 @@ public class Question {
 	}
 	@Override
 	public String toString() {
-		return "Question [courseName=" + courseName + ", creatorId="
-				+ creatorId + ", priority=" + priority + ", questionContent="
-				+ questionContent + ", questionCreationTime="
-				+ questionCreationTime + ", questionId=" + questionId
-				+ ", questionPath=" + questionPath + ", questionReward="
-				+ questionReward + ", questionState=" + questionState
-				+ ", questionTitle=" + questionTitle + "]";
+		return "Question [answerNumber=" + answerNumber + ", courseName="
+				+ courseName + ", creatorId=" + creatorId + ", priority="
+				+ priority + ", questionContent=" + questionContent
+				+ ", questionCreationTime=" + questionCreationTime
+				+ ", questionId=" + questionId + ", questionPath="
+				+ questionPath + ", questionReward=" + questionReward
+				+ ", questionState=" + questionState + ", questionTitle="
+				+ questionTitle + ", showTime=" + showTime + "]";
 	}
 }

@@ -1,10 +1,13 @@
 package com.san.dao.Impl;
 import java.sql.*;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.junit.Test;
 
 import com.san.dao.SubjectDao;
 import com.san.model.BrushList;
@@ -37,6 +40,13 @@ public class SubjectDaoImpl implements SubjectDao{
 	public int insertGrade(int brushId,String courseName,int userId,float grade) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("insert into grade(brushId,courseName,userId,grade) values(?,?,?,?)",brushId,courseName,userId,grade);
+	}
+	//刷题成绩排名
+	@Test
+	public List<Map<String,Object>> pankGradeDaoImpl() throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		List<Map<String,Object>> pankGradeListMap=qr.query("select user.userName,sum(grade) as grade from grade,user where user.userId=grade.userId GROUP BY user.userName ORDER BY sum(grade) DESC ", new MapListHandler());
+		return pankGradeListMap;
 	}
 	/**
 	 * 通过brushName,courseName来查询brushId(刷题区id)
@@ -83,5 +93,19 @@ public class SubjectDaoImpl implements SubjectDao{
 	public int delSubject(int subjectId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("delete from subject2 where subjectId=?",subjectId);
+	}
+	//添加题目
+	public int addSubjectDaoImpl(String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("insert into subject2(brushName,courseName,subjectType,subjectTitle,optionA,optionB,optionC,optionD,subjectAnswer,analysis) " +
+				"values(?,?,?,?,?,?,?,?,?,?)",brushName,courseName,subjectType,title,Aoption,Boption,Coption,Doption,answer,analysis);
+	}
+	//修改题目信息
+	public int editSubjectDaoImpl(int subjectId,String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update subject2 set brushName=?,courseName=?,subjectType=?,subjectTitle=?,optionA=?,optionB=?,optionC=?,optionD=?,subjectAnswer=?,analysis=? where subjectId=?"
+				,brushName,courseName,subjectType,title,Aoption,Boption,Coption,Doption,answer,analysis,subjectId);
 	}
 }

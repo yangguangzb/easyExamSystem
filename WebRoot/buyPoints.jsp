@@ -14,6 +14,43 @@
     <link rel="stylesheet" href="css/responsive.css">
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<!-- 自己的css -->
+	<style type="text/css">
+		.clear{
+			clear:both;
+		}
+	</style>
+	<script type="text/javascript">
+		function buyPoints(){
+			var money=document.getElementsByName("money");
+			var isEmpty=false;
+			var buyNum;
+			for(var i=0;i<money.length;i++){
+				if(money[i].checked){
+					isEmpty=true;
+					buyNum=money[i].value;
+					break;
+				}
+			}
+			if(isEmpty==false){
+				alert("请选择购买的积分");
+				return false;
+			}else{
+				//异步发送购买信息
+				var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+					if(xhr.status==200&&xhr.readyState==4){
+						if(xhr.responseText==1){
+							alert("购买成功");
+						}else{
+							alert("购买失败");
+						}
+					}
+				}
+				xhr.open("get","integralServlet?flag=buyPoints&buyNum="+buyNum);
+				xhr.send(null);
+			}
+		}
+	</script>
 </head>
 <body>		<!-- 购买积分界面 -->
 <div class="boxed_wrapper">
@@ -35,32 +72,40 @@
         </div>
         <div style="width:75%;height:500px;border:1px #999 solid;">
         	<div style="height:40px;width:200px;margin-top:20px;">
-        		<a>您的当前积分:${sessionScope.userintegralNumber }</a>
+        		<!-- 注意积分随时在变 -->
+        		<a>您的当前积分:${sessionScope.user.integralNumber }</a>
         	</div>
         	<div>
-        		<a>1元/10积分</a>
+        		<!--<a>1元/10积分</a>-->
         	</div>
-        	<div style="width:75%;height:400px;border:1px #999 solid;">
+        	<div style="width:75%;height:400px;border:1px #999 solid;padding-top:30px;padding-left:15px;">
         	<form action="">
         		<div>
         			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
-        				<input type="radio" name="money"/>1元/10积分
+        				<input type="radio" name="money" id="A" value="A"/>
+        				<label for="A">1元/10积分</label>
         			</div>
         			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
-        				<input type="radio" name="money"/>5元/50积分
+        				<input type="radio" name="money" id="B" value="B"/>
+        				<label for="B">5元/50积分</label>
         			</div>
         			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
-        				<input type="radio" name="money"/>10元/100积分
+        				<input type="radio" name="money" id="C" value="C"/>
+        				<label for="C">10元/100积分</label>
         			</div>
         		</div>
-        		<div>
-        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
-        				<input type="radio" name="money"/>20元/250积分
-        			</div>
-        			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
-        				<input type="radio" name="money"/>50元/650积分
-        			</div>
-        		</div>
+       			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+       				<input type="radio" name="money" id="D" value="D"/>
+       				<label for="D">20元/250积分</label>
+       			</div>
+       			<div style="float:left;border:1px #999 solid; width:100px;height:60px;margin-right:20px;">
+       				<input type="radio" name="money" id="E" value="E"/>
+       				<label for="E">50元/650积分</label>
+       			</div>
+       			<div class="clear"></div>
+       			<div style="width:150px; margin-top:30px;margin-left:520px;">
+       				<input type="button" value="购买" onclick="buyPoints()"/>
+       			</div>
         	</form>
         </div>
         </div>

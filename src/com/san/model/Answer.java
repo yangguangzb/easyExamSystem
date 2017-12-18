@@ -7,6 +7,20 @@ public class Answer {
 	private int answerPath;		//评价资源路径
 	private String replyContent;//回复内容
 	private Date answerTime;	//答疑时间
+	private int isAdoption;		//被采纳的评论
+	private String answerUserName;//多表新增用户名(临时)
+	public int getIsAdoption() {
+		return isAdoption;
+	}
+	public void setIsAdoption(int isAdoption) {
+		this.isAdoption = isAdoption;
+	}
+	public String getAnswerUserName() {
+		return answerUserName;
+	}
+	public void setAnswerUserName(String answerUserName) {
+		this.answerUserName = answerUserName;
+	}
 	public int getAnswerId() {
 		return answerId;
 	}
@@ -42,12 +56,5 @@ public class Answer {
 	}
 	public void setAnswerTime(Date answerTime) {
 		this.answerTime = answerTime;
-	}
-	@Override
-	public String toString() {
-		return "Answer [answerId=" + answerId + ", answerPath=" + answerPath
-				+ ", answerTime=" + answerTime + ", questionId=" + questionId
-				+ ", replyContent=" + replyContent + ", reviewerId="
-				+ reviewerId + "]";
 	}
 }

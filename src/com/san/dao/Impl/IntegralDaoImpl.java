@@ -1,8 +1,12 @@
 package com.san.dao.Impl;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.san.dao.IntegralDao;
 import com.san.model.User;
@@ -53,5 +57,27 @@ public class IntegralDaoImpl implements IntegralDao{
 			//查询用户信息，并更新
 			return qr.query("select * from user where userId=?",new BeanHandler<User>(User.class),userId);
 		}
+	}
+	//后台查看积分
+	public List<Map<String,Object>> checkIntegralDaoImpl(String start,String end,int integralNumber,String username) throws SQLException{
+		StringBuffer sql=new StringBuffer("select * from useRecord,user where useRecord.userId=user.userId and useType like '%购买积分%'");
+		if(!"".equals(start)&&"".equals(end)){
+			sql.append(" and useTime>='"+start+"'");
+		}
+		if("".equals(start)&&!"".equals(end)){
+			sql.append(" and useTime<='"+end+"'");
+		}
+		if(!"".equals(start)&&!"".equals(end)){
+			sql.append(" and useTime>='"+start+"' and useTime<='"+end+"'");
+		}
+		if(integralNumber!=0){
+			sql.append(" and useNumber="+integralNumber+"");
+		}
+		if(!"".equals(username)){
+			sql.append(" and user.userName='"+username+"'");
+		}
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		List<Map<String,Object>> integralMapList=qr.query(sql.toString(),new MapListHandler());
+		return integralMapList;
 	}
 }

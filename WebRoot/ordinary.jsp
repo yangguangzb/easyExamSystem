@@ -131,6 +131,10 @@
 	</script>
 </head>
 <body>
+<!-- 读取排名是否存在 -->
+<c:if test="${requestScope.pankGrade==null}">
+	<jsp:forward page="${request.contextPath}/subjectServlet?flag=pankGrade"></jsp:forward>
+</c:if>
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -155,6 +159,7 @@
         
         
     	<div style="width:70%;height:800px;border: 1px #999 solid;">
+    	  <div style="height:500px;width:557px;float:left;">
     		<!-- 选择部分 -->
     		<div style="height:50px; border:1px #999 solid;">
     			<form action="subjectServlet?flag=display" method="post" id="top" style="margin:0px;display:inline;">
@@ -162,6 +167,10 @@
 	    				<option selected value="请选择课程">请选择课程</option>
 	    				<option value="大学英语">大学英语</option>
 	    				<option value="计算机网络">计算机网络</option>
+	    				<option value="马克思原理">马克思原理</option>
+	    				<option value="软件工程">软件工程</option>
+	    				<option value="数据结构">数据结构</option>
+	    				<option value="数据库原理">数据库原理</option>
 	    			</select>
 	    			<select name="subjectId" id="subjectId" style="height:50px;width:120px; margin-right:25px;">
 	    				<option selected value="题目编号">题目编号</option>
@@ -181,14 +190,14 @@
  			<!-- 题目内容部分 -->
  			<div id="content">
  				
- 				<div style="height:200px;width:70%;border:1px #999 solid;">
+ 				<div style="height:200px;width:100%;border:1px #999 solid;">
  					<c:if test="${sessionScope.nowSubject!=null}">
  						<p>第${sessionScope.nowSubject.subjectId }题</p>
     					${sessionScope.nowSubject.subjectTitle}
     				</c:if>
 	    		</div>
 	    		<!-- 显示ABCD选项部分 -->
-	    		<div style="height:300px;width:70%;border:1px #999 solid;">
+	    		<div style="height:300px;width:100%;border:1px #999 solid;">
 	    			<c:if test="${sessionScope.nowSubject!=null}">
 		    			<form action="subjectServlet?flag=displayNext" id="nextSubject" method="post">
 		    				<input type="radio" name="choice" value="A" id="A"/>
@@ -235,6 +244,24 @@
     		<div  id="analysis" style="display:none;" style="height:100px;border:1px #999 solid;margin-top:40px;width:70%;">
     			${sessionScope.nowSubject.analysis }
     		</div>
+    	</div>
+    	</div>
+    	<!-- 刷题排行榜 -->
+    	<div style="height:550px;width:239px;border:1px red solid;float:left;text-align:center;">
+    		<div style="height:50px;font-size:16px;line-height:50px;text-align:center; ">
+    			<a>刷题排行榜</a>
+    		</div>
+    		<table cellspacing="0" cellpadding="0" height="300px" width="98%">
+    			<tbody>
+    				<c:forEach items="${requestScope.pankGrade}" var="pankGrade">
+    					<tr style="border-bottom:1px #999 dashed;">
+    						<td style="font-size:16px;color:#2e8f01;width:40px;height:30px;">${pankGrade.index+1}</td>
+    						<td style="text-align:centers;height:30px; ">${pankGrade.userName}</td>
+    						<td style="color:#ff0000;width:80px;height:30px;" >${pankGrade.grades}</td>
+    					</tr>
+    				</c:forEach>
+    			</tbody>
+    		</table>
     	</div>
     
     </div>

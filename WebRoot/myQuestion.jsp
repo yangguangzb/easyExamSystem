@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title> 
+    <title>我的问题</title> 
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +23,7 @@
 	
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
+	<link rel="stylesheet" href="css/myQuestion.css"/>
 	<script type="text/javascript">
 	/*弹出层*/
 	/*
@@ -63,6 +64,9 @@
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
+<c:if test="${requestScope.myQuestions==null}">
+	<jsp:forward page="questionServlet?flag=myQuestion"></jsp:forward>
+</c:if>
 <div class="boxed_wrapper">
 
 <!-- 头部 -->
@@ -87,13 +91,47 @@
         	<div class="top">
         		<ul class="topul">
         			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
+        			<li><a href="highQuestion.jsp">高分问题</a></li>
+        			<li><a href="myQuestion.jsp" style="color:#999">我的问题</a></li>
         			<li><a href="myAnswer.jsp">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>
-        
+        	<table class="notAnswerQuestion">
+        		<colgroup>
+        			<col style="color:#FF0000;width:50px"/>
+        			<col style="color:#333;width:100px"/>
+        			<col/>
+        			<col style="color:#666;width:50px"/>
+        			<col style="color:#666;width:100px"/>
+        			<col style="color:#666;width:80px"/>
+        		</colgroup>
+        		<thead>
+        			<tr>
+        				<th>积分</th>
+        				<th>课程</th>
+        				<th>标题</th>
+        				<th>回答</th>
+        				<th>时间</th>
+        				<th>状态</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<c:if test="${requestScope.myQuestions!=null&&requestScope.myQuestions!='0'}">
+	        			<c:forEach items="${myQuestions}" var="myQuestion">
+	        				<tr>
+		        				<td>${myQuestion.questionReward}</td>
+		        				<td>[${myQuestion.courseName}]</td>
+		        				<td style="text-align:left;"><a href="myQuestionDetail.jsp?questionId=${myQuestion.questionId}" style="color:#133DB6;" target="_blank">${myQuestion.questionTitle}</a></td>
+		        				<td>${myQuestion.answerNumber}</td>
+		        				<td style="color:#999;font-size:14px;">${myQuestion.showTime}</td>
+		        				<c:if test="${myQuestion.questionState==0}"><td style="color:#133DB6;font-size:14px;">未解决</td></c:if>
+		        				<c:if test="${myQuestion.questionState==1}"><td style="color:#999;font-size:14px;">已解决</td></c:if>
+	        				</tr>
+	        			</c:forEach>
+        			</c:if>
+        		</tbody>
+        	</table>
         </div>
     </div>
 </section>

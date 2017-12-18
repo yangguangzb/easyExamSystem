@@ -2,6 +2,10 @@ package com.san.service.Impl;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+
 import com.san.dao.Impl.SubjectDaoImpl;
 import com.san.model.BrushList;
 import com.san.model.Subject;
@@ -28,6 +32,23 @@ public class SubjectServiceImpl {
 		int brushId=brushList.getBrushId();
 		int insertGrade = subjectDaoImpl.insertGrade(brushId, courseName, userId, grade);
 		return insertGrade;
+	}
+	//刷题成绩排名
+	@Test
+	public List<Map<String,Object>> pankGradeService(){
+		try {
+			List<Map<String,Object>> listMap=subjectDaoImpl.pankGradeDaoImpl();
+			for (Map<String, Object> map : listMap) {
+				map.put("grades",(int)Double.parseDouble(map.get("grade").toString()));
+			}
+			for (Map<String, Object> map : listMap) {
+				System.out.println(map);
+			}
+			return subjectDaoImpl.pankGradeDaoImpl();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	//后台:根据不同条件查询题目信息
@@ -56,6 +77,33 @@ public class SubjectServiceImpl {
 		}
 		try {
 			return subjectDaoImpl.delSubject(intsubjectId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	//后台添加题目
+	public int addSubjectService(String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis){
+		try {
+			if("".equals(analysis)){
+				analysis="暂无解析";
+			}
+			return subjectDaoImpl.addSubjectDaoImpl(brushName, subjectType, courseName,title,Aoption, Boption, Coption, Doption, answer, analysis);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	//修改题目信息
+	public int editSubjectService(String subjectId,String brushName,String subjectType,String courseName,String title,String Aoption,
+			String Boption,String Coption,String Doption,String answer,String analysis){
+		int intSubjectId=Integer.parseInt(subjectId);
+		if("".equals(analysis)){
+			analysis="暂无解析";
+		}
+		try {
+			return subjectDaoImpl.editSubjectDaoImpl(intSubjectId, brushName, subjectType, courseName, title, Aoption, Boption, Coption, Doption, answer, analysis);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

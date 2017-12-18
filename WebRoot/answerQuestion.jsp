@@ -55,6 +55,31 @@
 	        content: url
 	    });
 	}
+	function submitAnswer(){
+		var answerContent=document.getElementById("answerContent").value;
+		if(answerContent==null||answerContent==""){
+			alert("请输入内容");
+			return ;
+		}
+		//异步提交答案
+		$.ajax({
+			type:'post',
+			url:'questionServlet?flag=answerQuestion&questionId='+${requestScope.questionById.questionId},
+			data:$("#submitAnswer").serialize(),
+			cache:false,
+			success:function(msg){
+				if(msg==1){
+					alert("答案提交成功");
+					//将原来的内容清空
+					document.getElementById("answerContent").value="";
+					//跳转刷新
+					location.href="questionServlet?flag=showAllAnswer&questionId="+${requestScope.questionById.questionId};
+				}else{
+					alert("答案提交失败");
+				}
+			}
+		});
+	}
 	</script>
 	<style type="text/css">
 		.top{
@@ -71,6 +96,10 @@
 <body>
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
+</c:if>
+
+<c:if test="${showAllAnswer==null}">
+	<c:redirect url="questionServlet?flag=showAllAnswer&questionId=${param.questionId}"></c:redirect>
 </c:if>
 <div class="boxed_wrapper">
 
@@ -94,25 +123,48 @@
         <div style="width:75%;height:820px;border:1px #999 solid;">
         	<!-- 头部按钮 -->
         	<div class="top">
-        		<span>提问者:<span style="color:blue">张三</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
-        		<span>奖励积分:<span style="color:blue">5</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
-        		<span>时间:<span>1天前</span></span>
+        		<span>提问者:<span style="color:blue">${requestScope.questionById.creatorName}</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        		<span>奖励积分:<span style="color:blue">${requestScope.questionById.questionReward}</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        		<span>时间:<span>${requestScope.questionById.showTime}</span></span>
         	</div>
         	<!-- 提问内容 -->
         	<div style="padding-left:10px;">
-        		<span style="color:red">*</span>标题:<br/>
-        		<span></span><br/>
-        		<span style="color:red">*</span>内容描述:<br/>
+        		<span style="color:red">*</span><span style="color:#999;">标题:</span><br/>
+        		&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:13px;">${requestScope.questionById.questionTitle}</span><br/>
+        		<span style="color:red">*</span><span style="color:#999;">内容描述:</span><br/>
+        		&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:13px;">${requestScope.questionById.questionContent}</span>
         	</div>
         	<!-- 回答 -->
-        	<div style="padding-left:10px;">
-              <div>
-                  <textarea style="height:200px;width:98%;" placeholder="请输入内容" id="questionContent" name="questionContent" class="layui-textarea" lay-verify="required"></textarea>
-              </div>
-          	</div>
-          	<div class="padding-left:10px;">
-          		<button class=""></button>
-          	</div>
+        	<div style="padding-left:10px;margin-top:20px;">
+	        	<form id="submitAnswer">
+	                <textarea style="height:200px;width:98%;" placeholder="请输入答案" id="answerContent" name="answerContent" ></textarea>
+	          		<br/><input type="button" value="提交回答" onclick="submitAnswer()"/>
+	        	</form>
+        	</div>
+        	<br/>
+        	<!-- 网友回答 -->
+        	<div style="padding:0 10px;">
+        		<c:if test="${showAllAnswer!=null&&showAllAnswer!='0'}">
+	        	<div style="border-bottom: 2px solid #d0d0d0;font-weight:bold;font-size:14px;">
+	        		网友回答:
+	        	</div>
+	        	<div>
+	        		<ul>
+	        			<c:forEach items="${showAllAnswer}" var="answer" varStatus="go">
+	        				<li>
+	        					<span style="color:blue;font-size:20px;">${go.index+1}楼</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	        					<!-- 回答者编号 -->
+	        					<span>${answer.answerUserName}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+	        					<!-- 回答时间 -->
+	        					<span style="color:#999;font-size:14px;">[${answer.answerTime}]</span><br/>
+	        					<span>${answer.replyContent}</span>
+	        					<hr style="border:1px dotted #999"/>
+	        				</li>
+	        			</c:forEach>
+	        		</ul>
+	        	</div>
+	        	</c:if>
+        	</div>
         </div>
     </div>
 </section>
