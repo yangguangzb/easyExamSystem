@@ -124,7 +124,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="">
+                        <a _href="integral-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>积分查看</cite>
                         </a>
