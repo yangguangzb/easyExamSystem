@@ -136,7 +136,7 @@ public class UserDaoImpl implements UserDao{
 				sql.append(" and userId="+id+"");
 			}else{
 				//输入的是用户名
-				sql.append(" and userName="+userId+"");
+				sql.append(" and userName='"+userId+"'");
 			}
 		}
 		if(verification!=""&&verification!=null){
@@ -147,7 +147,8 @@ public class UserDaoImpl implements UserDao{
 			sql.append(" and verification="+ve+"");
 		}
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query(sql.toString().replaceFirst("and","where"),new BeanListHandler<User>(User.class));
+		String sql2=sql.toString().replaceFirst("and","where");
+		return qr.query(sql2,new BeanListHandler<User>(User.class));
 	}
 	//添加用户
 	public int maddUserDaoImpl(String userName,String e_mail,String password) throws SQLException{
