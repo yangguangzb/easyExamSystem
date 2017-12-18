@@ -11,7 +11,7 @@ public class PostCreation {
     private int postCreatorId;//帖子创建者编号
     private String discussionName;//区域名称
     private String creationResourcePath;//创建资源路径
-    private String postConent;//内容
+    private String postContent;//内容
     private String postPriority;//优先级
     private Date postTime;//时间
 
@@ -47,12 +47,12 @@ public class PostCreation {
         this.creationResourcePath = creationResourcePath;
     }
 
-    public String getPostConent() {
-        return postConent;
+    public String getPostContent() {
+        return postContent;
     }
 
-    public void setPostConent(String postConent) {
-        this.postConent = postConent;
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
     }
 
     public String getPostPriority() {

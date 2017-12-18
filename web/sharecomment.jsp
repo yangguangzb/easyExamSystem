@@ -97,11 +97,34 @@
         <div class="section-title">
             <h2>轻松考</h2>
         </div>
-        <div>
+        <div class="row">
+            <div class="col">
+                <h3 align="center">${postCreation.postTitle}</h3>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-3">发布于:${postCreation.postTime} </div>
+            <div class="col-md-2 col-md-offset-1">作者:${postCreation.postCreatorId} </div>
+        </div>
+        <div class="row">
+            <p>${postCreation.postContent}</p>
+        </div>
+         <c:choose>
+             <c:when test="${postCommentList==null}">
+                 <div class="row">
+                     <p>还没有人评论</p>
+                 </div>
+             </c:when>
+             <c:otherwise>
+                 <c:forEach var="postComment" items="${postCommentList}">
+                       <div class="row">
+                           ${postComment.commentContent}
+                       </div>
+                 </c:forEach>
+             </c:otherwise>
+         </c:choose>
         <div class="service_carousel">
-            
-          
+
         </div>
             
     </div>

@@ -627,7 +627,7 @@
                 cardVisible:true
             }, {
                 field: 'postTitle',
-                title: '标题',
+                title: '主题',
                 sortable:true
             }, {
                 field: 'commentCount',

@@ -17,7 +17,7 @@ public class PostCreationDaoImpl implements PostCreationDao {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
             String sql="insert into postCreation(postTitle,postCreatorId,creationResourcePath,postContent,postPriority) values(?,?,?.?,?)";
-            Object[] params= {postCreation.getPostTitle(),postCreation.getPostCreatorId(),postCreation.getCreationResourcePath(),postCreation.getPostConent(),postCreation.getPostPriority()};
+            Object[] params= {postCreation.getPostTitle(),postCreation.getPostCreatorId(),postCreation.getCreationResourcePath(),postCreation.getPostContent(),postCreation.getPostPriority()};
             runner.update(sql,params);
 
         }
