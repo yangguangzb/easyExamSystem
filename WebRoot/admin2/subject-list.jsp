@@ -38,7 +38,8 @@
         <form method="post" action="../servlet/ManageSubject?flag=manageSubject" class="layui-form layui-col-md12 x-so">
           <!--<input class="layui-input" placeholder="开始日" name="start" id="start">
           <input class="layui-input" placeholder="截止日" name="end" id="end">
-          --><div class="layui-input-inline">
+          -->
+          <div class="layui-input-inline">
             <select name="brushName">
               <option value="">区类型</option>
               <option value="普通区">普通区</option>
@@ -70,7 +71,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.jsp')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加题目','./subject-add.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：${sessionScope.subjectSize} 条</span>
       </xblock>
       <table class="layui-table">
@@ -105,6 +106,9 @@
 	              </a>
 	              <a title="删除" onclick="member_del(this,${manageSubject.subjectId})" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
+	              </a>
+	              <a title="修改" onclick="x_admin_show('修改信息','subject-edit.jsp?subjectId=${manageSubject.subjectId}')" href="javascript:;">
+	                <i class="layui-icon">&#xe639;</i>
 	              </a>
 	            </td>
 	          </tr>
