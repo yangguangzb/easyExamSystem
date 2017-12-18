@@ -24,14 +24,13 @@
                   <span class="x-red">*</span>学科
               </label>
               <div class="layui-input-inline">
-                  <select id="courseName" name="courseName" class="valid">
-                    <option value="0">请选择课程</option>
-                    <option value="courseName">大学英语</option>
-                    <option value="courseName">软件工程</option>
-                    <option value="courseName">马克思原理</option>
-                    <option value="courseName">计算机网络</option>
-                    <option value="courseName">数据结构</option>
-                    <option value="courseName">数据库原理</option>
+                  <select id="courseName" name="courseName" class="valid" lay-verify="courseName">
+                    <option >大学英语</option>
+                    <option >软件工程</option>
+                    <option >马克思原理</option>
+                    <option >计算机网络</option>
+                    <option >数据结构</option>
+                    <option >数据库原理</option>
                   </select>
               </div>
           </div>
@@ -40,8 +39,7 @@
                   <span class="x-red">*</span>积分
               </label>
               <div class="layui-input-inline">
-                  <select name="questionReward" id="questionReward">
-                  	<option value="0">请选择积分</option>
+                  <select name="questionReward" id="questionReward" lay-verify="questionReward">
                     <option value="2">2</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -49,6 +47,9 @@
                     <option value="20">20</option>
                   </select>
               </div>
+              <label for="username" class="layui-form-label" style="width: 120px;">
+                  <span class="x-red">*</span>您当前积分:<span class="x-red">${sessionScope.user.integralNumber}</span>
+              </label>
           </div>
           <div class="layui-form-item">
               <label for="username" class="layui-form-label">
@@ -64,7 +65,7 @@
                   问题描述
               </label>
               <div class="layui-input-block">
-                  <textarea placeholder="请输入内容" id="questionContent" name="questionContent" class="layui-textarea"></textarea>
+                  <textarea placeholder="请输入内容" id="questionContent" name="questionContent" class="layui-textarea" lay-verify="required"></textarea>
               </div>
           </div>
           <div class="layui-form-item">
@@ -93,16 +94,6 @@
                     return '请选择积分';
                 }
             }
-            ,questionTitle: function(value){
-                if($('#questionTitle').val()==){
-                    return '标题不能为空';
-                }
-            }
-            ,questionContent: function(value){
-                if($('#questionContent').val()==null){
-                    return '问题描述不能为空';
-                }
-            }
           });
           //监听提交
           form.on('submit(add)', function(data){
@@ -123,7 +114,7 @@
             		});
 					}else{
 						//问题发布失败
-						layer.alert("问题发布失败");
+						layer.alert("积分不够,请购买");
 					}            	
             	}
             });
