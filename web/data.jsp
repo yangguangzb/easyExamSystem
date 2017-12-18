@@ -656,90 +656,9 @@
                     title:'下载' ,
                     align:'center',
                     formatter : operateFormatter,
-                },
+                }
             ],
 
-            /*  data: [{
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-                  download:'testfile.txt',
-              },
-              {
-                  resourceId: 13,
-                  uploadId: 11,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'16',
-                  integrtion:'2',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '高等数学',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              {
-                  resourceId: 12,
-                  uploadId: 12,
-                  courseName: '线性代数',
-                  resourceName:'期末复习',
-                  resourceDescription:'期末复习',
-                  downNumber:'3',
-                  integrtion:'5',
-
-              },
-              ],*/
             onClickCell:function(field, value, row, $element){
                 if(field=="resourcePath"){
                     /*  console.log(field);
@@ -750,7 +669,7 @@
                     window.location.href="/resourceServlet?method=getResource&resourceId="+row.resourceId.toString();
                 }
 
-            },
+            }
         });
         function operateFormatter(value, row, index) {
             return [

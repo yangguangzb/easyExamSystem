@@ -42,7 +42,7 @@ public class PostCreationDaoImpl implements PostCreationDao {
     }
 
     @Override
-    public PostCreation getPostCreation(String postCreationId) {
+    public PostCreation getPostCreation(int postCreationId) {
         try{
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
             String sql="select * from postCreation where postCreationId =?";

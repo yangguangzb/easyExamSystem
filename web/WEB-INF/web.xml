@@ -87,6 +87,10 @@
         <servlet-name>ShareAreaServlet</servlet-name>
         <servlet-class>com.san.servlet.ShareAreaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShareAreaCommentServlet</servlet-name>
+        <servlet-class>com.san.servlet.ShareAreaCommentServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -136,6 +140,10 @@
     <servlet-mapping>
         <servlet-name>ShareAreaServlet</servlet-name>
         <url-pattern>/shareAreaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShareAreaCommentServlet</servlet-name>
+        <url-pattern>/shareAreaCommentServlet</url-pattern>
     </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

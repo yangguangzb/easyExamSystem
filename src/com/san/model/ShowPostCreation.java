@@ -7,6 +7,7 @@ import java.util.Date;
 * @Description: 以用户友好的方式 显示帖子列表
 * */
 public class ShowPostCreation {
+    private int postCreationId;//帖子创建编号
     private int commentCount;// 评论数目
     private String postTitle;// 帖子标题
     private Date latestTime;//最新评论时间
@@ -50,5 +51,13 @@ public class ShowPostCreation {
 
     public void setLatestPostCommentPerson(String latestPostCommentPerson) {
         this.latestPostCommentPerson = latestPostCommentPerson;
+    }
+
+    public int getPostCreationId() {
+        return postCreationId;
+    }
+
+    public void setPostCreationId(int postCreationId) {
+        this.postCreationId = postCreationId;
     }
 }

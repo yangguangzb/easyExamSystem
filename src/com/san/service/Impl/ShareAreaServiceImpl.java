@@ -45,9 +45,11 @@ public class ShareAreaServiceImpl implements ShareAreaService {
             User postCreator=userDao.getUser(postCreation.getPostCreatorId());
             ShowPostCreation showPostCreation1=new ShowPostCreation();
             String title=postCreation.getPostTitle(); // 标题
+            int postCreationId=postCreation.getPostCreationId();//帖子创建编号
             int count=postCommentDao.totalPostComment(postCreation.getPostCreationId()); // 回复数目
             showPostCreation1.setPostCreationPerson(postCreator.getUserName());//创建者名称
             showPostCreation1.setPostTitle(title);
+            showPostCreation1.setPostCreationId(postCreationId);
             showPostCreation1.setCommentCount(count);
             PostComment postComment=postCommentDao.getLatestComment(postCreation.getPostCreationId()); // 最新的评论
             // 如果有评论
@@ -64,5 +66,17 @@ public class ShareAreaServiceImpl implements ShareAreaService {
             }
         }
         return showPostCreationArrayList;
+    }
+
+    @Override
+    public PostCreation getPostCreation(int postCreationId) {
+        PostCreationDao postCreationDao=new PostCreationDaoImpl();
+        return postCreationDao.getPostCreation(postCreationId);
+    }
+
+    @Override
+    public List<PostComment> listPostComment(int postCreationId) {
+        PostCommentDao postCommentDao=new PostCommentDaoImpl();
+        return postCommentDao.listPostCommentByPostCreationId(postCreationId);
     }
 }

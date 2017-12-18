@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Home</title> 
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
 	<!-- 登录 -->
 	<link rel="stylesheet" type="text/css" href="css/login.css"/>
-<!--	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 
@@ -31,20 +33,20 @@
     <div id="slider1" class="rev_slider"  data-version="5.0">
     </div>
 </section>
-<!--
+<!--  
 <section class="whychoos-us sec-padd2">
     <div class="container">
-
+        
         <div class="section-title center">
             <h2>Why Choosing The Expeart</h2>
             <div class="text">
                 <p>We are experts in this industry with over 100 years experience. What that means is you are going to get right <br> solution. please find our services.</p>
             </div>
         </div>
-
-
+            
+        
         <div class="row clearfix">
-
+            
             <article class="column col-md-4 col-sm-6 col-xs-12">
                 <div class="item">
                     <div class="icon_box">
@@ -57,7 +59,7 @@
                     <div class="count">01</div>
                 </div>
             </article>
-
+            
             <article class="column col-md-4 col-sm-6 col-xs-12">
                 <div class="item">
                     <div class="icon_box">
@@ -70,7 +72,7 @@
                     <div class="count">02</div>
                 </div>
             </article>
-
+            
             <article class="column col-md-4 col-sm-6 col-xs-12">
                 <div class="item">
                     <div class="icon_box">
@@ -83,46 +85,43 @@
                     <div class="count">03</div>
                 </div>
             </article>
-
+            
         </div>
-
+            
     </div>
 </section>
 -->
 <section class="service sec-padd2" style="margin-top:100px;">
     <div class="container">
-
+        
         <div class="section-title">
             <h2>轻松考</h2>
         </div>
         <div>
-            <table id="table">
-
-            </table>
         </div>
         <div class="service_carousel">
-
-
+            
+          
         </div>
-
+            
     </div>
 </section>
-<!--
+<!-- 
 <section class="fact-counter sec-padd" style="background-image: url(images/background/4.jpg);">
     <div class="container">
         <div class="row clearfix">
             <div class="counter-outer clearfix">
-
+                
                 <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
                     <div class="item">
                         <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="107">0</span></div>
                         <h4 class="counter-title">Experienced Consultants</h4>
                         <div class="icon"><i class="icon-people3"></i></div>
                     </div>
-
+                        
                 </article>
-
-
+                
+                
                 <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
                     <div class="item">
                         <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="2000">0</span></div>
@@ -130,8 +129,8 @@
                         <div class="icon"><i class="icon-technology3"></i></div>
                     </div>
                 </article>
-
-
+                
+                
                 <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
                     <div class="item">
                         <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="47">0</span></div>
@@ -139,8 +138,8 @@
                         <div class="icon"><i class="icon-sports"></i></div>
                     </div>
                 </article>
-
-
+                
+                
                 <article class="column counter-column col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-duration="0ms">
                     <div class="item">
                         <div class="count-outer"><span class="count-text" data-speed="3000" data-stop="100">0</span>%</div>
@@ -202,10 +201,10 @@
                             </select>
                         </div>
                     </form>
-
+                        
                 </div>
             </div>
-
+            
         </div>
     </div>
 </section>
@@ -216,12 +215,12 @@
     <div class="container">
         <div class="section-title center">
             <h2>testimonials</h2>
-        </div>
-
-
+        </div> 
+        
+             
         <div class="testimonials-slider column-carousel three-column">
-
-
+            
+            
             <article class="slide-item">
                 <div class="quote"><span class="icon-left"></span></div>
                 <div class="author">
@@ -232,13 +231,13 @@
                     <a href="#"><p>Newyork</p></a>
                     <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></div>
                 </div>
-
+                
                 <div class="slide-text">
                     <p>Fortune has helped us to just have a better handle on everything in our business – to actually make decisions and move forward to grow.</p>
                 </div>
             </article>
-
-
+            
+            
             <article class="slide-item">
                 <div class="quote"><span class="icon-left"></span></div>
                 <div class="author">
@@ -249,13 +248,13 @@
                     <a href="#"><p>San Fransisco</p></a>
                     <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></div>
                 </div>
-
+                
                 <div class="slide-text">
                     <p>They bring a wealth of knowledge as well as a personal touch so often missing from other firms, helped us to just have better handle on everything.</p>
                 </div>
             </article>
-
-
+            
+            
             <article class="slide-item">
                 <div class="quote"><span class="icon-left"></span></div>
                 <div class="author">
@@ -266,16 +265,16 @@
                     <a href="#"><p>Newyork</p></a>
                     <div class="rating"><span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span></div>
                 </div>
-
+                
                 <div class="slide-text">
                     <p>It involves an examination of operations which allows their team discuss the art of the possible. They bring a wealth of knowledge, we believe fortune.</p>
                 </div>
             </article>
 
-
+     
         </div>
-
-    </div>
+        
+    </div>    
 </section>
 
 <section class="latest-project sec-padd">
@@ -292,7 +291,7 @@
                             <div class="content">
                                 <a href="project-single.html"><h4>Latest Technology</h4></a>
                                 <p>Consulting</p>
-                            </div>
+                            </div> 
                         </figcaption>
                     </figure>
                 </div>
@@ -306,7 +305,7 @@
                             <div class="content">
                                 <a href="project-single.html"><h4>Audit & Assurance</h4></a>
                                 <p>Financial</p>
-                            </div>
+                            </div>    
                         </figcaption>
                     </figure>
                 </div>
@@ -321,7 +320,7 @@
                             <div class="content">
                                 <a href="project-single.html"><h4>Business Growth</h4></a>
                                 <p>Growth</p>
-                            </div>
+                            </div> 
                         </figcaption>
                     </figure>
                 </div>
@@ -336,14 +335,14 @@
                             <div class="content">
                                 <a href="project-single.html"><h4>Transporation Service</h4></a>
                                 <p>Marketing</p>
-                            </div>
+                            </div> 
                         </figcaption>
                     </figure>
                 </div>
                 </div>
-            </div>
+            </div>            
         </div>
-
+                
     </div>
 </section>
 
@@ -370,15 +369,15 @@
                         <h4><a href="#">Retail banks wake up to digital</a></h4>
                         <div class="post-meta">by fletcher  |  14 Comments</div>
                         <div class="text">
-                            <p>know how to pursue pleasure rationally seds encounter consequences.</p>
+                            <p>know how to pursue pleasure rationally seds encounter consequences.</p>               
                         </div>
                         <div class="link">
                             <a href="#" class="default_link">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
-
+                        
                     </div>
                 </div>
-
+                
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
@@ -397,15 +396,15 @@
                         <h4><a href="#">Improve your business growth</a></h4>
                         <div class="post-meta">by Richards  |  22 Comments</div>
                         <div class="text">
-                            <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>
+                            <p>Great pleasure to take a trivial example, which of us undertakes laborious.</p>                            
                         </div>
                         <div class="link">
                             <a href="#" class="default_link">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
-
+                        
                     </div>
                 </div>
-
+                
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="default-blog-news wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
@@ -424,17 +423,17 @@
                         <h4><a href="#">Save money for your future.</a></h4>
                         <div class="post-meta">by Vincent  |  16 Comments</div>
                         <div class="text">
-                            <p>Pleasure and praising pain was born and I will give you a complete account.</p>
+                            <p>Pleasure and praising pain was born and I will give you a complete account.</p>                            
                         </div>
                         <div class="link">
                             <a href="#" class="default_link">Read More <i class="fa fa-angle-right"></i></a>
                         </div>
-
+                        
                     </div>
                 </div>
-
+                
             </div>
-
+            
         </div>
     </div>
 </section>
@@ -442,7 +441,7 @@
 <section class="consultations sec-padd" style="background-image: url(images/background/5.jpg);">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">   
                 <div class="contact-info">
                     <div class="section-title">
                         <h3>Contact Details</h3>
@@ -481,7 +480,7 @@
                                             <option value="2">Enquiry service</option>
                                         </select>
                                     </div>
-
+                                        
                                 </div>
                             </div>
                             <div class="col-md-8 co-sm-6 col-xs-12 column">
@@ -524,7 +523,7 @@
             </div>
 
         </div>
-    </div>
+    </div>  
 </section>
 
 <div class="call-out">
@@ -544,7 +543,7 @@
                 </div>
             </div>
         </div>
-
+                
     </div>
 </div>
 -->
@@ -600,54 +599,12 @@
     <script src="js/jquery.appear.js"></script>
     <script src="js/jquery.countTo.js"></script>
     <script src="js/jquery.flexslider.js"></script>
-    <script src="js/imagezoom.js"></script>
+    <script src="js/imagezoom.js"></script> 
     <script id="map-script" src="js/default-map.js"></script>
     <script src="js/custom.js"></script>
 	<!-- 登录js -->
 	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
-    <script>
-        $('#table').bootstrapTable({
-            method:"get",
-            url: "/shareAreaServlet",
-            dataType: "json",
-            striped: true,
-            classes:'table table-hover table-no-bordered',
-            search:true,
-            pagination: true,
-            clickToSelect: true,
-            columns: [{
-                    field: 'postCreationId',
-                    title: '编号',
-                    sortable:true,
-                    cardVisible:true
-                },{
-                field: 'postCreationPerson',
-                title: '作者',
-                sortable:true,
-                cardVisible:true
-            }, {
-                field: 'postTitle',
-                title: '标题',
-                sortable:true
-            }, {
-                field: 'commentCount',
-                title: '评论数目',
-                sortable:true
-            },{
-                field:'latestPostCommentPerson',
-                title:'最新回复者'
-            },{
-                field:'latestTime',
-                title:'最新评论时间'
-            }
-            ],
-            onClickRow:function(row, $element, field){
-                window.location.href="/shareAreaCommentServlet?method=listPost&postCreationId="+row.postCreationId.toString();
-            }
-
-        });
-    </script>
 </div>
-
+    
 </body>
 </html>
