@@ -6,10 +6,7 @@ import com.san.dao.Impl.UserDaoImpl;
 import com.san.dao.PostCommentDao;
 import com.san.dao.PostCreationDao;
 import com.san.dao.UserDao;
-import com.san.model.PostComment;
-import com.san.model.PostCreation;
-import com.san.model.ShowPostCreation;
-import com.san.model.User;
+import com.san.model.*;
 import com.san.service.ShareAreaService;
 
 import java.util.ArrayList;
@@ -69,13 +66,13 @@ public class ShareAreaServiceImpl implements ShareAreaService {
     }
 
     @Override
-    public PostCreation getPostCreation(int postCreationId) {
+    public ShowPostCreationUser getPostCreation(int postCreationId) {
         PostCreationDao postCreationDao=new PostCreationDaoImpl();
         return postCreationDao.getPostCreation(postCreationId);
     }
 
     @Override
-    public List<PostComment> listPostComment(int postCreationId) {
+    public List<ShowPostCommentUser> listPostComment(int postCreationId) {
         PostCommentDao postCommentDao=new PostCommentDaoImpl();
         return postCommentDao.listPostCommentByPostCreationId(postCreationId);
     }

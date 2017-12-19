@@ -2,6 +2,8 @@ package com.san.servlet;
 
 import com.san.model.PostComment;
 import com.san.model.PostCreation;
+import com.san.model.ShowPostCommentUser;
+import com.san.model.ShowPostCreationUser;
 import com.san.service.Impl.ShareAreaServiceImpl;
 import com.san.service.ShareAreaService;
 
@@ -27,11 +29,11 @@ public class ShareAreaCommentServlet extends HttpServlet {
         ShareAreaService shareAreaService=new ShareAreaServiceImpl();
         String postCreationId=request.getParameter("postCreationId");
         int postCreationIds=Integer.parseInt(postCreationId);
-        PostCreation postCreation=shareAreaService.getPostCreation(postCreationIds);
-        List<PostComment> postCommentList=shareAreaService.listPostComment(postCreationIds);
+        ShowPostCreationUser showPostCreationUser=shareAreaService.getPostCreation(postCreationIds);
+        List<ShowPostCommentUser> postCommentList=shareAreaService.listPostComment(postCreationIds);
         // 将信息存入到session中
         request.getSession().setAttribute("postCommentList",postCommentList);
-        request.getSession().setAttribute("postCreation",postCreation);
+        request.getSession().setAttribute("showPostCreationUser",showPostCreationUser);
         request.getRequestDispatcher("sharecomment.jsp").forward(request,response);
     }
 }

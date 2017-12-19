@@ -34,85 +34,22 @@
     <div id="slider1" class="rev_slider"  data-version="5.0">
     </div>
 </section>
-<!--  
-<section class="whychoos-us sec-padd2">
-    <div class="container">
-        
-        <div class="section-title center">
-            <h2>Why Choosing The Expeart</h2>
-            <div class="text">
-                <p>We are experts in this industry with over 100 years experience. What that means is you are going to get right <br> solution. please find our services.</p>
-            </div>
-        </div>
-            
-        
-        <div class="row clearfix">
-            
-            <article class="column col-md-4 col-sm-6 col-xs-12">
-                <div class="item">
-                    <div class="icon_box">
-                        <span class="icon-graphic2"></span>
-                    </div>
-                    <a href="#"><h4>Why Our Consulting</h4></a>
-                    <div class="text">
-                        <p>We are experts in this industry with over 100 years of experience. What that means is you are going to get right solution, experts also recommand us.</p>
-                    </div>
-                    <div class="count">01</div>
-                </div>
-            </article>
-            
-            <article class="column col-md-4 col-sm-6 col-xs-12">
-                <div class="item">
-                    <div class="icon_box">
-                        <span class="icon-layers"></span>
-                    </div>
-                    <a href="#"><h4>Advanced Analytics</h4></a>
-                    <div class="text">
-                        <p>We are experts in this industry with over 100 years of experience. What that means is you are going to get right solution, experts also recommand us.</p>
-                    </div>
-                    <div class="count">02</div>
-                </div>
-            </article>
-            
-            <article class="column col-md-4 col-sm-6 col-xs-12">
-                <div class="item">
-                    <div class="icon_box">
-                        <span class="icon-computer"></span>
-                    </div>
-                    <a href="#"><h4>Customer Insights</h4></a>
-                    <div class="text">
-                        <p>We are experts in this industry with over 100 years of experience. What that means is you are going to get right solution, experts also recommand us.</p>
-                    </div>
-                    <div class="count">03</div>
-                </div>
-            </article>
-            
-        </div>
-            
-    </div>
-</section>
--->
 <section class="service sec-padd2" style="margin-top:100px;">
     <div class="container">
-        
-       <!-- <div class="section-title">
-            <h2>轻松考</h2>
-        </div>-->
         <div class="row">
-            <span class="border border-primary"></span>
             <div class="col">
-                <h3 align="center">${postCreation.postTitle}</h3>
+                <h3 align="center">${showPostCreationUser.postTitle}</h3>
             </div>
         </div>
         <div class="row" align="center">
             <div>
-                <div class="col-md-3">发布于:${postCreation.postTime} </div>
-                <div class="col-md-2 col-md-offset-1">作者:${postCreation.postCreatorId} </div>
+                <div class="col-md-offset-4 col-md-4 text-secondary">发布于&nbsp;&nbsp;:&nbsp;&nbsp;${showPostCreationUser.postTime}&nbsp;&nbsp;&nbsp;&nbsp;作者&nbsp;&nbsp;:&nbsp;&nbsp;${showPostCreationUser.postCreatorName}</div>
+                <div class="col-md-2 "> </div>
             </div>
 
         </div>
         <div class="row">
-            <p>${postCreation.postContent}</p>
+            <p>${showPostCreationUser.postContent}</p>
         </div>
          <c:choose>
              <c:when test="${empty postCommentList}">
@@ -123,11 +60,12 @@
                  </div>
              </c:when>
              <c:otherwise>
-                 <c:forEach var="postComment" items="${postCommentList}" varStatus="status">
-                     <span class="border border-primary">
+                 <c:forEach var="ShowPostCommentUser" items="${postCommentList}" varStatus="status">
+                     <div class="row">
+                        ${status.index+1}楼&nbsp;&nbsp;${ShowPostCommentUser.postCommentUserName}
+                     </div>
                        <div class="row">
-                           <a style=" text-decoration: none; color: #000000;">${status.index+1}楼</a>
-                       <p>${postComment.commentContent}</p>
+                       <p>${ShowPostCommentUser.commentContent}</p>
                        </div>
                          </span>
                  </c:forEach>

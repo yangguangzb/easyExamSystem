@@ -3,6 +3,7 @@ package com.san.dao.Impl;
 import com.san.dao.PostCreationDao;
 import com.san.model.Grade;
 import com.san.model.PostCreation;
+import com.san.model.ShowPostCreationUser;
 import com.san.utils.C3p0Util;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -42,11 +43,11 @@ public class PostCreationDaoImpl implements PostCreationDao {
     }
 
     @Override
-    public PostCreation getPostCreation(int postCreationId) {
+    public ShowPostCreationUser getPostCreation(int postCreationId) {
         try{
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="select * from postCreation where postCreationId =?";
-            return (PostCreation) runner.query(sql,postCreationId,new BeanHandler(PostCreation.class));
+            String sql="select userName as postCreatorName,postCreationId,postTitle,discussionName,creationResourcePath,postContent,postPriority,postTime from postCreation,user where  userId=postCreatorId and postCreationId=?";
+            return (ShowPostCreationUser) runner.query(sql,postCreationId,new BeanHandler(ShowPostCreationUser.class));
         }
         catch (SQLException ex){
             ex.printStackTrace();
