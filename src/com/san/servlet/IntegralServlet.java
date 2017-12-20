@@ -44,6 +44,7 @@ public class IntegralServlet extends HttpServlet {
 		User user1=userServiceImpl.checkUserByIdService(user.getUserId());
 		request.getSession().setAttribute("user", user1);
 		response.getWriter().write(i+"");
+		return ;
 	}
 	//后台查询积分
 	public void backCheckIntegral(HttpServletRequest request, HttpServletResponse response)
@@ -55,5 +56,6 @@ public class IntegralServlet extends HttpServlet {
 		List<Map<String, Object>> integralListMap= integralServiceImpl.checkIntegralService(start, end, integralNumber, username);
 		request.setAttribute("integralListMap", integralListMap);
 		request.getRequestDispatcher("admin2/integral-list.jsp").forward(request, response);
+		return ;
 	}
 }

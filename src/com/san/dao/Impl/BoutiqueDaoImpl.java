@@ -1,8 +1,6 @@
 package com.san.dao.Impl;
-import java.sql.*;
-import java.util.*;
-
-import javax.jws.soap.SOAPBinding.Use;
+import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -48,6 +46,7 @@ public class BoutiqueDaoImpl {
 	 */
 	public int reducePoints(int userId,int BrushIntegral,int integralNumber) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		System.out.println("扣除积分");
 		return qr.update("update user set integralNumber=? where userId=?"
 				,(integralNumber-BrushIntegral+3),userId);
 	}

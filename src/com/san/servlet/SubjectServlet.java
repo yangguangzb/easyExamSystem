@@ -1,7 +1,6 @@
 package com.san.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.san.dao.Impl.SubjectDaoImpl;
 import com.san.model.Subject;
 import com.san.model.User;
 import com.san.service.Impl.SubjectServiceImpl;
@@ -33,6 +29,7 @@ public class SubjectServlet extends HttpServlet {
 			if(flag.equals("display")){
 				//显示题目
 				display(request, response);
+				return ;
 			}
 			if(flag.equals("displayNext")){
 				//显示下一道题
@@ -83,7 +80,9 @@ public class SubjectServlet extends HttpServlet {
 			nowSubject=subjectList.get(0);
 			nowSubject.setSubjectId(k);//设置当前题目编号
 			request.getSession().setAttribute("nowSubject", nowSubject);
-			request.getRequestDispatcher("ordinary.jsp").forward(request, response);
+			//转发无法响应(待解决)
+			//request.getRequestDispatcher("/ordinary.jsp").forward(request, response);
+			response.sendRedirect("ordinary.jsp");
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -108,7 +107,6 @@ public class SubjectServlet extends HttpServlet {
 			if(subjectAnswer.contains(choice)&&choice!=""){
 				grade=grade+5;
 			}
-			System.out.println("grade="+grade);
 			//保存成绩
 			request.getSession().setAttribute("grade",grade);
 			nowSubject.setSubjectId(++k);//设置当前题目编号
@@ -116,6 +114,7 @@ public class SubjectServlet extends HttpServlet {
 			request.getSession().setAttribute("k", k);
 			request.getSession().setAttribute("nowSubject", nowSubject);
 			response.sendRedirect("ordinary.jsp");
+			return ;
 		}
 	}
 	int j=k;//设置上一题
@@ -130,6 +129,8 @@ public class SubjectServlet extends HttpServlet {
 			nowSubject=subjectList.get(k);
 			nowSubject.setSubjectId(k);
 			request.getSession().setAttribute("nowSubject", nowSubject);
+			response.sendRedirect("ordinary.jsp");
+			return ;
 		}
 		
 	}
@@ -141,6 +142,7 @@ public class SubjectServlet extends HttpServlet {
 		String subjectAnswer=nowSubject.getSubjectAnswer();
 		//解析
 		request.getSession().setAttribute("analysis",analysis);
+		return ;
 	}
 	public void gradeByOption(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -179,6 +181,7 @@ public class SubjectServlet extends HttpServlet {
 		//向前台输出成绩
 		response.getWriter().write(grade+"");
 		grade=0;
+		return ;
 	}
 	//成绩排行榜
 	public void pankGrade(HttpServletRequest request, HttpServletResponse response)
@@ -186,5 +189,6 @@ public class SubjectServlet extends HttpServlet {
 		List<Map<String,Object>> pankGrade= subjectService.pankGradeService();
 		request.setAttribute("pankGrade", pankGrade);
 		request.getRequestDispatcher("ordinary.jsp").forward(request, response);
+		return ;
 	}
 }

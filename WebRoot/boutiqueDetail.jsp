@@ -28,7 +28,10 @@
 				if(xhr.status==200&&xhr.readyState==4){
 					if(xhr.responseText==-1){
 						alert("没有这么多题目哦,请重新输入");
-					}else{
+					}else if(xhr.responseText==-2){
+						alert("题目编号输入有误");					
+					}
+					else{
 						//题目够,刷新界面
 						location.reload();
 					}

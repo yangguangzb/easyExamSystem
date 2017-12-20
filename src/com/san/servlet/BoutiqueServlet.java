@@ -12,11 +12,14 @@ import com.san.model.Subject;
 import com.san.model.User;
 import com.san.service.Impl.BoutiqueServiceImpl;
 import com.san.service.Impl.IntegralServiceImpl;
+import com.san.service.Impl.UserServiceImpl;
+import com.san.utils.DBUtil;
 
 public class BoutiqueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	BoutiqueServiceImpl boutiqueService=new BoutiqueServiceImpl();
 	IntegralServiceImpl integralServiceImpl=new IntegralServiceImpl();
+	UserServiceImpl userServiceImpl=new UserServiceImpl();
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//判断用户是否登录
@@ -68,6 +71,7 @@ public class BoutiqueServlet extends HttpServlet {
 		request.getSession().setAttribute("brushlist", brushlist);
 		//跳转到精品区界面
 		response.sendRedirect("boutique.jsp");
+		return ;
 	}
 	//具体精品课程
 	public void detail(HttpServletRequest request, HttpServletResponse response,String courseName)
@@ -85,6 +89,7 @@ public class BoutiqueServlet extends HttpServlet {
 			request.getSession().setAttribute("boutiqueSubjectList", boutiqueSubjectList);
 			//跳转到具体课程刷题
 			response.sendRedirect("boutiqueDetail.jsp");
+			return ;
 		}else{
 			//用户没有购买过该课程
 			//判断用户积分是否足够购买该课程题目
@@ -92,6 +97,9 @@ public class BoutiqueServlet extends HttpServlet {
 			if(isPoints){
 				//积分够,扣除相应积分
 				boutiqueService.reducePointsService(user.getUserId(), brushList.getBrushIntegral(), user.getIntegralNumber());
+				//更新用户session中的积分数目
+				User userNow=userServiceImpl.checkUserByIdService(user.getUserId());
+				request.getSession().setAttribute("user", userNow);
 				//记录用户消耗积分(积分使用记录表)
 				integralServiceImpl.boutiqueReduceService(user.getUserId(), "精品区"+courseName, (-brushList.getBrushIntegral()+3));
 				//查询题目,保存到session中
@@ -99,6 +107,7 @@ public class BoutiqueServlet extends HttpServlet {
 				request.getSession().setAttribute("boutiqueSubjectList", boutiqueSubjectList);
 				//跳转到具体课程刷题
 				response.sendRedirect("boutiqueDetail.jsp");
+				return ;
 			}else{
 				//积分不够，跳转到积分购买界面
 				response.getWriter().write("积分不够,请购买积分!");
@@ -115,9 +124,13 @@ public class BoutiqueServlet extends HttpServlet {
 			throws ServletException, IOException {
 		boutiqueSubjectList=(List<Subject>)request.getSession().getAttribute("boutiqueSubjectList");
 		int subjectId=0;
-		if(boutiqueSubjectId!=""){
+		if(boutiqueSubjectId!=""&&DBUtil.isNumeric(boutiqueSubjectId)){
 			subjectId=Integer.parseInt(boutiqueSubjectId);
 			boutId=subjectId-1;
+		}else{
+			response.getWriter().write("-2");
+			boutId=0;
+			return ;
 		}
 		if(boutiqueSubjectList.size()<subjectId){
 			response.getWriter().write("-1");
@@ -132,6 +145,7 @@ public class BoutiqueServlet extends HttpServlet {
 		boutId++;
 		//现在题目序号
 		request.getSession().setAttribute("boutId", boutId);
+		return ;
 	}
 	//精品区下一题
 	public void nextBoutSubject(HttpServletRequest request, HttpServletResponse response)
@@ -146,6 +160,7 @@ public class BoutiqueServlet extends HttpServlet {
 			//现在题目序号
 			request.getSession().setAttribute("boutId", boutId);
 			response.sendRedirect("boutiqueDetail.jsp");
+			return ;
 		}
 	}
 	//精品区答案处理
@@ -156,9 +171,11 @@ public class BoutiqueServlet extends HttpServlet {
 		if(submitAnswer.equals(answer)){
 			//提交的答案正确
 			response.getWriter().write("正确");
+			return ;
 		}else{
 			//提交的答案错误
 			response.getWriter().write("错误");
+			return ;
 		}
 	}
 }

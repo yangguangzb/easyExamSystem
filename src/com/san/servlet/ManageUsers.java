@@ -23,9 +23,7 @@ public class ManageUsers extends HttpServlet {
 			throws ServletException, IOException {
 		if(request.getParameter("flag")!=null){
 			String flag=request.getParameter("flag");
-			if(flag.equals("checkUsers")){
-				checkUsers(request, response);
-			}
+			
 		}
 	}
 	//Post提交
@@ -48,7 +46,6 @@ public class ManageUsers extends HttpServlet {
 			if(flag.equals("delUser")){
 				delUser(request, response);
 			}
-			
 		}
 	}
 	//查询所有用户,并显示
@@ -59,8 +56,9 @@ public class ManageUsers extends HttpServlet {
 		String verification=request.getParameter("verification");
 		List<User> mUserList=mUserService.mcheckUserService(userType, userId,verification);
 		//保存查询的用户信息
-		request.getSession().setAttribute("mUserList",mUserList);
-		response.sendRedirect("../admin2/member-list.jsp");
+		request.setAttribute("mUserList", mUserList);
+		request.getRequestDispatcher("../admin2/member-list.jsp").forward(request, response);
+		return ;
 	}
 	public void addUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -69,6 +67,7 @@ public class ManageUsers extends HttpServlet {
 		String password = request.getParameter("pass");
 		String i=mUserService.maddUserService(userName, e_mail, password)+"";
 		response.getWriter().write(i);
+		return ;
 	}
 	//修改用户信息
 	public void modifyUser(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +79,7 @@ public class ManageUsers extends HttpServlet {
 		String i=mUserService.modifyUserService(userId, userType, verification, integralNumber)+"";
 		//响应回浏览器
 		response.getWriter().write(i);
+		return ;
 	}
 	//管理员删除用户
 	public void delUser(HttpServletRequest request, HttpServletResponse response)

@@ -22,6 +22,18 @@ public class DBUtil {
 		}
 		return true;
 	}
+	//根据积分数目,转化为响应的金额
+	public static int transtateIntegral(int integral){
+		switch (integral) {
+		case 10:return 1;
+		case 50:return 5;
+		case 100:return 10;
+		case 250:return 20;
+		case 650:return 50;
+		default:
+			return 0;
+		}
+	}
 	//将时间显示为几天前，几小时前等形式
 	private final static long minute = 60 * 1000;// 1分钟
     private final static long hour = 60 * minute;// 1小时
