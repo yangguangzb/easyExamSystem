@@ -9,4 +9,5 @@ public interface ShareAreaService {
      List<ShowPostCreation> listAllPostCreation();//显示所有帖子
      ShowPostCreationUser getPostCreation(int postCreationId);//显示选择的帖子内容
      List<ShowPostCommentUser> listPostComment(int postCreationId);//显示帖子的所有评论
+     void insertPostComment(PostComment postComment);
 }

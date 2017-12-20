@@ -81,12 +81,13 @@
             </c:when>
             <c:otherwise>
                 <div class="row">
-                    <form>
+                    <form method="post" action="${pageContext.request.contextPath}/shareAreaCommentServlet">
+                        <input type="hidden" name="method" value="insertPost">
                         <div class="row">
-                            <textarea></textarea>
+                            <textarea name="commentContent"></textarea>
                         </div>
                         <div class="row">
-                            <button type="button" class="btn btn-danger">发布</button>
+                            <button type="submit" class="btn btn-danger">发布</button>
                         </div>
                     </form>
 

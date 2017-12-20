@@ -76,4 +76,10 @@ public class ShareAreaServiceImpl implements ShareAreaService {
         PostCommentDao postCommentDao=new PostCommentDaoImpl();
         return postCommentDao.listPostCommentByPostCreationId(postCreationId);
     }
+
+    @Override
+    public void insertPostComment(PostComment postComment) {
+        PostCommentDao postCommentDao=new PostCommentDaoImpl();
+        postCommentDao.insertPostComment(postComment);
+    }
 }

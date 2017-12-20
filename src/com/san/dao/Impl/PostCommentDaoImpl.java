@@ -32,8 +32,8 @@ public class PostCommentDaoImpl implements PostCommentDao {
     public void insertPostComment(PostComment postComment) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="insert into postComment(postCreationId,reviewerId,evaluationResourcePath,commentContent) values(?,?,?.?)";
-            Object[] params= {postComment.getPostCreationId(),postComment.getReviewerId(),postComment.getReviewerId(),postComment.getEvaluationResourcePath(),postComment.getCommentContent()};
+            String sql="insert into postComment(postCreationId,reviewerId,commentContent) values(?,?,?)";
+            Object[] params= {postComment.getPostCreationId(),postComment.getReviewerId(),postComment.getCommentContent()};
             runner.update(sql,params);
 
         }
