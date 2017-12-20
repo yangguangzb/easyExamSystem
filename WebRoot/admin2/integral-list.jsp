@@ -27,9 +27,9 @@
         <a href="">演示</a>
         <a>
           <cite>导航元素</cite></a>
-      </span>
+      </span><!--
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>-->
     </div>
     <div class="x-body">
       <div class="layui-row">
@@ -52,7 +52,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./role-add.jsp')"><i class="layui-icon"></i>添加</button>
+        <!--<button class="layui-btn" onclick="x_admin_show('添加用户','./role-add.jsp')"><i class="layui-icon"></i>添加</button>-->
         <span class="x-right" style="line-height:40px">共有数据：${fn:length(integralListMap)} 条</span>
       </xblock>
       <table class="layui-table">
@@ -77,7 +77,7 @@
 	              <td>${integralMap.userId }</td>
 		          <td>${integralMap.userName }</td>
 		          <td>${integralMap.useNumber }积分</td>
-		          <td>${integralMap.userId }</td>
+		          <td>${integralMap.money }￥</td>
 		          <td>${integralMap.useTime }</td>
 	          </tr>
 	        </c:forEach>
@@ -86,12 +86,12 @@
       </table>
       <div class="page">
         <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
+          <a class="prev" href="javascript:;">&lt;&lt;</a>
+          <a class="num" href="javascript:;">1</a>
           <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
+          <a class="num" href="javascript:;">3</a>
+          <a class="num" href="javascript:;">489</a>
+          <a class="next" href="javascript:;">&gt;&gt;</a>
         </div>
       </div>
 

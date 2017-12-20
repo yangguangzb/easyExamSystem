@@ -104,17 +104,17 @@
                     <li>
                         <a _href="admin-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>资料审核</cite>
+                            <cite>资料列表</cite>
                         </a>
                     </li >
-                    <li>
+                    <!--<li>
                         <a _href="admin-role.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>资料发布</cite>
                         </a>
                     </li >
                     
-                </ul>
+                --></ul>
             </li>
             <li>
                 <a href="javascript:;">
@@ -124,7 +124,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="">
+                        <a _href="integral-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>积分查看</cite>
                         </a>

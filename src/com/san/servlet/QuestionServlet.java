@@ -80,10 +80,12 @@ public class QuestionServlet extends HttpServlet {
 		//动态修改用户积分并保存
 		if(newUser==null){
 			response.getWriter().write("-1");//积分不够
+			return ;
 		}else{
 			//积分够，修改session中用户积分信息
 			request.getSession().setAttribute("user",newUser);
 			response.getWriter().write("1");
+			return ;
 		}
 	}
 	//待回答问题处理
@@ -93,6 +95,7 @@ public class QuestionServlet extends HttpServlet {
 		List<Question> notAnswer=questionServiceImpl.notAnswerService(user.getUserId());
 		request.setAttribute("notAnswer", notAnswer);
 		request.getRequestDispatcher("problem.jsp").forward(request, response);
+		return ;
 	}
 	//用户回答问题处理
 	public void answerQuestion(HttpServletRequest request, HttpServletResponse response)
@@ -104,6 +107,7 @@ public class QuestionServlet extends HttpServlet {
 		User user=(User)request.getSession().getAttribute("user");
 		String i=questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent)+"";
 		response.getWriter().write(i);
+		return ;
 	}
 	//显示网友回答的答案showAllAnswer
 	public void showAllAnswer(HttpServletRequest request, HttpServletResponse response)
@@ -125,12 +129,14 @@ public class QuestionServlet extends HttpServlet {
 			request.setAttribute("showAllAnswer", showAllAnswer);
 		}
 		request.setAttribute("questionById", questionById);
+		//我的某个具体问题处理
 		if(request.getParameter("flagdetail")!=null&&"detail".equals(request.getParameter("flagdetail"))){
 			//转发到我的某个问题的具体内容中
 			request.getRequestDispatcher("myQuestionDetail.jsp").forward(request, response);
 			return ;
 		}
 		request.getRequestDispatcher("answerQuestion.jsp").forward(request, response);
+		return ;
 	}
 	//高分问题
 	public void highQuestion(HttpServletRequest request, HttpServletResponse response)
@@ -139,6 +145,7 @@ public class QuestionServlet extends HttpServlet {
 		List<Question> highQuestion=questionServiceImpl.highQuestionService(user.getUserId());
 		request.setAttribute("highQuestion", highQuestion);
 		request.getRequestDispatcher("highQuestion.jsp").forward(request, response);
+		return ;
 	}
 	//我的所有问题显示
 	public void myQuestion(HttpServletRequest request, HttpServletResponse response)
@@ -151,6 +158,7 @@ public class QuestionServlet extends HttpServlet {
 			request.setAttribute("myQuestions", myQuestions);
 		}
 		request.getRequestDispatcher("myQuestion.jsp").forward(request, response);
+		return ;
 	}
 	//我的某一个问题具体显示(包含网友答案等)
 	public void myQuestionDetail(HttpServletRequest request, HttpServletResponse response)
@@ -162,6 +170,7 @@ public class QuestionServlet extends HttpServlet {
 		questionServiceImpl.myQuestionDetailService(questionId, reviewerId);
 		//重定向(让其刷新)
 		response.sendRedirect("myQuestionDetail.jsp?questionId="+questionId);
+		return ;
 	}
 	//我的回答
 	public void myAnswer(HttpServletRequest request, HttpServletResponse response)
@@ -177,5 +186,6 @@ public class QuestionServlet extends HttpServlet {
 		}
 		//转发
 		request.getRequestDispatcher("myAnswer.jsp").forward(request, response);
+		return ;
 	}
 }

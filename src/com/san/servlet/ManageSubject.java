@@ -57,9 +57,15 @@ public class ManageSubject extends HttpServlet {
 		List<Subject> manageSubjectList=subjectServiceImpl.checkSubjectService(subjectId, brushName, courseName, subjectType);
 		//保存记录数
 		request.getSession().setAttribute("subjectSize",manageSubjectList.size());
-		//根据条件查询的题目,并保存到session中
-		request.getSession().setAttribute("manageSubjectList", manageSubjectList);
-		response.sendRedirect("../admin2/subject-list.jsp");
+		//根据条件查询的题目,并保存到session中·
+		//request.getSession().setAttribute("manageSubjectList", manageSubjectList);
+		//response.sendRedirect("../admin2/subject-list.jsp");
+		request.setAttribute("manageSubjectList", manageSubjectList);
+		request.setAttribute("brushName", brushName);
+		request.setAttribute("subjectType", subjectType);
+		request.setAttribute("courseName", courseName);
+		request.getRequestDispatcher("../admin2/subject-list.jsp").forward(request, response);
+		return ;
 	}
 	//根据id查询某一道题目具体信息
 	public void checkSubjectById(HttpServletRequest request, HttpServletResponse response)
@@ -74,6 +80,7 @@ public class ManageSubject extends HttpServlet {
 			return ;
 		}
 		response.sendRedirect("../admin2/subject-detail.jsp");
+		return ;
 	}
 	//删除一道题目
 	public void delSubject(HttpServletRequest request, HttpServletResponse response)
@@ -82,6 +89,7 @@ public class ManageSubject extends HttpServlet {
 		String i=subjectServiceImpl.delSubjectService(subjectId)+"";
 		//向浏览器响应信息
 		response.getWriter().write(i);
+		return ;
 	}
 	//添加题目addSubject
 	public void addSubject(HttpServletRequest request, HttpServletResponse response)
@@ -98,6 +106,7 @@ public class ManageSubject extends HttpServlet {
 		String analysis=request.getParameter("analysis");
 		String i=""+subjectServiceImpl.addSubjectService(brushName, subjectType, courseName, title,"A "+Aoption, "B "+Boption, "C "+Coption, "D "+Doption, answer, analysis);
 		response.getWriter().write(i);
+		return ;
 	}
 	//修改题目信息editSubject
 	public void editSubject(HttpServletRequest request, HttpServletResponse response)
@@ -115,5 +124,6 @@ public class ManageSubject extends HttpServlet {
 		String analysis=request.getParameter("analysis");
 		String i=""+subjectServiceImpl.editSubjectService(subjectId, brushName, subjectType, courseName, title, Aoption, Boption, Coption, Doption, answer, analysis);
 		response.getWriter().write(i);
+		return ;
 	}
 }

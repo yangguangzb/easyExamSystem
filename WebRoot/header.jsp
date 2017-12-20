@@ -5,6 +5,14 @@
    	window.onload=function(){
    		var user="<%=session.getAttribute("user")%>";
    	}
+	//退出系统
+	function signOut(){
+		var isSignOut=confirm("您确定要退出系统吗?");
+		if(isSignOut==true){
+			//退出
+			location.href="loginServlet?sign=isSignOut";
+		}
+	}	
 </script>
 
 
@@ -37,13 +45,10 @@
 						            <a href="buyPoints.jsp">充值积分</a>
 						        </li>
 						        <li>
-						            <a href="#">下载记录</a>
+						            <a href="user/index.jsp">个人中心</a>
 						        </li>
 						        <li>
-						            <a href="#">上传记录</a>
-						        </li>
-						        <li>
-						            <a href="personCenter.jsp">个人中心</a>
+						            <a onclick="signOut()">退出</a>
 						        </li>
 	                		</ul>
                 		</div>

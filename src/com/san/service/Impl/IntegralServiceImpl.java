@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.san.dao.Impl.IntegralDaoImpl;
 import com.san.model.User;
+import com.san.utils.DBUtil;
 
 public class IntegralServiceImpl {
 	//积分使用记录处理
@@ -52,19 +53,19 @@ public class IntegralServiceImpl {
 		}
 		if(buyNum.equals("B")){
 			//5元50积分
-			intBuyNum=10;
+			intBuyNum=50;
 		}
 		if(buyNum.equals("C")){
 			//10元100积分
-			intBuyNum=10;
+			intBuyNum=100;
 		}
 		if(buyNum.equals("D")){
 			//20元250积分
-			intBuyNum=10;
+			intBuyNum=250;
 		}
 		if(buyNum.equals("E")){
 			//50元650积分
-			intBuyNum=10;
+			intBuyNum=650;
 		}
 		try {
 			//更新用户积分记录表
@@ -82,7 +83,12 @@ public class IntegralServiceImpl {
 			useNum=Integer.parseInt(integralNumber);
 		}
 		try {
-			return integralDaoImpl.checkIntegralDaoImpl(start, end, useNum, username);
+			List<Map<String,Object>> integralListMap= integralDaoImpl.checkIntegralDaoImpl(start, end, useNum, username);
+			for (Map<String, Object> map : integralListMap) {
+				int a=Integer.parseInt(map.get("useNumber").toString());
+				map.put("money", DBUtil.transtateIntegral(a));
+			}
+			return integralListMap;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

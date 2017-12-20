@@ -118,6 +118,7 @@
         			</tr>
         		</thead>
         		<tbody>
+        		  <c:if test="${myAnswer!=null&&myAnswer!='0'}">
         			<c:forEach items="${myAnswer}" var="map">
         				<tr>
 	        				<td>${map.questionReward}</td>
@@ -130,6 +131,7 @@
 	        				<c:if test="${map.questionState==1}"><td style="font-size:14px;color:blue;">是</td></c:if>
         				</tr>
         			</c:forEach>
+        		  </c:if>
         		</tbody>
         	</table>
         </div>

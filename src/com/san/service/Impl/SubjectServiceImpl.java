@@ -41,9 +41,6 @@ public class SubjectServiceImpl {
 			for (Map<String, Object> map : listMap) {
 				map.put("grades",(int)Double.parseDouble(map.get("grade").toString()));
 			}
-			for (Map<String, Object> map : listMap) {
-				System.out.println(map);
-			}
 			return subjectDaoImpl.pankGradeDaoImpl();
 		} catch (SQLException e) {
 			e.printStackTrace();

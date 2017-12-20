@@ -31,9 +31,14 @@ public class LoginServlet extends HttpServlet {
 			try {
 				User user=userDao.loginVerification(userName, password);
 				if(user!=null){
-					//登录成功
-					request.getSession().setAttribute("user", user);
-					out.write("登录成功");
+					if(user.getVerification()==0){
+						//用户被拉入黑名单
+						out.write("黑名单");
+					}else{
+						//登录成功
+						request.getSession().setAttribute("user", user);
+						out.write("登录成功");
+					}
 				}else{
 					out.write("登录失败");
 				}

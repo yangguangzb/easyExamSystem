@@ -11,19 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="./css/font.css">
-    <link rel="stylesheet" href="./css/xadmin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin2/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin2/css/xadmin.css">
     
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="./js/xadmin.js"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/admin2/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/admin2/js/xadmin.js"></script>
   </head>
-  
   <body>
     <div class="x-nav">
       <span class="layui-breadcrumb">
@@ -37,10 +31,8 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form method="post" action="../servlet/ManageUsers?flag=checkUsers" class="layui-form layui-col-md12 x-so">
-          <!--<input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          --><div class="layui-input-inline">
+        <form method="post" action="${pageContext.request.contextPath}/servlet/ManageUsers?flag=checkUsers" class="layui-form layui-col-md12 x-so">
+          <div class="layui-input-inline">
             <select name="userType">
               <option value="">用户类型</option>
               <option value="0">普通用户</option>
@@ -61,7 +53,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.jsp')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','${pageContext.request.contextPath}/admin2/member-add.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：${fn:length(mUserList)} 条</span>
       </xblock>
       <table class="layui-table">
@@ -80,7 +72,7 @@
             </tr>
         </thead>
         <tbody>
-          <c:if test="${sessionScope.mUserList!=null}">
+          <c:if test="${requestScope.mUserList!=null}">
           	<c:forEach items="${mUserList}" var="mUser">
 	          <tr>
 	            <td>
@@ -94,7 +86,7 @@
 	            <td >${mUser.integralNumber}</td>
 	            <td class="td-manage" width="110px;">
 	              <a title="修改"  onclick="x_admin_show('修改信息',
-	              './member-edit.jsp?userId=${mUser.userId}&userName=${mUser.userName}&email=${mUser.e_mail}&integralNumber=${mUser.integralNumber}')" 
+	              '${pageContext.request.contextPath}/admin2/member-edit.jsp?userId=${mUser.userId}&userName=${mUser.userName}&email=${mUser.e_mail}&integralNumber=${mUser.integralNumber}')" 
 	              href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
@@ -116,34 +108,38 @@
 		layui.use(['laypage', 'layer'], function(){
 		  var laypage = layui.laypage
 		  ,layer = layui.layer;
-		  //自定义首页、尾页、上一页、下一页文本
-		  /*laypage.render({
-		    elem: 'demo3'	
+		  //调用分页
+		  laypage.render({
+		    elem: 'demo3'
 		    ,count: ${fn:length(mUserList)}		//数据总数,从服务器得到
 		    ,first: '首页'
 		    ,last: '尾页'
 		    ,prev: '<em>←</em>'
 		    ,next: '<em>→</em>'
-		  });*/
-		  //调用分页
-		  laypage.render({
-		    elem: 'demo3'
-		    ,count: data.length		//数据总数,从服务器得到
-		    ,first: '首页'
-		    ,last: '尾页'
-		    ,prev: '<em>←</em>'
-		    ,next: '<em>→</em>'
-		    ,limit: 2
+		    ,limit: 1	//每页记录数
 		    ,jump: function(obj){
+		      //获得当前页
+		      var nowPage=obj.curr;
+		      var xhr=new XMLHttpRequest();
+		      xhr.onreadystatechange=function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					
+				}
+		 	 }
+			  //xhr.open("get","../servlet/ManageUsers?flag=checkUse&nowPage="+nowPage)
+			  xhr.send(null);
+		      //if(nowPage!=1){
+		      	 //url:'../servlet/ManageUsers?flag=checkUsers&nowPage='+obj.curr;
+		      //}
 		      //模拟渲染
-		      document.getElementById('biuuu_city_list').innerHTML = function(){
+		      /*document.getElementById('biuuu_city_list').innerHTML = function(){
 		        var arr = []
 		        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
 		        layui.each(thisData, function(index, item){
 		          arr.push('<li>'+ item +'</li>');
 		        });
 		        return arr.join('');
-		      }();
+		      }();*/
 		    }
 		  });
 		});

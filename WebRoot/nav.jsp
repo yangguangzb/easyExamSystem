@@ -17,7 +17,8 @@
 						<li><a href="index.jsp">首页</a></li>
 						<li><a href="ordinary.jsp">普通区</a></li>
                         <li><a href="boutique.jsp">精品区</a></li>
-						<li><a href="data.jsp">资料</a></li>
+						<li><a href="data.jsp">资料下载</a></li>
+                        <li><a href="dataupload.jsp">资料上传</a></li>
 						<li><a href="share.jsp">分享交流</a></li>
                         <li><a href="problem.jsp">随问即答</a></li>
                     </ul><!-- End of .menuzord-menu -->

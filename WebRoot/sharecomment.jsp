@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,90 +12,64 @@
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="./admin2/lib/layui/layui.js"></script>
-	
-    
-    <!-- 必须 -->
-    <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="admin2/js/xadmin.js"></script>
-	
-	<!-- problem的css -->
-	<link rel="stylesheet" href="css/myProblem.css"/>
-	<script type="text/javascript">
-	/*弹出层*/
-	/*
-	   	 参数解释：
-	    title   标题
-	    url     请求的url
-	    id      需要操作的数据id
-	    w       弹出层宽度（缺省调默认值）
-	    h       弹出层高度（缺省调默认值）
-	*/
-	function x_admin_show(title,url,w,h){
-	    if (title == null || title == '') {
-	        title=false;
-	    };
-	    if (url == null || url == '') {
-	        url="404.html";
-	    };
-	    if (w == null || w == '') {
-	        w=($(window).width()*0.75);
-	    };
-	    if (h == null || h == '') {
-	        h=($(window).height() - 50);
-	    };
-	    layer.open({
-	        type: 2,
-	        area: [w+'px', h +'px'],
-	        fix: false, //不固定
-	        maxmin: true,
-	        shadeClose: true,
-	        shade:0.4,
-	        title: title,
-	        content: url
-	    });
-	}
-	</script>
-</head> 
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-table.min.css">
+	<!-- 登录 -->
+	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+</head>
 <body>
-<c:if test="${sessionScope.user==null}">
-	<jsp:forward page="login.jsp"></jsp:forward>
-</c:if>
+
 <div class="boxed_wrapper">
 
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
 <!-- 导航栏 -->
 <jsp:include page="nav.jsp"></jsp:include>
-  
+
 <section class="rev_slider_wrapper">
     <div id="slider1" class="rev_slider"  data-version="5.0">
     </div>
 </section>
 
-<section class="service sec-padd2">
-    <div class="container" style="margin-top:120px;">
+<section class="service sec-padd2" style="margin-top:100px;">
+    <div class="container">
         
         <div class="section-title">
             <h2>轻松考</h2>
         </div>
-        <!-- 主体内容 -->
-        <div style="width:75%;height:820px;border:1px #999 solid;">
-        	<!-- 头部按钮 -->
-        	<div class="top">
-        		<ul class="topul">
-        			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp">我的回答</a></li>
-        			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
-        		</ul>
-        	</div>
-        
+        <div class="row">
+            <div class="col">
+                <h3 align="center">${postCreation.postTitle}</h3>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-3">发布于:${postCreation.postTime} </div>
+            <div class="col-md-2 col-md-offset-1">作者:${postCreation.postCreatorId} </div>
+        </div>
+        <div class="row">
+            <p>${postCreation.postContent}</p>
+        </div>
+         <c:choose>
+             <c:when test="${postCommentList==null}">
+                 <div class="row">
+                     <p>还没有人评论</p>
+                 </div>
+             </c:when>
+             <c:otherwise>
+                 <c:forEach var="postComment" items="${postCommentList}">
+                       <div class="row">
+                           ${postComment.commentContent}
+                       </div>
+                 </c:forEach>
+             </c:otherwise>
+         </c:choose>
+        <div class="service_carousel">
+
+        </div>
+            
     </div>
 </section>
 
@@ -111,6 +86,9 @@
     <script src="js/jquery.js"></script>
     <!-- bootstrap js -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-table.min.js"></script>
+    <!-- put your locale files after bootstrap-table.js -->
+    <script src="js/bootstrap-table-zh-CN.min.js"></script>
     <!-- jQuery ui js -->
     <script src="js/jquery-ui.js"></script>
     <!-- owl carousel js -->

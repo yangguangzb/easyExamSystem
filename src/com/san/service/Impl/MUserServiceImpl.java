@@ -11,7 +11,6 @@ public class MUserServiceImpl {
 	UserDaoImpl userDaoImpl=new UserDaoImpl();
 	public List<User> mcheckUserService(String userType,String userId,String verification){
 		try {
-			System.out.println();
 			return userDaoImpl.mcheckUser(userType,userId,verification);
 		} catch (SQLException e) {
 			e.printStackTrace();
