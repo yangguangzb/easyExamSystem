@@ -94,19 +94,5 @@ public class CourseDaoImpl implements CourseDao {
 		}
 		
 	}
-	/**
-	 * 
-	 */
-	public List<Resource> checkResourceService(String courseName,int uploadId) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		StringBuffer sql=new StringBuffer("select * from resource");
-		if(!"".equals(courseName)){
-			sql.append(" and courseName='"+courseName+"'");
-		}
-		if(uploadId!=0){
-			sql.append(" and uploadId="+uploadId+"");
-		}
-		String sql2=sql.toString().replaceFirst("and","where");
-		return qr.query(sql2,new BeanListHandler<Resource>(Resource.class));
-	}
+	
 }

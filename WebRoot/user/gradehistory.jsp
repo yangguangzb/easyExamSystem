@@ -22,12 +22,6 @@
     <script src="../js/bootstrap-table.min.js"></script>
     <!-- put your locale files after bootstrap-table.js -->
     <script src="../js/bootstrap-table-zh-CN.min.js"></script>
-    <!-- bootstrap js -->
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   
   <body>
@@ -38,12 +32,12 @@
       <!--  <a>
           <cite>导航元素</cite></a>-->
       </span>
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+      <!--<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
+    --></div>
     <div class="x-body">
       <div class="layui-row">
-        <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="/other/gradeHistoryServlet">
+        <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="${pageContext.request.contextPath}/gradeHistoryServlet">
           <thead>
           <tr>
             <th data-field="gradeId">成绩编号</th>

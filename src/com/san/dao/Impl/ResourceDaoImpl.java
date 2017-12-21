@@ -144,6 +144,42 @@ public class ResourceDaoImpl implements ResourceDao {
 		}
 
 	}
-
-
+	/**
+	 * 根据条件查询资源
+	 * @param courseName
+	 * @param uploadId
+	 * @return
+	 * @throws SQLException
+	 */
+	public List<Resource> checkResourceService(String courseName,int uploadId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		StringBuffer sql=new StringBuffer("select * from resource");
+		if(!"".equals(courseName)){
+			sql.append(" and courseName='"+courseName+"'");
+		}
+		if(uploadId!=0){
+			sql.append(" and uploadId="+uploadId+"");
+		}
+		String sql2=sql.toString().replaceFirst("and","where");
+		return qr.query(sql2,new BeanListHandler<Resource>(Resource.class));
+	}
+	/**
+	 * 后台删除资源
+	 * @param resourceId
+	 * @return
+	 * @throws SQLException
+	 */
+	public int delDatasDaoImpl(int resourceId) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("delete  from resource where resourceId=?",resourceId);
+	}
+	/**
+	 * 后台修改资源
+	 */
+	public int modifyDatasDaoImpl(int resourceId,String courseName,String resourceName,String resourceDescription,
+    		String resourcePath,int integration) throws SQLException{
+		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+		return qr.update("update resource set courseName=?,resourceName=?,resourceDescription=?,resourcePath=?,integration=? where resourceId=?"
+				,courseName,resourceName,resourceDescription,resourcePath,integration,resourceId);
+	}
 }

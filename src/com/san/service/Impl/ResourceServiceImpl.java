@@ -1,6 +1,5 @@
 package com.san.service.Impl;
 
-import com.san.dao.Impl.CourseDaoImpl;
 import com.san.dao.Impl.ResourceDaoImpl;
 import com.san.dao.Impl.UseRecordDaoImpl;
 import com.san.dao.Impl.UserDaoImpl;
@@ -13,9 +12,7 @@ import com.san.model.User;
 import com.san.service.ResourceService;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 /*
 * 资料区相关操作
@@ -84,17 +81,59 @@ public class ResourceServiceImpl implements ResourceService {
         //增加一条资源信息
         resourceDao.insertResource(resource);
     }
+    /**
+     * 后台根据条件查询资源
+     * @param courseName
+     * @param userId
+     * @return
+     */
+    ResourceDaoImpl resourceDaoImpl=new ResourceDaoImpl();
     public List<Resource> checkResourceService(String courseName,String userId){
     	int uploadId=0;
     	if(!"".equals(userId)){
     		uploadId=Integer.parseInt(userId);
     	}
-    	CourseDaoImpl courseDaoImpl=new CourseDaoImpl();
     	try {
-			return courseDaoImpl.checkResourceService(courseName, uploadId);
+			return resourceDaoImpl.checkResourceService(courseName, uploadId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
     	return null;
     }
+    /**
+     * 后台删除资源
+     * @param resourceId
+     * @return
+     */
+    public int delDatasService(String resourceId){
+    	int i=0;
+    	if(!"".equals(resourceId)){
+    		i=Integer.parseInt(resourceId);
+    	}
+    	try {
+			return resourceDaoImpl.delDatasDaoImpl(i);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+    }
+    public int modifyDatasService(String resourceId,String courseName,String resourceName,String resourceDescription,
+    		String resourcePath,String integration){
+    	int intResourceId=0;
+    	int intIntegration=0;
+    	if(!"".equals(resourceId)){
+    		intResourceId=Integer.parseInt(resourceId);
+    	}
+    	if(!"".equals(integration)){
+    		intIntegration=Integer.parseInt(integration);
+    	}
+    	try {
+			return resourceDaoImpl.modifyDatasDaoImpl(intResourceId, courseName, resourceName, resourceDescription, resourcePath, intIntegration);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+    }
+    
 }

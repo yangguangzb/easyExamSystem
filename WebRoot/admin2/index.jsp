@@ -102,7 +102,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="admin-list.jsp">
+                        <a _href="data-list.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>资料列表</cite>
                         </a>
@@ -129,12 +129,6 @@
                             <cite>积分查看</cite>
                         </a>
                     </li >
-                    <li>
-                        <a _href="">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>积分统计</cite>
-                        </a>
-                    </li>
                 </ul>
             </li>
         </ul>

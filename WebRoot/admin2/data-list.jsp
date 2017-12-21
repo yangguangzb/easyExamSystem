@@ -35,7 +35,7 @@
           <div class="layui-input-inline">
             <select name="courseName" id="courseName">
               <option value="">课程名称</option>
-              <option value="大学英语" selected="selected">大学英语</option>
+              <option value="大学英语">大学英语</option>
               <option value="计算机网络">计算机网络</option>
               <option value="数据结构">数据结构</option>
               <option value="马克思原理">马克思原理</option>
@@ -50,7 +50,7 @@
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
         <button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.jsp')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：${fn:length(mUserList)} 条</span>
+        <span class="x-right" style="line-height:40px">共有数据：${fn:length(resourceList)} 条</span>
       </xblock>
       <table class="layui-table">
         <thead>
@@ -70,25 +70,26 @@
             </tr>
         </thead>
         <tbody>
-          <c:if test="${requestScope.mUserList!=null}">
-          	<c:forEach items="${mUserList}" var="mUser">
+          <c:if test="${requestScope.resourceList!=null}">
+          	<c:forEach items="${resourceList}" var="resource">
 	          <tr>
 	            <td>
 	              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
 	            </td>
-	            <td>${mUser.userId}</td>
-	            <td>${mUser.userName}</td>
-	            <td>${mUser.userType}</td>
-	            <td>${mUser.e_mail}</td>
-	            <td>${mUser.verification}</td>
-	            <td >${mUser.integralNumber}</td>
+	            <td>${resource.resourceId}</td>
+	            <td>${resource.uploadId}</td>
+	            <td>${resource.courseName}</td>
+	            <td>${resource.resourceName}</td>
+	            <td>${resource.resourceDescription}</td>
+	            <td >${resource.resourcePath}</td>
+	            <td >${resource.downNumber}</td>
+	            <td >${resource.integration}</td>
 	            <td class="td-manage" width="110px;">
 	              <a title="修改"  onclick="x_admin_show('修改信息',
-	              './member-edit.jsp?userId=${mUser.userId}&userName=${mUser.userName}&email=${mUser.e_mail}&integralNumber=${mUser.integralNumber}')" 
-	              href="javascript:;">
+'${pageContext.request.contextPath}/admin2/data-edit.jsp?resourceId=${resource.resourceId}&uploadId=${resource.uploadId}&resourceName=${resource.resourceName}&resourceDescription=${resource.resourceDescription}&resourcePath=${resource.resourcePath}&integration=${resource.integration}')" href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
-	              <a title="删除" onclick="member_del(this,${mUser.userId})" href="javascript:;">
+	              <a title="删除" onclick="member_del(this,${resource.resourceId})" href="javascript:;">
 	                <i class="layui-icon">&#xe640;</i>
 	              </a>
 	            </td>
@@ -157,37 +158,13 @@
         });
       });
 
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-              
-          });
-      }
-
-      /*用户-删除*/
+      /*删除题目*/
       function member_del(obj,id){
           	  layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
               $.ajax({
               	type:'post',
-              	url:'../servlet/ManageUsers?flag=delUser&userId='+id,
+              	url:'../servlet/ManageDataServlet?flag=delDatas&resourceId='+id,
               	cache:false,
               	success:function(msg){
               		if(msg==1){

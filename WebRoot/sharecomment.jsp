@@ -12,13 +12,14 @@
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
 	<!-- 登录 -->
 	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 
@@ -33,39 +34,66 @@
     <div id="slider1" class="rev_slider"  data-version="5.0">
     </div>
 </section>
-
 <section class="service sec-padd2" style="margin-top:100px;">
     <div class="container">
-        
-        <div class="section-title">
-            <h2>轻松考</h2>
-        </div>
         <div class="row">
             <div class="col">
-                <h3 align="center">${postCreation.postTitle}</h3>
+                <h3 align="center">${showPostCreationUser.postTitle}</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">发布于:${postCreation.postTime} </div>
-            <div class="col-md-2 col-md-offset-1">作者:${postCreation.postCreatorId} </div>
+        <div class="row" align="center">
+            <div>
+                <div class="col-md-offset-4 col-md-4 text-secondary">发布于&nbsp;&nbsp;:&nbsp;&nbsp;${showPostCreationUser.postTime}&nbsp;&nbsp;&nbsp;&nbsp;作者&nbsp;&nbsp;:&nbsp;&nbsp;${showPostCreationUser.postCreatorName}</div>
+                <div class="col-md-2 "> </div>
+            </div>
+
         </div>
         <div class="row">
-            <p>${postCreation.postContent}</p>
+            <p>${showPostCreationUser.postContent}</p>
         </div>
          <c:choose>
-             <c:when test="${postCommentList==null}">
-                 <div class="row">
-                     <p>还没有人评论</p>
+             <c:when test="${empty postCommentList}">
+                 <div class="row ">
+                     <div class="alert alert-info" role="alert">
+                         还没有评论！
+                     </div>
                  </div>
              </c:when>
              <c:otherwise>
-                 <c:forEach var="postComment" items="${postCommentList}">
+                 <c:forEach var="ShowPostCommentUser" items="${postCommentList}" varStatus="status">
+                     <div class="row">
+                        ${status.index+1}楼&nbsp;&nbsp;${ShowPostCommentUser.postCommentUserName}
+                     </div>
                        <div class="row">
-                           ${postComment.commentContent}
+                       <p>${ShowPostCommentUser.commentContent}</p>
                        </div>
+                         </span>
                  </c:forEach>
              </c:otherwise>
          </c:choose>
+        <c:choose>
+            <c:when test="${empty user}">
+                <div class="row">
+                    <div class="alert alert-danger" role="alert">
+                       <a style=" text-decoration: none; color: #000000;" href="login.jsp"> 登录后才能评论！</a>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="row">
+                    <form method="post" action="${pageContext.request.contextPath}/shareAreaCommentServlet">
+                        <input type="hidden" name="method" value="insertPost">
+                        <div class="row">
+                            <textarea name="commentContent"></textarea>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="btn btn-danger">发布</button>
+                        </div>
+                    </form>
+
+                </div>
+            </c:otherwise>
+        </c:choose>
         <div class="service_carousel">
 
         </div>
@@ -130,6 +158,12 @@
     <script src="js/custom.js"></script>
 	<!-- 登录js -->
 	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
+    <script>
+        var editor = new Editor();
+        editor.render();
+    </script>
 </div>
     
 </body>

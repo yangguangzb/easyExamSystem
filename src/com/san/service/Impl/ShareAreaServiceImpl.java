@@ -8,7 +8,9 @@ import com.san.dao.PostCreationDao;
 import com.san.dao.UserDao;
 import com.san.model.PostComment;
 import com.san.model.PostCreation;
+import com.san.model.ShowPostCommentUser;
 import com.san.model.ShowPostCreation;
+import com.san.model.ShowPostCreationUser;
 import com.san.model.User;
 import com.san.service.ShareAreaService;
 
@@ -66,13 +68,17 @@ public class ShareAreaServiceImpl implements ShareAreaService {
         return showPostCreationArrayList;
     }
 
-    public PostCreation getPostCreation(int postCreationId) {
+    public ShowPostCreationUser  getPostCreation(int postCreationId) {
         PostCreationDao postCreationDao=new PostCreationDaoImpl();
         return postCreationDao.getPostCreation(postCreationId);
     }
 
-    public List<PostComment> listPostComment(int postCreationId) {
+    public List<ShowPostCommentUser> listPostComment(int postCreationId) {
         PostCommentDao postCommentDao=new PostCommentDaoImpl();
         return postCommentDao.listPostCommentByPostCreationId(postCreationId);
     }
+    public void insertPostComment(PostComment postComment) {
+        PostCommentDao postCommentDao=new PostCommentDaoImpl();
+        postCommentDao.insertPostComment(postComment);
+}
 }

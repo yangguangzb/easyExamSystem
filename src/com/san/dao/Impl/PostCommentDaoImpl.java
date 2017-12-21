@@ -1,7 +1,7 @@
 package com.san.dao.Impl;
 import com.san.dao.PostCommentDao;
-import com.san.model.Grade;
 import com.san.model.PostComment;
+import com.san.model.ShowPostCommentUser;
 import com.san.utils.C3p0Util;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PostCommentDaoImpl implements PostCommentDao {
-    public List<PostComment> listPostCommentByPostCreationId(int postCreationId) {
+    public List<ShowPostCommentUser> listPostCommentByPostCreationId(int postCreationId) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="select * from postComment where postCreationId =?";
-            return (List<PostComment>) runner.query(sql,postCreationId,new BeanListHandler<PostComment>(PostComment.class));
+            String sql="select userName as postCommentUserName,postCommenId,postCreationId,evaluationResourcePath,commentTime,commentContent from postComment , user where reviewerId=userId and postCreationId =?";
+            return (List<ShowPostCommentUser>) runner.query(sql,postCreationId,new BeanListHandler<ShowPostCommentUser>(ShowPostCommentUser.class));
         }
         catch (SQLException ex) {
             // TODO: handle exception
@@ -27,8 +27,8 @@ public class PostCommentDaoImpl implements PostCommentDao {
     public void insertPostComment(PostComment postComment) {
         try {
             QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-            String sql="insert into postComment(postCreationId,reviewerId,evaluationResourcePath,commentContent) values(?,?,?.?)";
-            Object[] params= {postComment.getPostCreationId(),postComment.getReviewerId(),postComment.getReviewerId(),postComment.getEvaluationResourcePath(),postComment.getCommentContent()};
+            String sql="insert into postComment(postCreationId,reviewerId,commentContent) values(?,?,?)";
+            Object[] params= {postComment.getPostCreationId(),postComment.getReviewerId(),postComment.getCommentContent()};
             runner.update(sql,params);
 
         }
@@ -62,5 +62,5 @@ public class PostCommentDaoImpl implements PostCommentDao {
         }
         return null;
     }
-    }
+   }
 
