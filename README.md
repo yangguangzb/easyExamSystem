@@ -1,4 +1,4 @@
-# easyExamSystem轻松考系统
+## easyExamSystem轻松考系统1.0
 
 ### 开发环境：
 myeclipse+mysql+git
