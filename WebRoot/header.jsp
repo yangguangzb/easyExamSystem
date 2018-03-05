@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script type="text/javascript">
    	window.onload=function(){
    		var user="<%=session.getAttribute("user")%>";
@@ -10,7 +12,7 @@
 		var isSignOut=confirm("您确定要退出系统吗?");
 		if(isSignOut==true){
 			//退出
-			location.href="loginServlet?sign=isSignOut";
+			location.href="userAction_signOut";
 		}
 	}	
 </script>
@@ -48,7 +50,9 @@
 						            <a href="user/index.jsp">个人中心</a>
 						        </li>
 						        <li>
-						            <a onclick="signOut()">退出</a>
+						            <s:a onclick="signOut()" namespace="/">
+						            	退出
+						            </s:a>
 						        </li>
 	                		</ul>
                 		</div>

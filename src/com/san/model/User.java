@@ -8,6 +8,19 @@ public class User {
 	private String password;	 //密码
 	private int verification;	 //是否验证邮箱
 	private int integralNumber;  //用户积分数目
+	
+	//临时字段
+	private String sign;
+	public String getSign() {
+		return sign;
+	}
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	
+	
+	
+	
 	public int getIntegralNumber() {
 		return integralNumber;
 	}

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="main-logo">
-                    <a href="index.jsp"><img src="images/logo/logo.png" alt=""></a>
+                    <a href="index.jsp"><img src="images/logo/mylogo.png" alt="" width="200px" height="43px"></a>
                 </div>
             </div>
             <div class="col-md-8 menu-column">

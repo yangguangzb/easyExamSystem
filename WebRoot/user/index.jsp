@@ -69,13 +69,13 @@
                     </a>
                 </li>
             </ul>
-            <li>
+            <li><!--
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6b8;</i>
                     <cite>通知管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
-                <ul class="sub-menu">
+                --><!--<ul class="sub-menu">
                     <li>
                         <a _href="talknotify.jsp">
                             <i class="iconfont">&#xe6a7;</i>
@@ -89,7 +89,7 @@
                         </a>
                     </li>
                 </ul>
-                <li>
+                --><li>
                     <dd><a onclick="x_admin_show('修改密码','changepassword.jsp')"><i class="iconfont">&#xe6b8;</i>修改密码</a></dd>
                 </li>
         </ul>

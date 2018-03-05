@@ -24,29 +24,6 @@ public class LoginServlet extends HttpServlet {
 		UserDaoImpl userDao=new UserDaoImpl();
 		Connection conn=null;
 		String flag="";
-		//登录验证
-		if(request.getParameter("userName")!=null&&request.getParameter("password")!=null){
-			String userName=request.getParameter("userName");
-			String password=request.getParameter("password");
-			try {
-				User user=userDao.loginVerification(userName, password);
-				if(user!=null){
-					if(user.getVerification()==0){
-						//用户被拉入黑名单
-						out.write("黑名单");
-					}else{
-						//登录成功
-						request.getSession().setAttribute("user", user);
-						out.write("登录成功");
-					}
-				}else{
-					out.write("登录失败");
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
 		//忘记密码时，通过邮箱发送验证码.重置密码。
 		if(request.getParameter("flag")!=null&&request.getParameter("flag").equals("forgetPassword")){
 			HttpSession session = request.getSession();
@@ -111,16 +88,19 @@ public class LoginServlet extends HttpServlet {
 			}
 			
 		}
-		//用户退出时,跳转到登录界面,销毁session
+		
+		
+		/*//用户退出时,跳转到登录界面,销毁session
 		if(request.getParameter("sign")!=null&&"isSignOut".equals(request.getParameter("sign"))){
 			request.getSession().invalidate();
 			response.sendRedirect("index.jsp");
-		}
+		}*/
+		
+		
 		//个人中心中用户修改密码
 		if(request.getParameter("personRegister")!=null){
 			String password=request.getParameter("");
 		}
-		
 		
 		
 	}

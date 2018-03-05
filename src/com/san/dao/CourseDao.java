@@ -1,9 +1,6 @@
 package com.san.dao;
-
 import java.util.List;
-
 import com.san.model.Course;
-
 public interface CourseDao {
  public List<Course> listCourse();//列出所有课程
  public void insertCourse(Course course);//增加课程
