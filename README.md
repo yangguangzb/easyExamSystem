@@ -1,10 +1,13 @@
 # easyExamSystem轻松考系统
 
-### 开发环境：myeclipse+mysql+git
+### 开发环境：
+myeclipse+mysql+git
 
-### 软件架构：model+view+controller+easyui+bootstrap
+### 软件架构：
+model+view+controller+easyui+bootstrap
 
-### 项目描述：本系统是基于B/S架构而设计开发，目的在于减少大学生考试挂科率，解决大学生考试不知道如何复习，找不到复习资料
+### 项目描述：
+本系统是基于B/S架构而设计开发，目的在于减少大学生考试挂科率，解决大学生考试不知道如何复习，找不到复习资料
 
 ### 系统主要模块：
 - 资料下载上传：资料上传下载，用户积分相应变化等
