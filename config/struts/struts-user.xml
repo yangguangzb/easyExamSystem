@@ -13,8 +13,16 @@
 			<result name="forgetPassword">/inputValidationCode.jsp</result>
 			<!-- 找回密码，邮箱错误 -->
 			<result name="errorMail">/forgetPassword.jsp</result>
+			<!-- 找回密码，输入的验证码正确 -->
+			<result name="verificationCode_success">/resetPassword.jsp</result>
+			<!-- 找回密码，输入验证码错误 -->
+			<result name="verificationCode_fail">/inputValidationCode.jsp</result>
+			<!-- 找回密码，重置密码成功 -->
+			<result name="resetPassword_success">/login.jsp</result>
+			<!-- 找回密码，重置密码失败 -->
+			<result name="resetPassword_fail">/resetPassword.jsp</result>
 			<!-- 退出系统 -->
-			<result name="signOut"></result>
+			<result name="signOut">/index.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -1,6 +1,10 @@
 package com.san.base;
 import java.lang.reflect.ParameterizedType;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -87,6 +91,14 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	 */
 	public void putApplication(String key,Object o){
 		ActionContext.getContext().getApplication().put(key, o);
+	}
+	
+	/**
+	 * 获得session
+	 * @return
+	 */
+	public HttpSession getSession(){
+		return ServletActionContext.getRequest().getSession();
 	}
 	
 }

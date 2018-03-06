@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 		if(request.getParameter("flag")!=null&&request.getParameter("flag").equals("forgetPassword")){
 			HttpSession session = request.getSession();
 			//找回密码，输入邮箱
-			if(request.getParameter("e_mail")!=null){
+			/*if(request.getParameter("e_mail")!=null){
 				String e_mail=request.getParameter("e_mail");
 				conn=DBUtil.getconn();
 				try {
@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
 				}finally{
 					DBUtil.closeConn(null,null,conn);
 				}
-			}
+			}*/
 			//验证输入的验证码是否正确
 			if(request.getParameter("verificationCode")!=null){
 				String verificationCode=request.getParameter("verificationCode");
@@ -66,12 +66,12 @@ public class LoginServlet extends HttpServlet {
 					out.write("1");
 				}
 			}
-			//操作数据库重置密码
+			/*//操作数据库重置密码
 			if(request.getParameter("password")!=null){
 				String password=request.getParameter("password");
 				conn=DBUtil.getconn();
 				try {
-					int k=userDao.backPassword(session.getAttribute("forgetPasswordEmail").toString(), password, 2, conn);
+					//int k=userDao.backPassword(session.getAttribute("forgetPasswordEmail").toString(), password, 2, conn);
 					if(k==1){
 						//重置密码成功
 						session.setAttribute("forgetPasswordMsg", "密码重置成功");
@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
 				}finally{
 					DBUtil.closeConn(null, null, conn);
 				}
-			}
+			}*/
 			
 		}
 		

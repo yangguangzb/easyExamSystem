@@ -23,4 +23,12 @@ public interface UserService {
       */
      public int isE_mail(String e_mail);
      
+     /**
+      * 用户找回密码
+      * @param e_mail
+      * @param password
+      * @return
+      */
+     public int backPassword(String e_mail,String password);
+     
 }

@@ -10,13 +10,14 @@ public class User {
 	private int integralNumber;  //用户积分数目
 	
 	//临时字段
-	private String sign;
-	public String getSign() {
-		return sign;
+	private String verificationCode; //找回密码时的验证码
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
 	}
-	public void setSign(String sign) {
-		this.sign = sign;
+	public String getVerificationCode() {
+		return verificationCode;
 	}
+	
 	
 	
 	
