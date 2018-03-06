@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="user" namespace="/" extends="common">
+		<action name="userAction_*" class="com.san.action.UserAction" method="{1}">
+			<!-- 登录成功 -->
+			<result name="success">/index.jsp</result>
+			<!-- 登录失败 -->
+			<result name="login">/login.jsp</result>
+			<!-- 找回密码，邮箱正确 -->
+			<result name="forgetPassword">/inputValidationCode.jsp</result>
+			<!-- 找回密码，邮箱错误 -->
+			<result name="errorMail">/forgetPassword.jsp</result>
+			<!-- 退出系统 -->
+			<result name="signOut"></result>
+		</action>
+	</package>
+</struts>

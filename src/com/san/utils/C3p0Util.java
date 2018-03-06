@@ -22,6 +22,8 @@ public class C3p0Util {
 		}
 		return null;
 	}
+	
+	
 	//关闭连接资源
 	public static void closeConn(Connection conn,Statement stmt,ResultSet rs){
 		if(rs!=null){

@@ -35,15 +35,15 @@ public class ShowPostCommentUser {
         this.commentContent = commentContent;
     }
 
-public String getPostCommentUserName() {
-    return postCommentUserName;
-}
+	public String getPostCommentUserName() {
+	    return postCommentUserName;
+	}
 
-public void setPostCommentUserName(String postCommentUserName) {
-    this.postCommentUserName = postCommentUserName;
-}
+	public void setPostCommentUserName(String postCommentUserName) {
+	    this.postCommentUserName = postCommentUserName;
+	}
 
-public int getPostCommentId() {
+	public int getPostCommentId() {
         return postCommentId;
     }
 
