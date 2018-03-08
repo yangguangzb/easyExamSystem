@@ -31,4 +31,18 @@ public interface UserService {
       */
      public int backPassword(String e_mail,String password);
      
+     /**
+      * 通过用户名查找用户
+      * @param userName
+      * @return
+      */
+     public User findUserByUserName(String userName);
+     
+     /**
+      * 添加用户
+      * @param user
+      * @return
+      */
+     public int addUser(String userName,String e_mail,String password);
+     
 }

@@ -20,7 +20,7 @@ import com.san.utils.SendJMail;
  * @author Administrator
  *
  */
-public class RegisterServlet extends HttpServlet {
+/*public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -123,5 +123,5 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		this.doGet(request, response);
 	}
-
-}
+	
+}*/

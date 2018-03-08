@@ -1,10 +1,15 @@
 package com.san.action;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Random;
+
 import org.apache.struts2.ServletActionContext;
 import com.san.base.BaseAction;
 import com.san.model.User;
 import com.san.service.UserService;
 import com.san.service.Impl.UserServiceImpl;
 import com.san.utils.ActivationCode;
+import com.san.utils.DBUtil;
 import com.san.utils.SendJMail;
 /**
  * 用户action
@@ -82,7 +87,8 @@ public class UserAction extends BaseAction<User> {
 	 * @return
 	 */
 	public String resetPassword(){
-		int i=userService.backPassword(this.getModel().getE_mail(),this.getModel().getPassword());
+		String e_mail=(String) getSession().getAttribute("forgetPasswordEmail");
+		int i=userService.backPassword(e_mail,this.getModel().getPassword());
 		if(i==1){
 			//重置密码成功、
 			return "resetPassword_success";
@@ -91,7 +97,98 @@ public class UserAction extends BaseAction<User> {
 		return "resetPassword_fail";
 	}
 	
+	/**
+	 * 注册时，判断用户名是否合法
+	 * @return
+	 * @throws IOException 
+	 */
+	public String isExistenceUserName() throws IOException{
+		String userName=getRequest().getParameter("userName");
+		User user=userService.findUserByUserName(userName);
+		if(user!=null){
+			//用户名已存在
+			getPrintWriter().write("-1");
+		}else{
+			//用户名不存在，下一步注册
+			getSession().setAttribute("registerUserName", userName);
+		}
+		return null;
+	}
 	
+	/**
+	 * 注册时，判断邮箱是否合法
+	 * @return
+	 * @throws IOException 
+	 */
+	public String isExistenceEmail() throws IOException{
+		String e_mail=getRequest().getParameter("e_mail");
+		int i=userService.isE_mail(e_mail);
+		if(i==1){
+			//邮箱已存在
+			getPrintWriter().write("-1");
+		}else{
+			//邮箱不存在，下一步注册
+			getSession().setAttribute("registerE_mail",e_mail);
+		}
+		return null;
+	}
+	
+	/**
+	 * 注册时，保存密码
+	 * @return
+	 */
+	public String savePassword(){
+		String password=getRequest().getParameter("password");
+		getSession().setAttribute("registerPassword", password);
+		return null;
+	}
+	
+	/**
+	 * 注册时，发送激活码
+	 * @return
+	 */
+	public String registerJihuoma(){
+		//生成激活码
+		Random rd=new Random();
+		String jihuoma="";
+		for(int i=0;i<6;i++){
+			String m=""+rd.nextInt(10);
+			jihuoma=jihuoma+m;
+		}
+		getSession().setAttribute("suiji",jihuoma);
+		SendJMail sm=new SendJMail();
+		sm.sendMail(getSession().getAttribute("registerE_mail").toString(), jihuoma,"用户激活码:");
+		return null;
+	}
+	
+	/**
+	 * 注册时，验证激活码
+	 * @return
+	 * @throws IOException 
+	 */
+	public String registerYanEmail() throws IOException{
+		String verifyNo=getRequest().getParameter("verificationCode");
+		if(getSession().getAttribute("suiji")!=null){
+			if(verifyNo.equals(getSession().getAttribute("suiji").toString())){
+				String userName=getSession().getAttribute("registerUserName").toString();
+				String e_mail=getSession().getAttribute("registerE_mail").toString();
+				String password=getSession().getAttribute("registerPassword").toString();
+				int k=userService.addUser(userName,e_mail,password);
+				if(k==1){
+					
+				}else{
+					getPrintWriter().write("-1");
+				}
+			}else{
+				//验证码输入错误
+				getPrintWriter().write("-1");
+			}
+		}else{
+			//没有发验证码
+			getPrintWriter().write("-1");
+		}
+		return null;
+	}
 	
 	/**
 	 * 用户退出系统

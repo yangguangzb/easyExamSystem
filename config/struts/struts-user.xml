@@ -9,6 +9,7 @@
 			<result name="success">/index.jsp</result>
 			<!-- 登录失败 -->
 			<result name="login">/login.jsp</result>
+			
 			<!-- 找回密码，邮箱正确 -->
 			<result name="forgetPassword">/inputValidationCode.jsp</result>
 			<!-- 找回密码，邮箱错误 -->
@@ -21,6 +22,11 @@
 			<result name="resetPassword_success">/login.jsp</result>
 			<!-- 找回密码，重置密码失败 -->
 			<result name="resetPassword_fail">/resetPassword.jsp</result>
+			
+			<!-- 注册，验证输入用户是否合法 -->
+			
+			
+			
 			<!-- 退出系统 -->
 			<result name="signOut">/index.jsp</result>
 		</action>
