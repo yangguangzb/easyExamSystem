@@ -26,7 +26,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=userName&userName="+userName);
+			xhr.open("get","userAction_isExistenceUserName?userName="+userName);
 			xhr.send(null);
 		}
 	}
@@ -43,7 +43,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=e_mail&e_mail="+e_mail);
+			xhr.open("get","userAction_isExistenceEmail?e_mail="+e_mail);
 			xhr.send(null);
 		}
 	}
