@@ -6,7 +6,7 @@
 	<package name="user" namespace="/" extends="common">
 		<action name="userAction_*" class="com.san.action.UserAction" method="{1}">
 			<!-- 登录成功 -->
-			<result name="success">/index.jsp</result>
+			<result name="success" type="redirect">/index.jsp</result>
 			<!-- 登录失败 -->
 			<result name="login">/login.jsp</result>
 			
@@ -23,12 +23,8 @@
 			<!-- 找回密码，重置密码失败 -->
 			<result name="resetPassword_fail">/resetPassword.jsp</result>
 			
-			<!-- 注册，验证输入用户是否合法 -->
-			
-			
-			
 			<!-- 退出系统 -->
-			<result name="signOut">/index.jsp</result>
+			<result name="signOut" type="redirect">/index.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -8,11 +8,13 @@ import org.junit.Test;
 
 import com.san.dao.Impl.SubjectDaoImpl;
 import com.san.model.BrushList;
+import com.san.model.Grade;
 import com.san.model.Subject;
+import com.san.service.SubjectService;
 
 
 
-public class SubjectServiceImpl {
+public class SubjectServiceImpl implements SubjectService{
 	/**
 	 * @param courseName 	课程名称
 	 * @param subjectId	             编号
@@ -105,5 +107,11 @@ public class SubjectServiceImpl {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	
+	public List<Grade> showGradeRank() {
+		
+		return null;
 	}
 }
