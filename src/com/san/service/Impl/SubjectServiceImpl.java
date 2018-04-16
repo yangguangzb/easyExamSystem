@@ -3,12 +3,9 @@ package com.san.service.Impl;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
-
 import com.san.dao.Impl.SubjectDaoImpl;
 import com.san.model.BrushList;
-import com.san.model.Grade;
 import com.san.model.Subject;
 import com.san.service.SubjectService;
 
@@ -21,6 +18,7 @@ public class SubjectServiceImpl implements SubjectService{
 	 * @param subjectType	类型
 	 */
 	SubjectDaoImpl subjectDaoImpl=new SubjectDaoImpl();
+	
 	public List<Subject> display(String courseName,String subjectId,String subjectType) throws NumberFormatException, SQLException{
 		int Id=0;
 		String[] split = subjectId.split("-");
@@ -107,11 +105,5 @@ public class SubjectServiceImpl implements SubjectService{
 			e.printStackTrace();
 		}
 		return 0;
-	}
-	
-	
-	public List<Grade> showGradeRank() {
-		
-		return null;
 	}
 }

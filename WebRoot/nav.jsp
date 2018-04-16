@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!-- 导航栏 -->
 <section class="theme_menu stricky">
     <div class="container">
@@ -15,7 +16,9 @@
                        <!--<li class="active"><a href="index.jsp">首页</a></li>
 						-->
 						<li><a href="index.jsp">首页</a></li>
-						<li><a href="ordinary.jsp">普通区</a></li>
+						<li>
+							<s:a action="subjectAction_showGradeRank.action" namespace="/">普通区</s:a>
+						</li>
                         <li><a href="boutique.jsp">精品区</a></li>
 						<li><a href="data.jsp">资料下载</a></li>
                         <li><a href="dataupload.jsp">资料上传</a></li>

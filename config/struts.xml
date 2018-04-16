@@ -17,4 +17,6 @@
 	<!-- 加载其他配置文件 -->
 	<!-- 用户 -->
 	<include file="struts/struts-user.xml"></include>
+	<!-- 普通区 -->
+	<include file="struts/struts-subject.xml"></include>
 </struts>
