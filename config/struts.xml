@@ -21,4 +21,7 @@
 	<include file="struts/struts-subject.xml"></include>
 	<!-- 问题配置 -->
 	<include file="struts/struts-question.xml"></include>
+	<!-- 精品区配置 -->
+	<include file="struts/struts-boutique.xml"></include>
+	
 </struts>
