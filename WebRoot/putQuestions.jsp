@@ -100,7 +100,7 @@
             //发异步，把数据提交给servlet
             $.ajax({
             	type:'post',
-            	url:'questionServlet?flag=putQuestion',
+            	url:'questionAction_putQuestion.action',
             	data:$("#problem").serialize(),
             	cache:false,
             	success:function(msg){

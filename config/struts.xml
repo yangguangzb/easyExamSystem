@@ -19,4 +19,6 @@
 	<include file="struts/struts-user.xml"></include>
 	<!-- 普通区 -->
 	<include file="struts/struts-subject.xml"></include>
+	<!-- 问题配置 -->
+	<include file="struts/struts-question.xml"></include>
 </struts>

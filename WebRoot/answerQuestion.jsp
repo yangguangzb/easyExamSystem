@@ -64,7 +64,8 @@
 		//异步提交答案
 		$.ajax({
 			type:'post',
-			url:'questionServlet?flag=answerQuestion&questionId='+${requestScope.questionById.questionId},
+			//url:'questionServlet?flag=answerQuestion&questionId='+${requestScope.questionById.questionId},
+			url:'questionAction_answerQuestion.action&questionId='+${requestScope.questionById.questionId},
 			data:$("#submitAnswer").serialize(),
 			cache:false,
 			success:function(msg){
@@ -99,7 +100,7 @@
 </c:if>
 
 <c:if test="${showAllAnswer==null}">
-	<c:redirect url="questionServlet?flag=showAllAnswer&questionId=${param.questionId}"></c:redirect>
+	<c:redirect url="questionAction_showAllAnswer.action&questionId=${param.questionId}"></c:redirect>
 </c:if>
 <div class="boxed_wrapper">
 

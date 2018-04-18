@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="question" namespace="/" extends="common">
+		<action name="questionAction_*" class="com.san.action.QuestionAction" method="{1}">
+			<!-- 跳转到问题界面 -->
+			<result name="toQuestion">/problem.jsp</result>
+			
+			<!-- 用户提出问题 -->
+			<result name="putQuestion">/problem.jsp</result>
+			
+			<!-- 待回答问题处理 -->
+			<result name="notAnswerQuestion">/problem.jsp</result>
+			
+			<!-- 用户回答问题处理 -->
+			<result name="answerQuestion">/problem.jsp</result>
+			
+			<!-- 显示网友回答的答案showAllAnswer -->
+			<result name="myQuestionDetail">/myQuestionDetail.jsp</result>
+			<result name="showAllAnswer">/answerQuestion.jsp</result>
+			
+			<!-- 高分问题 -->
+			<result name="highQuestion">/highQuestion.jsp</result>
+			
+			<!-- 我的所有问题显示 -->
+			<result name="myQuestion">/myQuestion.jsp</result>
+			
+			<!-- 我的某一个问题具体显示(包含网友答案等) -->
+			<result name="myQuestionDetail" type="redirectAction">/myQuestionDetail.jsp</result>
+			
+			<!-- 我的回答 -->
+			<result name="myAnswer">/myAnswer.jsp</result>	
+		</action>
+	</package>
+</struts>
