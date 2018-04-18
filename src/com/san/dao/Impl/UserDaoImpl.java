@@ -17,59 +17,20 @@ import com.san.utils.DBUtil;
  *
  */
 public class UserDaoImpl implements UserDao{
-	/**
-	 * 注册
-	 * @param userName
-	 * @param e_mail
-	 * @param password
-	 * @param conn
-	 * @return -1	注册 用户名已存在,不能注册
-	 * @return -2	注册邮箱已存在,不能注册
-	 * @throws SQLException
-	 */
-	public int registerUser(String userName,String e_mail,String password,Connection conn,int flag) throws SQLException{
-		String sql="";
-		Statement stmt=conn.createStatement();
-		ResultSet rs=null;
-		//注册时,验证注册的用户名是否已存在
-		if(flag==1){
-			sql="select userName from user where userName='"+userName+"'";
-			rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				//用户名存在
-				return -1;
-			}else{
-				return 0;
-			}
+	QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
+	
+	//通过用户名查找用户
+	public User findUserByUserName(String userName){
+		try {
+			String sql="select userName from user where userName='"+userName+"'";
+			return qr.query(sql,new BeanHandler<User>(User.class));
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		//注册时,验证注册的邮箱是否存在
-		if(flag==2){
-			sql="select e_mail from user where e_mail='"+e_mail+"'";
-			rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				//邮箱存在
-				return -1;
-			}else{
-				return 0;
-			}
-		}
-		if(flag==3){
-			//注册
-			sql="insert into user values("+null+",'"+userName+"',1,'"+e_mail+"','"+password+"',1,10)";
-			return stmt.executeUpdate(sql);
-		}
-		return 0;
-		
+		return null;
 	}
-	/**
-	 * 登录时，验证用户
-	 * @param userName
-	 * @param password
-	 * @param conn
-	 * @return user	登录成功
-	 * @return null	用户名或密码错误
-	 * @throws SQLException
-	 */
+	
+	 //登录时，验证用户
 	 public User loginVerification(String userName,String password) throws SQLException{
 		  QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		  if(!userName.contains("@")){
@@ -84,45 +45,33 @@ public class UserDaoImpl implements UserDao{
 		  }
 		  return null;
 	  }
-	
-	
-	/**
-	 * 用户通过邮箱重置密码
-	 * @param e_mail
-	 * @param conn
-	 * @flag=1时	查询用户输入的邮箱是否有效
-	 * @flag=2时	用户重置密码
-	 * @throws SQLException
-	 */
-	public int backPassword(String e_mail,String password,int flag,Connection conn) throws SQLException{
-		Statement stmt=conn.createStatement();
-		String sql="";
-		if(flag==1){
-			//查询用户输入的邮箱是否有效
-			sql="select e_mail from user where e_mail='"+e_mail+"'";
-			ResultSet rs=stmt.executeQuery(sql);
-			if(rs.next()){
-				return 1;	//邮箱有效
-			}else{
-				return -1;	//邮箱无效
+	 
+	//验证邮箱是否有效
+	public int isE_mail(String e_mail){
+		try {
+			User user=qr.query("select * from user where e_mail='"+e_mail+"'",new BeanHandler<User>(User.class));
+			if(user!=null){
+				return 1;
 			}
-		}
-		else if(flag==2){
-			sql="update user set password='"+password+"' where e_mail='"+e_mail+"'";
-			return stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return 0;
 	}
+
+	//找回密码
+	public int backPassword(String e_mail,String password) throws SQLException{
+		String sql="update user set password='"+password+"' where e_mail='"+e_mail+"'";
+		return qr.update(sql);
+	}
+	
 	//后台用户数据管
-	/**
-	 * 删除用户
-	 * @return int
-	 */
-	@Test
+	
+	// 删除用户
 	public int deleteUser(int userId) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("delete from user where userId=?",userId);
 	}
+	
 	//根据条件查询用户
 	public List<User> mcheckUser(String userType,String userId,String verification) throws SQLException{
 		StringBuffer sql=new StringBuffer("select * from user");
@@ -150,9 +99,9 @@ public class UserDaoImpl implements UserDao{
 		String sql2=sql.toString().replaceFirst("and","where");
 		return qr.query(sql2,new BeanListHandler<User>(User.class));
 	}
-	//添加用户
+	
+	//添加用户(后台)
 	public int maddUserDaoImpl(String userName,String e_mail,String password) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		User user;
 		user=qr.query("select * from user where userName=?",new BeanHandler<User>(User.class),userName);
 		if(user!=null){
@@ -166,15 +115,81 @@ public class UserDaoImpl implements UserDao{
 		}
 		return qr.update("insert into user(userName,e_mail,password) values(?,?,?)",userName,e_mail,password);
 	}
+	
+	
 	//修改用户信息
 	public int mmodifyUserDaoImpl(int userId,String userType,String verification,int integralNumber) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.update("update user set userType=?,verification=?,integralNumber=? where userId=?"
 				,userType,verification,integralNumber,userId);
 	}
+	
+	
 	//根据用户id查询用户信息
 	public User checkUserById(int userId) throws SQLException{
-		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		return qr.query("select * from user where userId=?",new BeanHandler<User>(User.class),userId);
 	}
+    public void  addIntegralNumber(User user, int IntegralNumber) {
+        try{
+            String sql="update user set integralNumber=?+? where userId=?";
+            Object[] params={user.getIntegralNumber(),IntegralNumber,user.getUserId()};
+            qr.update(sql,params);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void minusIntegralNumber(User user, int IntegralNumber) {
+        try{
+            String sql="update user set integralNumber=?-? where userId=?";
+            Object[] params={user.getIntegralNumber(),IntegralNumber,user.getUserId()};
+            qr.update(sql,params);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+	public void updateUserByPassword(User user) {
+		try {
+			String sql="update user set  password=? where userId=?";
+			Object[] params= {user.getPassword(),user.getUserId()};
+			qr.update(sql,params);
+		}
+		catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+    public User getUser(int userId) {
+        try{
+            String sql="select * from user where userId=?";
+            return (User) qr.query(sql,new BeanHandler(User.class),userId);
+        }
+        catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    
+    //测试
+	public int deleteUser2(int id) throws SQLException{
+		return qr.update("delete from user where userId=?",3);
+	}
+	
+	//添加用户
+	public int save(String userName,String e_mail,String password) {
+		try {
+			String sql="insert into user values("+null+",'"+userName+"',0," +
+			"'"+e_mail+"','"+password+"',1,10)";
+			return qr.update(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 }
+
+	
+

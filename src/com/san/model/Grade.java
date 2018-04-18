@@ -1,13 +1,13 @@
+
 package com.san.model;
 
 import java.util.Date;
-
 public class Grade {
 	private int gradeId;	    //成绩编号
 	private String brushId;	//刷题区名称
 	private int userId;		    //用户编号
 	private float grade;		//成绩
-	private Date gradetime;	   		//时间
+	private Date gradetime;	   		//时间\
 	public String getBrushId() {
 		return brushId;
 	}
@@ -39,6 +39,5 @@ public class Grade {
 	public void setGradetime(Date gradetime) {
 		this.gradetime = gradetime;
 	}
-	
-	
 }
+

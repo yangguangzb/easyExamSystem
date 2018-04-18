@@ -23,5 +23,6 @@
 	<include file="struts/struts-question.xml"></include>
 	<!-- 精品区配置 -->
 	<include file="struts/struts-boutique.xml"></include>
-	
+	<!-- 后台题目管理 -->
+	<include file="struts/struts-manageSubject.xml"></include>
 </struts>

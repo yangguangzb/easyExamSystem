@@ -109,3 +109,4 @@ public class SubjectDaoImpl implements SubjectDao{
 				,brushName,courseName,subjectType,title,Aoption,Boption,Coption,Doption,answer,analysis,subjectId);
 	}
 }
+

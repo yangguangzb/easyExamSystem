@@ -25,6 +25,9 @@
 			
 			<!-- 退出系统 -->
 			<result name="signOut" type="redirect">/index.jsp</result>
+			
+			<!-- 用户登录后，修改密码 -->
+			<result name="changePassword" type="redirect">/login.jsp</result>
 		</action>
 	</package>
 </struts>

@@ -199,4 +199,21 @@ public class UserAction extends BaseAction<User> {
 		ServletActionContext.getRequest().getSession().invalidate();
 		return "signOut";
 	}
+	
+	/**
+	 * 用户登录后，修改密码
+	 * @return
+	 */
+	public String changePassword(){
+		String password=getRequest().getParameter("pass").trim();
+        User user=(User) getRequest().getSession().getAttribute("user");
+        if(user!=null){
+            user.setPassword(password);
+            UserService userService=new UserServiceImpl();
+            userService.updateUserByPassword(user);
+            //response.sendRedirect("/login.jsp");
+        }
+		return "changePassword";
+	}
+	
 }

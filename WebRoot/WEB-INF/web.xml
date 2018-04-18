@@ -4,6 +4,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<!-- struts的配置 -->
+	<filter>
+		<filter-name>struts</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<filter>
 		<filter-name>CodeFilter</filter-name>
 		<filter-class>com.san.filter.CodeFilter</filter-class>
@@ -36,6 +47,7 @@
 		<url-pattern>/admin2/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 
 	<servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -48,12 +60,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.san.servlet.RegisterServlet</servlet-class>
   </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>SubjectServlet</servlet-name>
-    <servlet-class>com.san.servlet.SubjectServlet</servlet-class>
-  </servlet>
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -90,7 +97,102 @@
     <servlet-name>IntegralServlet</servlet-name>
     <servlet-class>com.san.servlet.IntegralServlet</servlet-class>
   </servlet>
+   
+ 
+ 
+ 
+ 
+ 
+   <servlet>
+    <servlet-name>ResourceServlet</servlet-name>
+    <servlet-class>com.san.servlet.ResourceServlet</servlet-class>
+</servlet>
+    <servlet>
+        <servlet-name>upload</servlet-name>
+        <servlet-class>com.san.servlet.ResourceUploadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>com.san.servlet.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>com.san.servlet.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IntegrationHistoryServlet</servlet-name>
+        <servlet-class>com.san.servlet.IntegrationHistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResourceHistoryServlet</servlet-name>
+        <servlet-class>com.san.servlet.ResourceHistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GradeHistoryServlet</servlet-name>
+        <servlet-class>com.san.servlet.GradeHistoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShareAreaServlet</servlet-name>
+        <servlet-class>com.san.servlet.ShareAreaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShareAreaCommentServlet</servlet-name>
+        <servlet-class>com.san.servlet.ShareAreaCommentServlet</servlet-class>
+    </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ManageDataServlet</servlet-name>
+    <servlet-class>com.san.servlet.ManageDataServlet</servlet-class>
+  </servlet>
 
+
+
+    <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/loginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/registerServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+        <servlet-name>ResourceServlet</servlet-name>
+        <url-pattern>/resourceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>upload</servlet-name>
+        <url-pattern>/resourceuploadservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/changePasswordServlet</url-pattern>
+    </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>IntegrationHistoryServlet</servlet-name>
+    <url-pattern>/integrationHistoryServlet</url-pattern>
+</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResourceHistoryServlet</servlet-name>
+        <url-pattern>/resourceHistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GradeHistoryServlet</servlet-name>
+        <url-pattern>/gradeHistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShareAreaServlet</servlet-name>
+        <url-pattern>/shareAreaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShareAreaCommentServlet</servlet-name>
+        <url-pattern>/shareAreaCommentServlet</url-pattern>
+    </servlet-mapping>
 
 
 
@@ -107,10 +209,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/registerServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SubjectServlet</servlet-name>
-    <url-pattern>/subjectServlet</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>ManageUsers</servlet-name>
     <url-pattern>/servlet/ManageUsers</url-pattern>
@@ -131,6 +230,13 @@
     <servlet-name>IntegralServlet</servlet-name>
     <url-pattern>/integralServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManageDataServlet</servlet-name>
+    <url-pattern>/servlet/ManageDataServlet</url-pattern>
+  </servlet-mapping>
+   -->
+  
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

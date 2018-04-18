@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="manageSubject" namespace="/" extends="common">
+		<action name="manageSubjectAction_*" class="com.san.action.ManageSubjectAction" method="{1}">
+			<!-- 根据id查询题目 -->
+			<result name="edit">../admin2/subject-edit.jsp</result>
+			
+			<result name="detail">../admin2/subject-detail.jsp</result>
+			
+			<!-- 题目管理,根据条件查询题目 -->
+			<result name="manageSubject">../admin2/subject-list.jsp</result>
+		</action>
+	</package>
+</struts>

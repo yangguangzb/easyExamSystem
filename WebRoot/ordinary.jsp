@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <%@page import="com.san.model.Subject"%><!DOCTYPE html>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -132,9 +133,11 @@
 </head>
 <body>
 <!-- 读取排名是否存在 -->
-<c:if test="${requestScope.pankGrade==null}">
-	<jsp:forward page="${request.contextPath}/subjectServlet?flag=pankGrade"></jsp:forward>
+
+<c:if test="sessionScope.pankGrade==null">
+	<jsp:forward page="${pageContext.request.contextPath}/subjectAction_showGradeRank.action"></jsp:forward>
 </c:if>
+
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -162,7 +165,7 @@
     	  <div style="height:500px;width:557px;float:left;">
     		<!-- 选择部分 -->
     		<div style="height:50px; border:1px #999 solid;">
-    			<form action="subjectServlet?flag=display" method="post" id="top" style="margin:0px;display:inline;">
+    			<s:form action="subjectAction_display.action" id="top" style="margin:0px;display:inline;">
 	    			<select name="courseName" id="courseName" style="height:50px;width:120px; margin-right:25px;">
 	    				<option selected value="请选择课程">请选择课程</option>
 	    				<option value="大学英语">大学英语</option>
@@ -174,8 +177,8 @@
 	    			</select>
 	    			<select name="subjectId" id="subjectId" style="height:50px;width:120px; margin-right:25px;">
 	    				<option selected value="题目编号">题目编号</option>
-	    				<option value="1-20">1-20</option>
-	    				<option value="21-40">21-40</option>
+	    				<option value="1">1-20</option>
+	    				<option value="21">21-40</option>
 	    			</select>
 	    			<select name="subjectType" id="subjectType" style="height:50px;width:120px; ">
 	    				<option selected value="请选择题型">请选择题型</option>
@@ -183,7 +186,7 @@
 	    				<option value="填空题">填空题</option>
 	    			</select>
     				<input type="button" id="submitTest" onclick="submitTop();" class="btn btn-primary" value="开始测试" />
-    			</form>
+    			</s:form>
     		</div>
     		
     	
@@ -191,15 +194,17 @@
  			<div id="content">
  				
  				<div style="height:200px;width:100%;border:1px #999 solid;">
+ 					 
  					<c:if test="${sessionScope.nowSubject!=null}">
  						<p>第${sessionScope.nowSubject.subjectId }题</p>
     					${sessionScope.nowSubject.subjectTitle}
     				</c:if>
+    				
 	    		</div>
 	    		<!-- 显示ABCD选项部分 -->
 	    		<div style="height:300px;width:100%;border:1px #999 solid;">
 	    			<c:if test="${sessionScope.nowSubject!=null}">
-		    			<form action="subjectServlet?flag=displayNext" id="nextSubject" method="post">
+	    				<s:form action="subjectAction_displayNext" id="nextSubject">
 		    				<input type="radio" name="choice" value="A" id="A"/>
 		    					<label for="A">${sessionScope.nowSubject.optionA }</label>
 		    				<input type="radio" name="choice" value="B" id="B"/>
@@ -211,7 +216,7 @@
 			    			<div style="padding-left:450px;margin-top:20px;">
 			    				<input type="button" class="btn btn-primary" value="下一题" onclick="nextSubject()"/>
 			    			</div>
-		    			</form>
+		    			</s:form>
 	    			</c:if>
 	    		</div>
 	    		<!-- 选择上下题按钮,查看解析按钮-->
@@ -219,9 +224,9 @@
 	    			<tr>
 	    				<td>
 	    					<!-- 上一题 -->
-	    					<form action="subjectServlet?flag=displayLast" method="post">
+	    					<s:form action="subjectAction_displayLast">
 	    						<input type="submit" class="btn btn-primary" value="上一题" onclick="lastSubject()"/>
-	    					</form>
+	    					</s:form>
 	    				</td>
 	    				<td width="20px;"></td>
 	    				<td>
@@ -253,19 +258,30 @@
     		</div>
     		<table cellspacing="0" cellpadding="0" height="300px" width="98%">
     			<tbody>
-    				<c:forEach items="${requestScope.pankGrade}" var="pankGrade">
+    				
+    				<s:iterator value="#session.gradeRank" status="go" var="s">
     					<tr style="border-bottom:1px #999 dashed;">
-    						<td style="font-size:16px;color:#2e8f01;width:40px;height:30px;">${pankGrade.index+1}</td>
+    						<td style="font-size:16px;color:#2e8f01;width:40px;height:30px;"><s:property value="#go.index+1"/></td>
+    						<td style="text-align:centers;height:30px; "><s:property value="#s.userName"/></td>
+    						<td style="color:#ff0000;width:80px;height:30px;" ><s:property value="#s.grade"/> </td>
+    					</tr>
+    				</s:iterator>
+    				<!-- 
+    				<c:forEach items="${sessionScope.pankGrade}" var="pankGrade" varStatus="go">
+    					<tr style="border-bottom:1px #999 dashed;">
+    						<td style="font-size:16px;color:#2e8f01;width:40px;height:30px;">${go.index+1}</td>
     						<td style="text-align:centers;height:30px; ">${pankGrade.userName}</td>
-    						<td style="color:#ff0000;width:80px;height:30px;" >${pankGrade.grades}</td>
+    						<td style="color:#ff0000;width:80px;height:30px;" >${pankGrade.grade}</td>
     					</tr>
     				</c:forEach>
+    				 -->
     			</tbody>
     		</table>
     	</div>
     
     </div>
 </section>
+<s:debug></s:debug>
 <jsp:include page="foot.jsp"></jsp:include>
 
 

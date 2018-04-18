@@ -64,10 +64,11 @@
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
-<c:if test="${requestScope.notAnswer==null}">
-	<jsp:forward page="questionServlet?flag=notAnswerQuestion"></jsp:forward>
-</c:if>
+
 <div class="boxed_wrapper">
+<c:if test="${requestScope.notAnswer==null}">
+	<jsp:forward page="questionAction_notAnswerQuestion"></jsp:forward>
+</c:if>
 
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
