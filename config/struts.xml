@@ -25,4 +25,6 @@
 	<include file="struts/struts-boutique.xml"></include>
 	<!-- 后台题目管理 -->
 	<include file="struts/struts-manageSubject.xml"></include>
+	<!-- 后台用户管理 -->
+	<include file="struts/struts-manageUsers.xml"></include>
 </struts>
