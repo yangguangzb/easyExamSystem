@@ -66,7 +66,6 @@
 </c:if>
 <div class="boxed_wrapper">
 <c:if test="${requestScope.notAnswer==null}">
-	<!--<jsp:forward page="questionServlet?flag=notAnswerQuestion"></jsp:forward>-->
 	<c:redirect url="questionServlet?flag=notAnswerQuestion"></c:redirect>
 </c:if>
 <!-- 头部 -->
@@ -89,10 +88,10 @@
         	<!-- 头部按钮 -->
         	<div class="top">
         		<ul class="topul">
-        			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="highQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp">我的回答</a></li>
+        			<li><a href="questionAction_notAnswerQuestion.action" style="color:#999">待答问题</a></li>
+        			<li><a href="questionAction_highQuestion.action">高分问题</a></li>
+        			<li><a href="questionAction_myQuestion.action">我的问题</a></li>
+        			<li><a href="questionAction_myAnswer.action">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>

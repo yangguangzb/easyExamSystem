@@ -90,10 +90,10 @@
         	<!-- 头部按钮 -->
         	<div class="top">
         		<ul class="topul">
-        			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="hightQuestion.jsp" style="color:#999">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp">我的回答</a></li>
+        			<li><a href="questionAction_notAnswerQuestion.action">待答问题</a></li>
+        			<li><a href="questionAction_highQuestion.action"  style="color:#999">高分问题</a></li>
+        			<li><a href="questionAction_myQuestion.action">我的问题</a></li>
+        			<li><a href="questionAction_myAnswer.action">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>
@@ -120,7 +120,12 @@
         				<tr>
 	        				<td>${question.questionReward}</td>
 	        				<td>[${question.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
+	        				<td style="text-align:left;">
+	        					<!-- 直接跳转到showAll,显示该问题所有的回答 -->
+		        				<a href="questionAction_showAllAnswer?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">
+		        					${question.questionTitle}
+		        				</a>
+	        				</td>
 	        				<td>${question.answerNumber}</td>
 	        				<td style="color:#999;font-size:14px;">${question.showTime}</td>
         				</tr>

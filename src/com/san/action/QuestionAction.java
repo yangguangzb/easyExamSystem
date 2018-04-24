@@ -68,15 +68,12 @@ public class QuestionAction extends BaseAction<Question>{
 	public String answerQuestion() throws IOException{
 		//回答内容
 		String answerContent=getRequest().getParameter("answerContent");
-		System.out.println("answerContent="+answerContent);
 		//问题编号
 		String questionId=getRequest().getParameter("questionId");
-		System.out.println("questionId="+questionId);
 		User user=(User)getRequest().getSession().getAttribute("user");
 		String i=questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent)+"";
-		System.out.println("i="+i);
 		getPrintWriter().write(i);
-		return "answerQuestion";
+		return null;
 	}
 	
 	/**
@@ -103,10 +100,37 @@ public class QuestionAction extends BaseAction<Question>{
 		//我的某个具体问题处理
 		if(getRequest().getParameter("flagdetail")!=null&&"detail".equals(getRequest().getParameter("flagdetail"))){
 			//转发到我的某个问题的具体内容中
+			System.out.println("经理");
 			return "myQuestionDetail";
 		}
 		return "showAllAnswer";
 	}
+	
+	/**
+	 * 我的某一个问题具体显示(包含网友答案等)
+	 * @return
+	 */
+	public String myQuestionDetail(){
+		String questionId=getRequest().getParameter("questionId");
+		List<Answer> showAllAnswer=questionServiceImpl.showAllAnswerService(questionId);
+		for (Answer answer : showAllAnswer) {
+			if(answer.getIsAdoption()==1){
+				//该问题被采纳(设置值为回答Id唯一)
+				getRequest().setAttribute("isAdoption",1);
+			}
+		}
+		Question questionById=questionServiceImpl.questionByIdService(questionId);
+		if(showAllAnswer.size()==0){
+			//没有网友答案
+			getRequest().setAttribute("showAllAnswer",0);
+		}else{
+			getRequest().setAttribute("showAllAnswer", showAllAnswer);
+		}
+		getRequest().setAttribute("questionById", questionById);
+		//我的某个具体问题处理
+		return "myQuestionDetail";
+	}
+	
 	
 	/**
 	 * 高分问题
@@ -136,18 +160,21 @@ public class QuestionAction extends BaseAction<Question>{
 	}
 	
 	/**
-	 * 我的某一个问题具体显示(包含网友答案等)
+	 * 设置我的问题是否解决(包含网友答案等)
 	 * @return
 	 */
-	public String myQuestionDetail(){
+	public String myQuestionIsSolve(){
 		//获得评论者Id(最好网友答案)
 		String reviewerId=getRequest().getParameter("reviewerId");
 		//获得该问题Id
 		String questionId=getRequest().getParameter("questionId");
+		System.out.println("reviewerId"+reviewerId);
+		System.out.println("questionId"+questionId);
+		System.out.println("--------------测试---------------------");
 		questionServiceImpl.myQuestionDetailService(questionId, reviewerId);
 		//重定向(让其刷新)
 		//response.sendRedirect("myQuestionDetail.jsp?questionId="+questionId);
-		return "myQuestionDetail";
+		return "myQuestionIsSolve";
 	}
 	
 	/**

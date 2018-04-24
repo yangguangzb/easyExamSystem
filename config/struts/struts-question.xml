@@ -14,11 +14,12 @@
 			<!-- 待回答问题处理 -->
 			<result name="notAnswerQuestion">/notAnswerQuestion.jsp</result>
 			
-			<!-- 用户回答问题处理 -->
-			<result name="answerQuestion">/answerQuestion.jsp</result>
-			
 			<!-- 显示网友回答的答案showAllAnswer -->
 			<result name="myQuestionDetail">/myQuestionDetail.jsp</result>
+			
+			<!-- 自己的问题被解决 -->
+			<result name="myQuestionIsSolve">/myQuestionDetail.jsp</result>
+			
 			<result name="showAllAnswer">/answerQuestion.jsp</result>
 			
 			<!-- 高分问题 -->
@@ -26,9 +27,6 @@
 			
 			<!-- 我的所有问题显示 -->
 			<result name="myQuestion">/myQuestion.jsp</result>
-			
-			<!-- 我的某一个问题具体显示(包含网友答案等) -->
-			<result name="myQuestionDetail" type="redirectAction">/myQuestionDetail.jsp</result>
 			
 			<!-- 我的回答 -->
 			<result name="myAnswer">/myAnswer.jsp</result>	
