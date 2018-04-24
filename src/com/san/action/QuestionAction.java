@@ -20,7 +20,6 @@ public class QuestionAction extends BaseAction<Question>{
 	 * 跳转到问题界面
 	 */
 	public String toQuestion(){
-		System.out.println("测试");
 		return "toQuestion";
 	}
 	
@@ -69,10 +68,13 @@ public class QuestionAction extends BaseAction<Question>{
 	public String answerQuestion() throws IOException{
 		//回答内容
 		String answerContent=getRequest().getParameter("answerContent");
+		System.out.println("answerContent="+answerContent);
 		//问题编号
 		String questionId=getRequest().getParameter("questionId");
+		System.out.println("questionId="+questionId);
 		User user=(User)getRequest().getSession().getAttribute("user");
 		String i=questionServiceImpl.answerQuestionService(questionId,user.getUserId(), answerContent)+"";
+		System.out.println("i="+i);
 		getPrintWriter().write(i);
 		return "answerQuestion";
 	}
@@ -82,7 +84,7 @@ public class QuestionAction extends BaseAction<Question>{
 	 * @return
 	 */
 	public String showAllAnswer(){
-		String questionId=this.getModel().getQuestionId()+"";
+		String questionId=getRequest().getParameter("questionId");
 		List<Answer> showAllAnswer=questionServiceImpl.showAllAnswerService(questionId);
 		for (Answer answer : showAllAnswer) {
 			if(answer.getIsAdoption()==1){

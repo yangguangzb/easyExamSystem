@@ -118,9 +118,17 @@
         				<tr>
 	        				<td>${question.questionReward}</td>
 	        				<td>[${question.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
-	        				<td>${question.questionState}</td>
-	        				<td>1小时</td>
+	        				<td style="text-align:left;">
+	        					<!-- 直接跳转到showAll,显示该问题所有的回答 -->
+	        					<a href="questionAction_showAllAnswer?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">
+	        						${question.questionTitle}
+	        					</a>
+	        				</td>
+	        				<!-- 
+	        					<td>${question.questionState}</td>
+	        				 -->
+	        				<td>${question.answerNumber}</td>
+	        				<td style="font-size:14px;color:#999;">${question.showTime}</td>
         				</tr>
         			</c:forEach>
         		</tbody>
