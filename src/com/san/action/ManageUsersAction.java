@@ -21,7 +21,6 @@ public class ManageUsersAction extends BaseAction<User>{
 		List<User> mUserList=mUserService.mcheckUserService(userType, userId,verification);
 		//保存查询的用户信息
 		getRequest().setAttribute("mUserList", mUserList);
-		//getRequest().getRequestDispatcher("../admin2/member-list.jsp").forward(request, response);
 		return "checkUsers";
 	}
 	
@@ -31,12 +30,12 @@ public class ManageUsersAction extends BaseAction<User>{
 	 * @throws IOException 
 	 */
 	public String addUser() throws IOException{
-		String e_mail = getRequest().getParameter("email");
-		String userName = getRequest().getParameter("username");
-		String password = getRequest().getParameter("pass");
+		String e_mail = this.getModel().getE_mail();
+		String userName = this.getModel().getUserName();
+		String password = this.getModel().getPassword();
 		String i=mUserService.maddUserService(userName, e_mail, password)+"";
 		getPrintWriter().write(i);
-		return "addUser";
+		return null;
 	}
 	
 	/**
@@ -46,13 +45,13 @@ public class ManageUsersAction extends BaseAction<User>{
 	 */
 	public String modifyUser() throws IOException{
 		String userId = getRequest().getParameter("userId");
-		String userType = getRequest().getParameter("userType");
-		String verification = getRequest().getParameter("verification");
-		String integralNumber = getRequest().getParameter("integralNumber");
+		String userType = this.getModel().getUserType()+"";
+		String verification = this.getModel().getVerification()+"";
+		String integralNumber = this.getModel().getIntegralNumber()+"";
 		String i=mUserService.modifyUserService(userId, userType, verification, integralNumber)+"";
 		//响应回浏览器
 		getPrintWriter().write(i);
-		return "modifyUser";
+		return null;
 	}
 	
 	/**
@@ -64,6 +63,6 @@ public class ManageUsersAction extends BaseAction<User>{
 		String userId=getRequest().getParameter("userId");
 		String i=mUserService.mdelUserService(userId)+"";
 		getPrintWriter().write(i);
-		return "delUser";
+		return null;
 	}
 }

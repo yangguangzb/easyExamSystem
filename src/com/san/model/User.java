@@ -12,6 +12,15 @@ public class User {
 	//临时字段
 	private String verificationCode; //找回密码时的验证码
 	private String password1;	 //找回密码
+	private String repass;
+	
+	
+	public String getRepass() {
+		return repass;
+	}
+	public void setRepass(String repass) {
+		this.repass = repass;
+	}
 	public void setPassword1(String password1) {
 		this.password1 = password1;
 	}
