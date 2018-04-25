@@ -123,8 +123,11 @@
         				<tr>
 	        				<td>${map.questionReward}</td>
 	        				<td>[${map.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${map.questionId}"
-	        				 style="color:#133DB6;" target="_blank">${map.questionTitle}</a></td>
+	        				<td style="text-align:left;">
+		        				<a href="questionAction_showAllAnswer?questionId=${map.questionId}" style="color:#133DB6;" target="_blank">
+		        				 ${map.questionTitle}
+		        				</a>
+	        				</td>
 	        				<td>${map.answerNumber}</td>
 	        				<td style="font-size:14px;color:#999;">${map.answerTime}</td>
 	        				<c:if test="${map.questionState==0}"><td style="font-size:14px;color:#999;">否</td></c:if>

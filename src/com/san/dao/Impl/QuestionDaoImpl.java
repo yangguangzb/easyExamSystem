@@ -36,14 +36,14 @@ public class QuestionDaoImpl {
 	 */
 	public List<Question> checkHighQuestion(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("select * from question where questionState=0 and questionReward>10 and creatorId!=?",
+		return qr.query("select * from question where questionState=0 and questionReward>10 and creatorId!=? ORDER BY questionId DESC",
 			new BeanListHandler<Question>(Question.class),userId);
 	}
 	//查看待答问题,即问题状态为0
 	public List<Question> notAnswerQuestionDaoImpl(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
 		//查询未被回答且不是自己提的问题,且积分小于15分
-		return qr.query("select * from question where questionState=0 and creatorId!=? and questionReward<15",
+		return qr.query("select * from question where questionState=0 and creatorId!=? and questionReward<15 ORDER BY questionId DESC",
 				new BeanListHandler<Question>(Question.class),userId);
 	}
 	//插入问题回答的内容
@@ -72,7 +72,7 @@ public class QuestionDaoImpl {
 	//查看我的问题
 	public List<Question> myQuestion(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("select * from question where creatorId=?", 
+		return qr.query("select * from question where creatorId=? ORDER BY questionId desc", 
 			new BeanListHandler<Question>(Question.class),userId);
 	}
 	//问题解决时，更新采纳表
@@ -93,7 +93,7 @@ public class QuestionDaoImpl {
 	//查看我的回答
 	public List<Map<String,Object>> myAnswerDaoImpl(int userId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.query("SELECT * FROM answer,question WHERE answer.questionId=question.questionId and reviewerId=?",
+		return qr.query("SELECT * FROM answer,question WHERE answer.questionId=question.questionId and reviewerId=? ORDER BY answerId DESC",
 				new MapListHandler(),userId);
 	}
 	//更新问题的状态

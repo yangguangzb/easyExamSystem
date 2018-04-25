@@ -9,9 +9,9 @@
 			<result name="toQuestion">/problem.jsp</result>
 			
 			<!-- 用户提出问题 -->
-			<result name="putQuestion">/problem.jsp</result>
+			<!--<result name="putQuestion">/problem.jsp</result>
 			
-			<!-- 待回答问题处理 -->
+			--><!-- 待回答问题处理 -->
 			<result name="notAnswerQuestion">/notAnswerQuestion.jsp</result>
 			
 			<!-- 显示网友回答的答案showAllAnswer -->

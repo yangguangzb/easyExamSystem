@@ -51,12 +51,12 @@ public class QuestionAction extends BaseAction<Question>{
 		//动态修改用户积分并保存
 		if(newUser==null){
 			getPrintWriter().write("-1");//积分不够
-			return "putQuestion";
+			return null;
 		}else{
 			//积分够，修改session中用户积分信息
 			getSession().setAttribute("user",newUser);
 			getPrintWriter().write("1");
-			return "putQuestion";
+			return null;
 		}
 	}
 	
@@ -100,7 +100,6 @@ public class QuestionAction extends BaseAction<Question>{
 		//我的某个具体问题处理
 		if(getRequest().getParameter("flagdetail")!=null&&"detail".equals(getRequest().getParameter("flagdetail"))){
 			//转发到我的某个问题的具体内容中
-			System.out.println("经理");
 			return "myQuestionDetail";
 		}
 		return "showAllAnswer";
@@ -140,7 +139,6 @@ public class QuestionAction extends BaseAction<Question>{
 		User user=(User)getRequest().getSession().getAttribute("user");
 		List<Question> highQuestion=questionServiceImpl.highQuestionService(user.getUserId());
 		getRequest().setAttribute("highQuestion", highQuestion);
-		//getRequest().getRequestDispatcher("highQuestion.jsp").forward(request, response);
 		return "highQuestion";
 	}
 	
@@ -168,12 +166,7 @@ public class QuestionAction extends BaseAction<Question>{
 		String reviewerId=getRequest().getParameter("reviewerId");
 		//获得该问题Id
 		String questionId=getRequest().getParameter("questionId");
-		System.out.println("reviewerId"+reviewerId);
-		System.out.println("questionId"+questionId);
-		System.out.println("--------------测试---------------------");
 		questionServiceImpl.myQuestionDetailService(questionId, reviewerId);
-		//重定向(让其刷新)
-		//response.sendRedirect("myQuestionDetail.jsp?questionId="+questionId);
 		return "myQuestionIsSolve";
 	}
 	
