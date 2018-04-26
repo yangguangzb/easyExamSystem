@@ -27,13 +27,11 @@
         <a href="">演示</a>
         <a>
           <cite>导航元素</cite></a>
-      </span><!--
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>-->
+      </span>
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form method="post" action="${pageContext.request.contextPath}/integralServlet?flag=backCheckIntegral" class="layui-form layui-col-md12 x-so">
+        <form method="post" action="useRecordAction_backCheckIntegral.action" class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="开始日" name="start" id="start">
           <input class="layui-input" placeholder="截止日" name="end" id="end">
           <div class="layui-input-inline">
@@ -52,7 +50,6 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <!--<button class="layui-btn" onclick="x_admin_show('添加用户','./role-add.jsp')"><i class="layui-icon"></i>添加</button>-->
         <span class="x-right" style="line-height:40px">共有数据：${fn:length(integralListMap)} 条</span>
       </xblock>
       <table class="layui-table">

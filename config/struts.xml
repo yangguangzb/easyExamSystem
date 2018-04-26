@@ -29,5 +29,6 @@
 	<include file="struts/struts-manageUsers.xml"></include>
 	<!-- 后台资源管理 -->
 	<include file="struts/struts-manageResource.xml"></include>
-	
+	<!-- 积分使用记录 -->
+	<include file="struts/struts-useRecord.xml"></include>
 </struts>
