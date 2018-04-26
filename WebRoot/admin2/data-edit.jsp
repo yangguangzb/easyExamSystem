@@ -108,7 +108,7 @@
         form.on('submit(add)', function(data){
           $.ajax({
           	type:'post',
-          	url:'${pageContext.request.contextPath}/servlet/ManageDataServlet?flag=modifyDatas&resourceId='+${param.resourceId},
+          	url:'manageResourceAction_modifyDatas.action?resourceId='+${param.resourceId},
           	data:$("#modifyData").serialize(),
           	cache:false,
           	success:function(msg){

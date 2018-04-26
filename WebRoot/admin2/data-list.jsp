@@ -31,7 +31,7 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form method="post" action="${pageContext.request.contextPath}/servlet/ManageDataServlet?flag=checkDatas" class="layui-form layui-col-md12 x-so">
+        <form method="post" action="manageResourceAction_checkDatas.action" class="layui-form layui-col-md12 x-so">
           <div class="layui-input-inline">
             <select name="courseName" id="courseName">
               <option value="">课程名称</option>
@@ -164,7 +164,7 @@
               //发异步删除数据
               $.ajax({
               	type:'post',
-              	url:'../servlet/ManageDataServlet?flag=delDatas&resourceId='+id,
+              	url:'manageResourceAction_delDatas.action?resourceId='+id,
               	cache:false,
               	success:function(msg){
               		if(msg==1){

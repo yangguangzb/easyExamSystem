@@ -33,7 +33,7 @@ public class ManageResourceAction extends BaseAction<Resource>{
 		String resourceId=getRequest().getParameter("resourceId");
 		String i=""+resourceServiceImpl.delDatasService(resourceId);
 		getPrintWriter().write(i);
-		return "delDatas";
+		return null;
 	}
 	
 	/**
@@ -50,6 +50,6 @@ public class ManageResourceAction extends BaseAction<Resource>{
 		String integration=this.getModel().getIntegration()+"";
 		String i=""+resourceServiceImpl.modifyDatasService(resourceId, courseName, resourceName, resourceDescription, resourcePath, integration);
 		getPrintWriter().write(i);
-		return "modifyDatas";
+		return null;
 	}
 }

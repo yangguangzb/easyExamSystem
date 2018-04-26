@@ -28,7 +28,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="select * from resource where resourceId=?,uploadId=?,courseId=?,courseName=?,resource=?,downNumber=?,integration=?";
+			String sql="select * from resource2 where resourceId=?,uploadId=?,courseId=?,courseName=?,resource=?,downNumber=?,integration=?";
 			return (List<Resource>) runner.query(sql, courseName,new BeanHandler(Resource.class));
 			
 			
@@ -48,7 +48,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="select * from resource";
+			String sql="select * from resource2";
 			return (List<Resource>) runner.query(sql,new BeanListHandler<Resource>(Resource.class));
 		}
 		catch (SQLException ex) {
@@ -67,7 +67,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try{
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="select * from resource where resourceId=?";
+			String sql="select * from resource2 where resourceId=?";
 			return (Resource) runner.query(sql,resourceId,new BeanHandler(Resource.class));
 		}
 		catch (SQLException ex){
@@ -104,7 +104,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="insert into resource(resourceId,uploadId,courseName,resourceName,resourceDescription,resourcePath,downNumber,integration) values(?,?,?,?,?,?,?,?)";
+			String sql="insert into resource2(resourceId,uploadId,courseName,resourceName,resourceDescription,resourcePath,downNumber,integration) values(?,?,?,?,?,?,?,?)";
 			Object[] params= {resource.getResourceId(),resource.getUploadId(),resource.getCourseName(),resource.getResourceName(),resource.getResourceDescription(),resource.getResourcePath(),resource.getDownNumber(),resource.getIntegration()};
 			runner.update(sql,params);
 		}
@@ -123,7 +123,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="update resource set  ResourceDescription=? where ResourceId=?";
+			String sql="update resource2 set  ResourceDescription=? where ResourceId=?";
 			Object[] params= {resource.getResourceDescription(),resource.getResourceId()};
 			runner.update(sql,params);
 		}
@@ -135,7 +135,7 @@ public class ResourceDaoImpl implements ResourceDao {
 	public void updateDownNumber(Resource resource) {
 		try{
 		    QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-		    String sql="update resource set downNumber=?+1 where resourceId=?";
+		    String sql="update resource2 set downNumber=?+1 where resourceId=?";
 		    Object[] params={resource.getDownNumber(),resource.getResourceId()};
 		    runner.update(sql,params);
         }
@@ -153,7 +153,7 @@ public class ResourceDaoImpl implements ResourceDao {
 	 */
 	public List<Resource> checkResourceService(String courseName,int uploadId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		StringBuffer sql=new StringBuffer("select * from resource");
+		StringBuffer sql=new StringBuffer("select * from resource2");
 		if(!"".equals(courseName)){
 			sql.append(" and courseName='"+courseName+"'");
 		}
@@ -171,7 +171,7 @@ public class ResourceDaoImpl implements ResourceDao {
 	 */
 	public int delDatasDaoImpl(int resourceId) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.update("delete  from resource where resourceId=?",resourceId);
+		return qr.update("delete  from resource2 where resourceId=?",resourceId);
 	}
 	/**
 	 * 后台修改资源
@@ -179,7 +179,7 @@ public class ResourceDaoImpl implements ResourceDao {
 	public int modifyDatasDaoImpl(int resourceId,String courseName,String resourceName,String resourceDescription,
     		String resourcePath,int integration) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		return qr.update("update resource set courseName=?,resourceName=?,resourceDescription=?,resourcePath=?,integration=? where resourceId=?"
+		return qr.update("update resource2 set courseName=?,resourceName=?,resourceDescription=?,resourcePath=?,integration=? where resourceId=?"
 				,courseName,resourceName,resourceDescription,resourcePath,integration,resourceId);
 	}
 }
