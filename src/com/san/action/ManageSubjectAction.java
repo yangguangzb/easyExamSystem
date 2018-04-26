@@ -26,10 +26,8 @@ public class ManageSubjectAction extends BaseAction<Subject>{
 		Subject subjectById=subjectServiceImpl.checkSubjectByIdService(subjectId);
 		getRequest().getSession().setAttribute("subjectById",subjectById);
 		if(getRequest().getParameter("flag2")!=null&&"edit".equals(getRequest().getParameter("flag2"))){
-			//response.sendRedirect("../admin2/subject-edit.jsp");
 			return "edit";
 		}
-		//response.sendRedirect("../admin2/subject-detail.jsp");
 		return "detail";
 	}
 	
@@ -45,14 +43,10 @@ public class ManageSubjectAction extends BaseAction<Subject>{
 		List<Subject> manageSubjectList=subjectServiceImpl.checkSubjectService(subjectId, brushName, courseName, subjectType);
 		//保存记录数
 		getRequest().getSession().setAttribute("subjectSize",manageSubjectList.size());
-		//根据条件查询的题目,并保存到session中·
-		//request.getSession().setAttribute("manageSubjectList", manageSubjectList);
-		//response.sendRedirect("../admin2/subject-list.jsp");
 		getRequest().setAttribute("manageSubjectList", manageSubjectList);
 		getRequest().setAttribute("brushName", brushName);
 		getRequest().setAttribute("subjectType", subjectType);
 		getRequest().setAttribute("courseName", courseName);
-		//getRequest().getRequestDispatcher("../admin2/subject-list.jsp").forward(request, response);
 		return "manageSubject";
 	}
 	
@@ -66,7 +60,7 @@ public class ManageSubjectAction extends BaseAction<Subject>{
 		String i=subjectServiceImpl.delSubjectService(subjectId)+"";
 		//向浏览器响应信息
 		getPrintWriter().write(i);
-		return "delSubject";
+		return null;
 	}
 	
 	/**
@@ -87,7 +81,7 @@ public class ManageSubjectAction extends BaseAction<Subject>{
 		String analysis=this.getModel().getAnalysis();
 		String i=""+subjectServiceImpl.addSubjectService(brushName, subjectType, courseName, title,"A "+Aoption, "B "+Boption, "C "+Coption, "D "+Doption, answer, analysis);
 		getPrintWriter().write(i);
-		return "addSubject";
+		return null;
 	}
 	
 	/**
@@ -109,6 +103,6 @@ public class ManageSubjectAction extends BaseAction<Subject>{
 		String analysis=this.getModel().getAnalysis();
 		String i=""+subjectServiceImpl.editSubjectService(subjectId, brushName, subjectType, courseName, title, Aoption, Boption, Coption, Doption, answer, analysis);
 		getPrintWriter().write(i);
-		return "editSubject";
+		return null;
 	}
 }

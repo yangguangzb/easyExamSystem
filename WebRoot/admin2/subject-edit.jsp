@@ -19,16 +19,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/admin2/js/xadmin.js"></script>
   </head>
   <body>
-  	<!-- 第一次判断 -->
-  	<c:if test="${subjectById==null}">
-  		<c:redirect url="../servlet/ManageSubject?flag=checkSubjectById&flag2=edit&subjectId=${param.subjectId}"></c:redirect>
-  	</c:if>
-  	 <!-- 第二次判断,servlet到jsp -->
-  	 <c:if test="${param.subjectId!=null}">
-  	 	<c:if test="${param.subjectId!=subjectById.subjectId}">
-  	 		<c:redirect url="../servlet/ManageSubject?flag=checkSubjectById&flag2=edit&subjectId=${param.subjectId}"></c:redirect>
-  	 	</c:if>
-  	 </c:if>
+  	
     <div class="x-body">
         <form class="layui-form" id="editSubject">
           <div class="layui-form-item">
@@ -82,7 +73,7 @@
                   <span class="x-red">*</span>标题
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="title" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.subjectTitle}</textarea>
+              <textarea style="min-height:40px;" name="subjectTitle" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.subjectTitle}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -90,7 +81,7 @@
                   <span class="x-red">*</span>A选项
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="Aoption" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionA}</textarea>
+              <textarea style="min-height:40px;" name="optionA" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionA}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -98,7 +89,7 @@
                   <span class="x-red">*</span>B选项
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="Boption" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionB}</textarea>
+              <textarea style="min-height:40px;" name="optionB" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionB}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -106,7 +97,7 @@
                   <span class="x-red">*</span>C选项
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="Coption" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionC}</textarea>
+              <textarea style="min-height:40px;" name="optionC" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionC}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -114,7 +105,7 @@
                   <span class="x-red">*</span>D选项
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="Doption" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionD}</textarea>
+              <textarea style="min-height:40px;" name="optionD" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.optionD}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -122,7 +113,7 @@
                   <span class="x-red">*</span>答案
               </label>
     	    <div class="layui-input-block">
-              <textarea style="min-height:40px;" name="answer" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.subjectAnswer}</textarea>
+              <textarea style="min-height:40px;" name="subjectAnswer" lay-verify="required" placeholder="请输入内容" class="layui-textarea">${sessionScope.subjectById.subjectAnswer}</textarea>
             </div>
           </div>
           <div class="layui-form-item layui-form-text">
@@ -152,7 +143,7 @@
             //console.log(data);
             $.ajax({
             	type:'post',
-            	url:'${pageContext.request.contextPath}/servlet/ManageSubject?flag=editSubject',
+            	url:'manageSubjectAction_editSubject.action',
             	data:$("#editSubject").serialize(),
             	cache:false,
             	//dataType:'json',

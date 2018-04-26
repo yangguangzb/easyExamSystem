@@ -20,16 +20,7 @@
   </head>
   
   <body>
-  	<!-- 第一次判断 -->
-  	<c:if test="${subjectById==null}">
-  		<c:redirect url="../servlet/ManageSubject?flag=checkSubjectById&subjectId=${param.subjectId}"></c:redirect>
-  	</c:if>
-  	 <!-- 第二次判断,servlet到jsp -->
-  	 <c:if test="${param.subjectId!=null}">
-  	 	<c:if test="${param.subjectId!=subjectById.subjectId}">
-  	 		<c:redirect url="../servlet/ManageSubject?flag=checkSubjectById&subjectId=${param.subjectId}"></c:redirect>
-  	 	</c:if>
-  	 </c:if>
+  
     <div class="x-body">
         <form class="layui-form">
           <div class="layui-form-item">

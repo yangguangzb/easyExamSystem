@@ -72,7 +72,7 @@ public class SubjectDaoImpl implements SubjectDao{
 			//题目类型不为空
 			sql.append(" and subjectType='"+subjectType+"'");
 		}
-		if(!DBUtil.isEmpty(subjectId)){
+		if(!DBUtil.isEmpty(subjectId)&&!subjectId.equals("0")){
 			//题目编号不为空
 			int id=Integer.parseInt(subjectId);
 			sql.append(" and subjectId="+id+"");
