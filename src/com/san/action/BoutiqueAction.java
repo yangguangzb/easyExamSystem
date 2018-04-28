@@ -18,11 +18,6 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	IntegralServiceImpl integralServiceImpl=new IntegralServiceImpl();
 	UserServiceImpl userServiceImpl=new UserServiceImpl();
 	
-	//具体题目
-	int boutId=0;
-	List<Subject> boutiqueSubjectList;   //所有题目
-	Subject nowBoutiqueSubject;			//当前题目
-	
 	/**
 	 * 精品区下一题
 	 * @return
@@ -30,13 +25,10 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	public String nextBoutSubject(){
 		String allSubject=getRequest().getSession().getAttribute("allSubject").toString();
 		int allIntSubject=Integer.parseInt(allSubject);
-		String s=(String) getRequest().getSession().getAttribute("boutId");
-		if(s==""){
-			System.out.println();
-		}
-		String boutIdstr=(String)getRequest().getSession().getAttribute("boutId");
+		String boutIdstr=getRequest().getSession().getAttribute("boutId").toString();
 		int boutId=Integer.parseInt(boutIdstr);
-		boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
+		List<Subject> boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
+		Subject nowBoutiqueSubject=null;
 		if(boutId<allIntSubject){	//还有题目可做
 			nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
 			//现在的题目
@@ -57,7 +49,6 @@ public class BoutiqueAction extends BaseAction<Subject>{
 		//把精品区信息存入session
 		getRequest().getSession().setAttribute("brushlist", brushlist);
 		//跳转到精品区界面
-		//response.sendRedirect("boutique.jsp");
 		return "display";
 	}
 	
@@ -114,8 +105,9 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	 * @throws IOException 
 	 */
 	public String detailSubject() throws IOException{
-		boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
+		List<Subject> boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
 		int subjectId=0;
+		int boutId=0;
 		String boutiqueSubjectId=this.getModel().getBoutiqueSubjectId();
 		if(!boutiqueSubjectId.equals("")&&DBUtil.isNumeric(boutiqueSubjectId)){
 			subjectId=Integer.parseInt(boutiqueSubjectId);
@@ -132,7 +124,7 @@ public class BoutiqueAction extends BaseAction<Subject>{
 			boutId=0;
 			return null;
 		}
-		nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
+		Subject nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
 		//总共有多少道题目,存入session
 		getRequest().getSession().setAttribute("allSubject", boutiqueSubjectList.size());
 		//现在的题目
@@ -140,7 +132,6 @@ public class BoutiqueAction extends BaseAction<Subject>{
 		boutId++;
 		//现在题目序号
 		getRequest().getSession().setAttribute("boutId", boutId);
-		System.out.println("boutId"+boutId);
 		return "detailSubject";
 	}
 	
@@ -151,9 +142,9 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	 */
 	public String answerCl() throws IOException{
 		//获取当前题目的答案
+		Subject nowBoutiqueSubject=(Subject) getRequest().getSession().getAttribute("nowBoutiqueSubject");
 		String answer=nowBoutiqueSubject.getSubjectAnswer();
-		//String submitAnswer=request.getParameter("submitAnswer").toString();
-		String submitAnswer=this.getModel().getSubjectAnswer();
+		String submitAnswer=getRequest().getParameter("submitAnswer");
 		if(submitAnswer.equals(answer)){
 			//提交的答案正确
 			getPrintWriter().write("正确");

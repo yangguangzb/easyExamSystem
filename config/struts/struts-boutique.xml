@@ -6,7 +6,7 @@
 	<package name="boutique" namespace="/" extends="common">
 		<action name="boutiqueAction_*" class="com.san.action.BoutiqueAction" method="{1}">
 			<!-- 跳转到具体课程刷题 -->
-			<result name="detail" type="redirect">/boutiqueDetail.jsp</result>
+			<result name="detail">/boutiqueDetail.jsp</result>
 			
 			<!-- 显示精品区信息 -->
 			<result name="display">/boutique.jsp</result>
