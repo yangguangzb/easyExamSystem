@@ -18,6 +18,11 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	IntegralServiceImpl integralServiceImpl=new IntegralServiceImpl();
 	UserServiceImpl userServiceImpl=new UserServiceImpl();
 	
+	//具体题目
+	int boutId=0;
+	List<Subject> boutiqueSubjectList;   //所有题目
+	Subject nowBoutiqueSubject;			//当前题目
+	
 	/**
 	 * 精品区下一题
 	 * @return
@@ -25,6 +30,13 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	public String nextBoutSubject(){
 		String allSubject=getRequest().getSession().getAttribute("allSubject").toString();
 		int allIntSubject=Integer.parseInt(allSubject);
+		String s=(String) getRequest().getSession().getAttribute("boutId");
+		if(s==""){
+			System.out.println();
+		}
+		String boutIdstr=(String)getRequest().getSession().getAttribute("boutId");
+		int boutId=Integer.parseInt(boutIdstr);
+		boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
 		if(boutId<allIntSubject){	//还有题目可做
 			nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
 			//现在的题目
@@ -32,8 +44,6 @@ public class BoutiqueAction extends BaseAction<Subject>{
 			boutId++;
 			//现在题目序号
 			getRequest().getSession().setAttribute("boutId", boutId);
-			//response.sendRedirect("boutiqueDetail.jsp");
-			//return ;
 		}
 		return "nextBoutSubject";
 	}
@@ -54,8 +64,9 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	/**
 	 * 具体精品课程
 	 * @return
+	 * @throws IOException 
 	 */
-	public String detail(){
+	public String detail() throws IOException{
 		//获取用户积分
 		User user=(User) getRequest().getSession().getAttribute("user");
 		String courseName=this.getModel().getCourseName();
@@ -69,7 +80,6 @@ public class BoutiqueAction extends BaseAction<Subject>{
 			List<Subject> boutiqueSubjectList = boutiqueService.boutiqueSubjectService(courseName);
 			getRequest().getSession().setAttribute("boutiqueSubjectList", boutiqueSubjectList);
 			//跳转到具体课程刷题
-			//response.sendRedirect("boutiqueDetail.jsp");
 			return "detail";
 		}else{
 			//用户没有购买过该课程
@@ -87,21 +97,16 @@ public class BoutiqueAction extends BaseAction<Subject>{
 				List<Subject> boutiqueSubjectList = boutiqueService.boutiqueSubjectService(courseName);
 				getRequest().getSession().setAttribute("boutiqueSubjectList", boutiqueSubjectList);
 				//跳转到具体课程刷题
-				//response.sendRedirect("boutiqueDetail.jsp");
 				return "detail";
 			}else{
 				//积分不够，跳转到积分购买界面
-				//response.getWriter().write("积分不够,请购买积分!");
-				//response.setHeader("refresh","2;url=buyPoints.jsp");
-				return "buyPoints";
+				getPrintWriter().write("积分不够,请购买积分!");
+				getResponse().setHeader("refresh","2;url=buyPoints.jsp");
+				return null;
 			}
 		}
 	}
 	
-	//具体题目
-	int boutId=0;
-	List<Subject> boutiqueSubjectList;   //所有题目
-	Subject nowBoutiqueSubject;			//当前题目
 	
 	/**
 	 * 具体题目,开始刷题
@@ -111,20 +116,21 @@ public class BoutiqueAction extends BaseAction<Subject>{
 	public String detailSubject() throws IOException{
 		boutiqueSubjectList=(List<Subject>)getRequest().getSession().getAttribute("boutiqueSubjectList");
 		int subjectId=0;
-		//String boutiqueSubjectId=request.getParameter("boutiqueSubjectId").toString();
-		String boutiqueSubjectId=this.getModel().getSubjectId()+"";
-		if(boutiqueSubjectId!=""&&DBUtil.isNumeric(boutiqueSubjectId)){
+		String boutiqueSubjectId=this.getModel().getBoutiqueSubjectId();
+		if(!boutiqueSubjectId.equals("")&&DBUtil.isNumeric(boutiqueSubjectId)){
 			subjectId=Integer.parseInt(boutiqueSubjectId);
 			boutId=subjectId-1;
+		}else if(boutiqueSubjectId.equals("")){
+			boutId=0;
 		}else{
 			getPrintWriter().write("-2");
 			boutId=0;
-			//return ;
+			return null;
 		}
 		if(boutiqueSubjectList.size()<subjectId){
 			getPrintWriter().write("-1");
 			boutId=0;
-			//return ;
+			return null;
 		}
 		nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
 		//总共有多少道题目,存入session
@@ -134,6 +140,7 @@ public class BoutiqueAction extends BaseAction<Subject>{
 		boutId++;
 		//现在题目序号
 		getRequest().getSession().setAttribute("boutId", boutId);
+		System.out.println("boutId"+boutId);
 		return "detailSubject";
 	}
 	
@@ -150,12 +157,10 @@ public class BoutiqueAction extends BaseAction<Subject>{
 		if(submitAnswer.equals(answer)){
 			//提交的答案正确
 			getPrintWriter().write("正确");
-			//return ;
 		}else{
 			//提交的答案错误
 			getPrintWriter().write("错误");
-			//return ;
 		}
-		return "answerCl";
+		return null;
 	}
 }

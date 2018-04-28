@@ -35,12 +35,15 @@
 		<filter-name>CodeFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 用户是否登录过滤 -->
-	<!--<filter-mapping>
+	
+	
+	<!-- 用户是否登录过滤 
+	<filter-mapping>
 		<filter-name>Login</filter-name>
 		<url-pattern>/*.java</url-pattern>	
 	</filter-mapping>
 	-->
+	
 	<!-- 后台过滤 -->
 	<filter-mapping>
 		<filter-name>UserFilter</filter-name>

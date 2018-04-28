@@ -152,6 +152,7 @@ public class BoutiqueServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String allSubject=request.getSession().getAttribute("allSubject").toString();
 		int allIntSubject=Integer.parseInt(allSubject);
+		boutiqueSubjectList=(List<Subject>)request.getSession().getAttribute("boutiqueSubjectList");
 		if(boutId<allIntSubject){	//还有题目可做
 			nowBoutiqueSubject=boutiqueSubjectList.get(boutId);
 			//现在的题目

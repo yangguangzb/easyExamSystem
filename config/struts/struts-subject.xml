@@ -8,9 +8,9 @@
 			<!-- 显示成绩排名 -->
 			<result name="showGradeRank">/ordinary.jsp</result>
 			<!-- 显示题目 -->
-			<result name="display">/ordinary.jsp</result>
+			<result name="display" type="redirect">/ordinary.jsp</result>
 			<!-- 显示下一题 -->
-			<result name="displayNext">/ordinary.jsp</result>
+			<result name="displayNext" type="redirect">/ordinary.jsp</result>
 			<!-- 显示上一题 -->
 			<result name="displayLast">/ordinary.jsp</result>
 		</action>

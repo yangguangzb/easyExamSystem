@@ -22,10 +22,6 @@
 	<link rel="stylesheet" type="text/css" href="css/myBoutique.css"/>
 </head>
 <body>
-<!-- 判断精品信息session是否存在 -->
-<c:if test="${sessionScope.brushlist==null}">
-	<jsp:forward page="boutiqueServlet?flag=display"></jsp:forward>
-</c:if>
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -58,7 +54,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;积分:${BrushList.brushIntegral-3}
 							</p>
 							<p class="describe">
-								<a href="boutiqueServlet?flag=detail&courseName=${BrushList.courseName}" title="历年${BrushList.courseName}考题,考试必做">历年${BrushList.courseName}考题,考试必做</a>
+								<a href="boutiqueAction_detail.action?courseName=${BrushList.courseName}" title="历年${BrushList.courseName}考题,考试必做">历年${BrushList.courseName}考题,考试必做</a>
 							</p>
         				</div>
         			</li>

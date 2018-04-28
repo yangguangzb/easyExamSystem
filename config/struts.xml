@@ -10,8 +10,23 @@
 	
 	<!-- 配置公共项 -->
 	<package name="common" namespace="/" extends="struts-default">
-	
-	
+		<!-- 登录拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.san.interceptor.LoginInterceptor"></interceptor>
+			<!-- 自定义拦截器 -->
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 声明默认 -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		<!-- 全局结果集 -->
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
 	</package>
 	
 	<!-- 加载其他配置文件 -->

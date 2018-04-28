@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title> 
-
+	<link rel="shortcut icon" href="favicon.ico" type="images/favicon.ico" />
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -112,6 +113,15 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	public PrintWriter getPrintWriter() throws IOException{
 		 ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
 		 return ServletActionContext.getResponse().getWriter();
+	}
+	
+	/**
+	 * 获得response
+	 * @return
+	 */
+	public HttpServletResponse getResponse(){
+		
+		return ServletActionContext.getResponse();
 	}
 	
 	/**

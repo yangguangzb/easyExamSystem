@@ -24,7 +24,7 @@
 			<result name="resetPassword_fail">/resetPassword.jsp</result>
 			
 			<!-- 退出系统 -->
-			<result name="signOut" type="redirect">/index.jsp</result>
+			<result name="signOut">/index.jsp</result>
 			
 			<!-- 用户登录后，修改密码 -->
 			<result name="changePassword" type="redirect">/login.jsp</result>

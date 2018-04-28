@@ -25,7 +25,6 @@ public class SubjectAction extends BaseAction<Subject>{
 	public String showGradeRank(){
 		List<Map<String, Object>> gradeRank = subjectService.pankGradeService();
 		getSession().setAttribute("gradeRank",gradeRank);
-		System.out.println("测是");
 		return "showGradeRank";
 	}
 	
@@ -33,8 +32,6 @@ public class SubjectAction extends BaseAction<Subject>{
 	public String display(){
 		//把课程,题型,编号存到session中,方便界面取
 		Subject subject=this.getModel();
-		System.out.println(subject.getCourseName());
-		System.out.println(subject.getSubjectId());
 		getSession().setAttribute("courseName",subject.getCourseName());
 		getSession().setAttribute("subjectId",subject.getSubjectId());
 		getSession().setAttribute("subjectType",subject.getSubjectType());
@@ -150,6 +147,6 @@ public class SubjectAction extends BaseAction<Subject>{
 		//向前台输出成绩
 		getPrintWriter().write(grade+"");
 		grade=0;
-		return "gradeByOption";
+		return null;
 	}
 }

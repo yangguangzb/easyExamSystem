@@ -6,25 +6,17 @@
 	<package name="boutique" namespace="/" extends="common">
 		<action name="boutiqueAction_*" class="com.san.action.BoutiqueAction" method="{1}">
 			<!-- 跳转到具体课程刷题 -->
-			<result name="detail">/boutiqueDetail.jsp</result>
-			
-			<!-- 积分不够，跳转到积分购买界面 -->
-			<result name="buyPoints">/buyPoints.jsp</result>
+			<result name="detail" type="redirect">/boutiqueDetail.jsp</result>
 			
 			<!-- 显示精品区信息 -->
 			<result name="display">/boutique.jsp</result>
 			
 			<!-- 精品区下一题 -->
-			<result name="nextBoutSubject">/boutiqueDetail.jsp</result>
+			<result name="nextBoutSubject" type="redirect">/boutiqueDetail.jsp</result>
 			
 			<!-- 具体题目,开始刷题 -->
-			<result name="detailSubject"></result>
+			<result name="detailSubject">/boutiqueDetail.jsp</result>
 			
-			<!--  -->
-			<result name=""></result>
-			
-			<!-- 提交答案处理 -->
-			<result name="answerCl"></result>
 		</action>
 	</package>
 </struts>

@@ -116,7 +116,7 @@
 						window.location.reload();
 					}
 				}
-				xhr.open("get","subjectServlet?flag=gradeByOption&choice="+choice);
+				xhr.open("get","subjectAction_gradeByOption.action?choice="+choice);
 				xhr.send(null);
 			}
 		}
@@ -204,7 +204,7 @@
 	    		<!-- 显示ABCD选项部分 -->
 	    		<div style="height:300px;width:100%;border:1px #999 solid;">
 	    			<c:if test="${sessionScope.nowSubject!=null}">
-	    				<s:form action="subjectAction_displayNext" id="nextSubject">
+	    				<s:form action="subjectAction_displayNext.action" namespace="/" id="nextSubject">
 		    				<input type="radio" name="choice" value="A" id="A"/>
 		    					<label for="A">${sessionScope.nowSubject.optionA }</label>
 		    				<input type="radio" name="choice" value="B" id="B"/>
@@ -224,7 +224,7 @@
 	    			<tr>
 	    				<td>
 	    					<!-- 上一题 -->
-	    					<s:form action="subjectAction_displayLast">
+	    					<s:form action="subjectAction_displayLast.action">
 	    						<input type="submit" class="btn btn-primary" value="上一题" onclick="lastSubject()"/>
 	    					</s:form>
 	    				</td>
@@ -281,7 +281,6 @@
     
     </div>
 </section>
-<s:debug></s:debug>
 <jsp:include page="foot.jsp"></jsp:include>
 
 

@@ -29,6 +29,9 @@ public class QuestionAction extends BaseAction<Question>{
 	 */
 	public String notAnswerQuestion(){
 		User user=(User) getSession().getAttribute("user");
+		if(user==null){
+			return "login";
+		}
 		List<Question> notAnswer=questionServiceImpl.notAnswerService(user.getUserId());
 		getRequest().setAttribute("notAnswer", notAnswer);
 		return "notAnswerQuestion";

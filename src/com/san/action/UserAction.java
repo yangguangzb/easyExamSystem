@@ -197,6 +197,7 @@ public class UserAction extends BaseAction<User> {
 	public String signOut(){
 		//退出系统
 		ServletActionContext.getRequest().getSession().invalidate();
+		System.out.println("测试");
 		return "signOut";
 	}
 	

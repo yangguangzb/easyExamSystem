@@ -19,12 +19,19 @@
 						<li>
 							<s:a action="subjectAction_showGradeRank.action" namespace="/">普通区</s:a>
 						</li>
-                        <li><a href="boutique.jsp">精品区</a></li>
-						<li><a href="data.jsp">资料下载</a></li>
+                        
+                        <li>
+                        	<s:a action="boutiqueAction_display.action" namespace="/">精品区</s:a>
+                        </li>
+						
+						<li>
+						<a href="data.jsp">资料下载</a>
+						</li>
+                        
                         <li><a href="dataupload.jsp">资料上传</a></li>
 						<li><a href="share.jsp">分享交流</a></li>
                         <li>
-                        	<s:a action="questionAction_notAnswerQuestion" namespace="/">随问即答</s:a>
+                        	<s:a action="questionAction_notAnswerQuestion.action" namespace="/">随问即答</s:a>
                         </li>
                     </ul><!-- End of .menuzord-menu -->
                 </nav> <!-- End of #main_menu -->
