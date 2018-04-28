@@ -16,11 +16,6 @@ import com.san.service.Impl.SubjectServiceImpl;
 public class SubjectAction extends BaseAction<Subject>{
 	private static final long serialVersionUID = 1L;
 	SubjectService subjectService=new SubjectServiceImpl();
-	int k=0;					//设置题目编号
-	List<Subject> subjectList;	//20道题目集合
-	int grade=0;				//设置分数
-	Subject nowSubject=null;	//设置当前题目;
-	int j=k;					//设置上一题
 	//显示成绩排名
 	public String showGradeRank(){
 		List<Map<String, Object>> gradeRank = subjectService.pankGradeService();
@@ -40,12 +35,14 @@ public class SubjectAction extends BaseAction<Subject>{
 		getSession().setAttribute("grade", 0);
 		//显示20道题目
 		try {
+			int k=0;
 			k++;
-			subjectList = subjectService.display(subject.getCourseName(), subject.getSubjectId()+"", subject.getSubjectType());
+			List<Subject> subjectList = subjectService.display(subject.getCourseName(), subject.getSubjectId()+"", subject.getSubjectType());
 			getSession().setAttribute("subjectList", subjectList);
-			nowSubject=subjectList.get(0);
+			Subject nowSubject=subjectList.get(0);
 			nowSubject.setSubjectId(k);//设置当前题目编号
 			getSession().setAttribute("nowSubject", nowSubject);
+			getSession().setAttribute("k", k);
 			//转发无法响应(待解决)
 			//request.getRequestDispatcher("/ordinary.jsp").forward(request, response);
 		} catch (NumberFormatException e) {
@@ -58,10 +55,12 @@ public class SubjectAction extends BaseAction<Subject>{
 	
 	//显示下一题
 	public String displayNext(){
+		String strk=getSession().getAttribute("k").toString();
+		int k=Integer.parseInt(strk);
 		//显示下一题
 		if(k<20){
 			List<Subject> subjectList=(List<Subject>)getSession().getAttribute("subjectList");
-			nowSubject=subjectList.get(k);
+			Subject nowSubject=subjectList.get(k);
 			//获得当前选项
 			String choice="";
 			if(getRequest().getParameter("choice")!=null){
@@ -71,6 +70,12 @@ public class SubjectAction extends BaseAction<Subject>{
 			Subject lastSubject=subjectList.get(k-1);
 			//前一道题答案
 			String subjectAnswer=lastSubject.getSubjectAnswer();
+			String strgrade="";
+			int grade=0;
+			if(getSession().getAttribute("grade")!=null){
+				strgrade=getSession().getAttribute("grade").toString();
+				grade=Integer.parseInt(strgrade);
+			}
 			if(subjectAnswer.contains(choice)&&choice!=""){
 				grade=grade+5;
 			}
@@ -87,6 +92,8 @@ public class SubjectAction extends BaseAction<Subject>{
 	//显示上一题
 	public String displayLast(){
 		//显示上一题
+		String strk=getSession().getAttribute("k").toString();
+		int k=Integer.parseInt(strk);
 		k--;
 		if(k>0){
 			//题目已做完(第一道题)
@@ -113,6 +120,10 @@ public class SubjectAction extends BaseAction<Subject>{
 	//统计分数
 	public String gradeByOption() throws IOException{
 		String grade2 = getSession().getAttribute("grade").toString();
+		String strk=getSession().getAttribute("k").toString();
+		List<Subject> subjectList=(List<Subject>)getSession().getAttribute("subjectList");
+		int k=Integer.parseInt(strk);
+		int grade;
 		if("".equals(grade2)){
 			grade=0;
 		}else{
@@ -146,7 +157,6 @@ public class SubjectAction extends BaseAction<Subject>{
 		getSession().setAttribute("grade",0);
 		//向前台输出成绩
 		getPrintWriter().write(grade+"");
-		grade=0;
 		return null;
 	}
 }

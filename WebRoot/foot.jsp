@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <footer class="main-footer">
     <div class="widgets-section">
         <div class="container">
@@ -30,11 +31,19 @@
                                 <h3 class="footer-title">轻松考</h3>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="ordinary.jsp">必过之旅</a></li>
-                                        <li><a href="boutique.jsp">奖学金之旅</a></li>
+                                        <li>
+											<s:a action="subjectAction_showGradeRank.action" namespace="/">必过之旅</s:a>
+										</li>
+										<li>
+                        					<s:a action="boutiqueAction_display.action" namespace="/">奖学金之旅</s:a>
+                       					</li>
+										
                                         <li><a href="data.jsp">资料之旅</a></li>
                                         <li><a href="share.jsp">分享之旅</a></li>
-                                        <li><a href="problem.jsp">随问即答</a></li>
+                                        
+                                        <li>
+                        					<s:a action="questionAction_notAnswerQuestion.action" namespace="/">随问即答</s:a>
+                        				</li>
                                         <li><a href="#">其他</a></li>
                                     </ul>
                                 </div>

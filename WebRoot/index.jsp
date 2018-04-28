@@ -1,12 +1,14 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Home</title> 
-	<link rel="shortcut icon" href="favicon.ico" type="images/favicon.ico" />
+
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -58,7 +60,7 @@
                     data-start="2300">
                     <div class="slide-content-box">
                         <div class="button">
-                            <a class="thm-btn-tr" href="ordinary.jsp">必过之旅</a>     
+                            <s:a action="subjectAction_showGradeRank.action" class="thm-btn-tr" namespace="/">必过之旅</s:a> 
                         </div>
                     </div>
                 </div>
@@ -74,7 +76,7 @@
                     data-start="2600">
                     <div class="slide-content-box">
                         <div class="button">
-                            <a class="thm-btn" href="boutique.jsp">奖学金之旅</a>     
+                            <s:a class="thm-btn" action="boutiqueAction_display.action" namespace="/">奖学金之旅</s:a>     
                         </div>
                     </div>
                 </div>
@@ -179,7 +181,7 @@
                     data-start="2600">
                     <div class="slide-content-box">
                         <div class="button">
-                            <a class="thm-btn" href="boutique.jsp">奖学金之旅</a>     
+                            <s:a class="thm-btn" action="boutiqueAction_display.action" namespace="/">奖学金之旅</s:a>   
                         </div>
                     </div>
                 </div>
@@ -261,14 +263,14 @@
                         <figcaption class="default-overlay-outer">
                             <div class="inner">
                                 <div class="content-layer">
-                                    <a href="ordinary.jsp" class="thm-btn thm-tran-bg">必过之旅</a>
+                                    <s:a class="thm-btn thm-tran-bg" action="subjectAction_showGradeRank.action" namespace="/">必过之旅</s:a>
                                 </div>
                             </div>
                         </figcaption>
                     </figure>
                     <div class="content center">
                         <h5>普通区</h5>
-                        <a href="ordinary.jsp"><h4>必过之旅</h4></a>
+                        <s:a action="subjectAction_showGradeRank.action" namespace="/"><h4>必过之旅</h4></s:a>
                         <div class="text">
                             <p>普通区收集书中<br>
                             	最基础的知识点,<br>
@@ -285,14 +287,14 @@
                         <figcaption class="default-overlay-outer">
                             <div class="inner">
                                 <div class="content-layer">
-                                    <a href="boutique.jsp" class="thm-btn thm-tran-bg">奖学金之旅</a>
+                                    <s:a action="boutiqueAction_display.action" class="thm-btn thm-tran-bg" namespace="/">奖学金之旅</s:a>
                                 </div>
                             </div>
                         </figcaption>
                     </figure>
                     <div class="content center">
                         <h5>精品区</h5>
-                        <a href="boutique.jsp"><h4>奖学金之旅</h4></a>
+                        <s:a action="boutiqueAction_display.action" namespace="/"><h4>奖学金之旅</h4></s:a>
                         <div class="text">
                             <p>精品区收集往年考试试题, <br>书中的重点知识，书中的难点知识...... <br></p>
                         </div>
@@ -307,14 +309,14 @@
                         <figcaption class="default-overlay-outer">
                             <div class="inner">
                                 <div class="content-layer">
-                                    <a href="problem.jsp" class="thm-btn thm-tran-bg">解答之旅</a>
+                                    <s:a class="thm-btn thm-tran-bg" action="questionAction_notAnswerQuestion.action" namespace="/">解答之旅</s:a>
                                 </div>
                             </div>
                         </figcaption>
                     </figure>
                     <div class="content center">
                         <h5>随问即答</h5>
-                        <a href="problem.jsp"><h4>解答之旅</h4></a>
+                        <s:a action="questionAction_notAnswerQuestion.action" namespace="/"><h4>解答之旅</h4></s:a>
                         <div class="text">
                             <p>在这里你可以提出你所遇到的问题 <br>得到你最想要的答案<br>...... </p>
                         </div>
@@ -414,7 +416,6 @@
         </div>
     </div>
 </section>
-
 <section class="feature-service sec-padd2">
     <div class="container">
         <div class="row">
@@ -471,9 +472,7 @@
         </div>
     </div>
 </section>
-
 <div class="container"><div class="border-bottom"></div></div>
-
 <section class="testimonials-section sec-padd">
     <div class="container">
         <div class="section-title center">
@@ -533,13 +532,11 @@
                     <p>It involves an examination of operations which allows their team discuss the art of the possible. They bring a wealth of knowledge, we believe fortune.</p>
                 </div>
             </article>
-
      
         </div>
         
     </div>    
 </section>
-
 <section class="latest-project sec-padd">
     <div class="container">
         <div class="section-title">
@@ -608,7 +605,6 @@
                 
     </div>
 </section>
-
 <section class="blog-section sec-padd2">
     <div class="container">
         <div class="section-title center">
@@ -700,7 +696,6 @@
         </div>
     </div>
 </section>
-
 <section class="consultations sec-padd" style="background-image: url(images/background/5.jpg);">
     <div class="container">
         <div class="row">
@@ -753,7 +748,6 @@
                                     <button class="thm-btn thm-color" type="submit" data-loading-text="Please wait..."><i class="fa fa-paper-plane"></i></button>
                                 </div>
                             </div>
-
                         </div>
                     </form>
                 </div>
@@ -761,14 +755,12 @@
         </div>
     </div>
 </section>
-
 <section class="clients-section sec-padd">
     <div class="container">
         <div class="section-title">
             <h2>our partners</h2>
         </div>
         <div class="client-carousel owl-carousel owl-theme">
-
             <div class="item tool_tip" title="media partner">
                 <img src="images/clients/1.png" alt="Awesome Image">
             </div>
@@ -784,11 +776,9 @@
             <div class="item tool_tip" title="media partner">
                 <img src="images/clients/5.png" alt="Awesome Image">
             </div>
-
         </div>
     </div>  
 </section>
-
 <div class="call-out">
     <div class="container">
         <div class="row">
@@ -860,7 +850,6 @@
                 <div class="big-column col-md-6 col-sm-12 col-xs-12">
                     <div class="row clearfix">
                         
-
                         Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget contact-widget">
@@ -882,7 +871,6 @@
                                 
                             </div>
                         </div>
-
                         Footer Column
                         <div class="footer-column col-md-6 col-sm-6 col-xs-12">
                             <div class="footer-widget news-widget">

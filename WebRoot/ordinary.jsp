@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title> 
+    <title>普通区</title> 
 
     <!-- mobile responsive meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -121,23 +121,22 @@
 			}
 		}
 		//下一题按钮事件
-		function nextSubject(){
+		
+	</script>
+	
+	<script type="text/javascript">
+		function next() {
 			var k=<%=session.getAttribute("k")%>;
 			if(k>=20){
 				alert("题目做完啦,请提交");
 			}else{
-				document.getElementById("nextSubject").submit();
+				document.getElementById("next").submit();
 			}
 		}
 	</script>
 </head>
 <body>
 <!-- 读取排名是否存在 -->
-
-<c:if test="sessionScope.pankGrade==null">
-	<jsp:forward page="${pageContext.request.contextPath}/subjectAction_showGradeRank.action"></jsp:forward>
-</c:if>
-
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -204,7 +203,7 @@
 	    		<!-- 显示ABCD选项部分 -->
 	    		<div style="height:300px;width:100%;border:1px #999 solid;">
 	    			<c:if test="${sessionScope.nowSubject!=null}">
-	    				<s:form action="subjectAction_displayNext.action" namespace="/" id="nextSubject">
+	    				<form action="subjectAction_displayNext.action" id="next" method="post">
 		    				<input type="radio" name="choice" value="A" id="A"/>
 		    					<label for="A">${sessionScope.nowSubject.optionA }</label>
 		    				<input type="radio" name="choice" value="B" id="B"/>
@@ -214,9 +213,9 @@
 		    				<input type="radio" name="choice" value="D" id="D"/>
 		    					<label for="D">${sessionScope.nowSubject.optionD }</label>
 			    			<div style="padding-left:450px;margin-top:20px;">
-			    				<input type="button" class="btn btn-primary" value="下一题" onclick="nextSubject()"/>
+			    				<input type="button" class="btn btn-primary" value="下一题" onclick="next()"/>
 			    			</div>
-		    			</s:form>
+		    			</form>
 	    			</c:if>
 	    		</div>
 	    		<!-- 选择上下题按钮,查看解析按钮-->
@@ -224,9 +223,9 @@
 	    			<tr>
 	    				<td>
 	    					<!-- 上一题 -->
-	    					<s:form action="subjectAction_displayLast.action">
+	    					<form action="subjectAction_displayLast.action" method="post">
 	    						<input type="submit" class="btn btn-primary" value="上一题" onclick="lastSubject()"/>
-	    					</s:form>
+	    					</form>
 	    				</td>
 	    				<td width="20px;"></td>
 	    				<td>
