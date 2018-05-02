@@ -18,7 +18,11 @@
     <!-- 必须 -->
     <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="admin2/js/xadmin.js"></script>
-	
+	<!-- 必须 -->
+    <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
+    <script type="text/javascript" src="admin2/js/xadmin.js"></script>
+	<link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
 	<script type="text/javascript">

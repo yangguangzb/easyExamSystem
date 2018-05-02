@@ -8,6 +8,11 @@
 <script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="admin2/lib/layui/layui.js"></script>
 
+<!-- 必须 -->
+<script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
+<link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
+<script type="text/javascript" src="admin2/js/xadmin.js"></script>
+<link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
 
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="admin2/css/font.css">
