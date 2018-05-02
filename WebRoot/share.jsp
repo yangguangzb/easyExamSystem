@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<% String context=request.getContextPath(); %>
+<% 
+StringBuffer basePath=request.getRequestURL();
+%>
+<base href="<%=basePath %>">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,7 +116,7 @@
     <script>
         $('#table').bootstrapTable({
             method:"get",
-            url: "shareAreaServlet",
+            url: "sharearea/ShareAreaAction_listArea",
             dataType: "json",
             striped: true,
             classes:'table table-hover table-no-bordered',
@@ -145,7 +150,7 @@
             }
             ],
             onClickRow:function(row, $element, field){
-                window.location.href="shareAreaCommentServlet?method=listPost&postCreationId="+row.postCreationId.toString();
+                window.location.href="sharearea/ShareAreaAction_listComment?postCreationId="+row.postCreationId.toString();
             }
 
         });

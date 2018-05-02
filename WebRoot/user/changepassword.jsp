@@ -24,7 +24,7 @@
   
   <body>
     <div class="x-body">
-        <form class="layui-form" method="post" action="changePasswordServlet">
+        <form class="layui-form" method="post" action="changepassword/changePasswordAction_changePassword">
           <div class="layui-form-item">
               <!--
               <label for="username" class="layui-form-label">

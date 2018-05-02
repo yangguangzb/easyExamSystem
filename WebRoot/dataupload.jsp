@@ -54,7 +54,7 @@
                 <h2>轻松考</h2>
             </div>
             <div>
-                <form method="post" action="resourceuploadservlet" enctype="multipart/form-data">
+                <form method="post" action="resource/ResourceAction_insertResource" enctype="multipart/form-data">
                 <c:if test="not empty message">
                 <div class="alert alert-danger" role="alert">
                 ${message}
@@ -63,7 +63,7 @@
             
                     <div class="form-group">
                         <label for="course">课程</label>
-                        <select  class="custom-select form-control" id="course" name="course">
+                        <select  class="custom-select form-control" id="courseName" name="courseName">
                             <option>高等数学</option>
                             <option>线性代数</option>
                             <option>大学英语</option>
