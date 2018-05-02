@@ -14,6 +14,9 @@ public class LoginInterceptor extends MethodFilterInterceptor{
 			//没有登陆
 			//获得当前运行的action
 			Object action=invocation.getAction();
+			if(action.toString().contains("UserAction")){
+				return invocation.invoke();
+			}
 			//判断运行时是否是Actionsupport
 			if(action instanceof ActionSupport){
 				ActionSupport actionSupport=(ActionSupport)action;

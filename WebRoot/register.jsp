@@ -58,7 +58,7 @@
 					
 				}
 			}
-			xhr.open("get","userAction_savePassword?password="+password);
+			xhr.open("get","userAction_savePassword.action?password="+password);
 			xhr.send(null);
 		}
 	}
@@ -71,7 +71,7 @@
 				
 			}
 		}
-		xhr.open("get","userAction_registerJihuoma");
+		xhr.open("get","userAction_registerJihuoma.action");
 		xhr.send(null);
 	}
 	

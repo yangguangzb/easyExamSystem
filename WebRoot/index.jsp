@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
