@@ -1,10 +1,10 @@
 ## easyExamSystem轻松考系统1.0
 
 ### 开发环境：
-myeclipse+mysql+git
+myeclipse10.0+mysql5.5+git
 
-### 软件架构：
-model+view+controller+easyui+bootstrap
+### 技术架构：
+struts2、easyui、bootstrap、layer、Jquery、c3p0、JSTL、EL表达式等
 
 ### 项目描述：
 本系统是基于B/S架构而设计开发，目的在于减少大学生考试挂科率，解决大学生考试不知道如何复习，找不到复习资料
@@ -14,7 +14,12 @@ model+view+controller+easyui+bootstrap
 - 提问与回答：用户提出问题，设置积分，别人回答或抢答
 - 刷题：用户根据权限可以做相应的题目等
 - 学习小组讨论：讨论回复学习方法等
+- 后台对应表的增删改查
 
-### 联系方式：
-2570886020@qq.com
+
+#### 我的联系
+QQ：2570886020             <br/>
+邮箱：2570886020@qq.com    </br>
+我的博客：https://blog.csdn.net/shaonianbz </br>
+版权归作者所有，转载请注明出处
 
