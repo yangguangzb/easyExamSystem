@@ -2,10 +2,10 @@
 <c3p0-config>
   <default-config>
 	<property name="driverClass">com.mysql.jdbc.Driver</property>
-	<property name="jdbcUrl">jdbc:mysql://119.29.151.185:3306/java_review?useUnicode=true&amp;characterEncoding=UTF8
+	<property name="jdbcUrl">jdbc:mysql://localhost:3306/java_review?useUnicode=true&amp;characterEncoding=UTF8
 	</property>
-	<property name="user">java</property>
-	<property name="password">123456</property>
+	<property name="user">root</property>
+	<property name="password">root</property>
 	<!--连接池初始化时创建的连接数,default : 3-->
     <property name="initialPoolSize">10</property>
     <property name="maxIdleTime">30</property>

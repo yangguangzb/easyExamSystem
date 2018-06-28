@@ -28,7 +28,7 @@ public class ResourceDaoImpl implements ResourceDao {
 		// TODO Auto-generated method stub
 		try {
 			QueryRunner runner=new QueryRunner(C3p0Util.getDataSource());
-			String sql="select * from resource2 where resourceId=?,uploadId=?,courseId=?,courseName=?,resource=?,downNumber=?,integration=?";
+			String sql="select * from resource where resourceId=?,uploadId=?,courseId=?,courseName=?,resource=?,downNumber=?,integration=?";
 			return (List<Resource>) runner.query(sql, courseName,new BeanHandler(Resource.class));
 			
 			

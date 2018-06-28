@@ -35,5 +35,13 @@ public interface UserDao {
      * @return
      */
     public int save(String userName,String e_mail,String password);
+    
+    /**
+     * 修改用户积分
+     * @param userId
+     * @param integralNumber
+     * @return
+     */
+    public int modifyIntegralNumber(int userId,int integralNumber);
 	
 }

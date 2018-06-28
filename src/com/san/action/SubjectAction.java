@@ -25,19 +25,23 @@ public class SubjectAction extends BaseAction<Subject>{
 	
 	//显示题目
 	public String display(){
-		//把课程,题型,编号存到session中,方便界面取
 		Subject subject=this.getModel();
-		getSession().setAttribute("courseName",subject.getCourseName());
-		getSession().setAttribute("subjectId",subject.getSubjectId());
-		getSession().setAttribute("subjectType",subject.getSubjectType());
-		getSession().setAttribute("brushName", "普通区");
-		//将上次成绩重置为0
-		getSession().setAttribute("grade", 0);
 		//显示20道题目
 		try {
+			List<Subject> subjectList = subjectService.display(subject.getCourseName(), subject.getSubjectId()+"", subject.getSubjectType());
+			//没有题目
+			if(subjectList.size()==0){
+				return "notSubject";
+			}
 			int k=0;
 			k++;
-			List<Subject> subjectList = subjectService.display(subject.getCourseName(), subject.getSubjectId()+"", subject.getSubjectType());
+			//把课程,题型,编号存到session中,方便界面取
+			getSession().setAttribute("courseName",subject.getCourseName());
+			getSession().setAttribute("subjectId",subject.getSubjectId());
+			getSession().setAttribute("subjectType",subject.getSubjectType());
+			getSession().setAttribute("brushName", "普通区");
+			//将上次成绩重置为0
+			getSession().setAttribute("grade", 0);
 			getSession().setAttribute("subjectList", subjectList);
 			Subject nowSubject=subjectList.get(0);
 			nowSubject.setSubjectId(k);//设置当前题目编号

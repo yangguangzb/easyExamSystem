@@ -3,6 +3,7 @@ package com.san.action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -46,7 +47,45 @@ import com.san.service.Impl.ResourceServiceImpl;
  *
  */
 public class ResourceAction extends BaseAction<Resource>  {
- private ResourceService resourceService=new ResourceServiceImpl();
+private File file;
+private String fileContentType;
+private String fileFileName;
+private String resourceName;
+private String courseName;
+public File getFile() {
+	return file;
+}
+public void setFile(File file) {
+	this.file = file;
+}
+public String getFileContentType() {
+	return fileContentType;
+}
+public void setFileContentType(String fileContentType) {
+	this.fileContentType = fileContentType;
+}
+public String getFileFileName() {
+	return fileFileName;
+}
+public void setFileFileName(String fileFileName) {
+	this.fileFileName = fileFileName;
+}
+
+public String getResourceName() {
+	return resourceName;
+}
+public void setResourceName(String resourceName) {
+	this.resourceName = resourceName;
+}
+
+public String getCourseName() {
+	return courseName;
+}
+public void setCourseName(String courseName) {
+	this.courseName = courseName;
+}
+
+private ResourceService resourceService=new ResourceServiceImpl();
  /**
   * @description 实现文件的下载
   * @return
@@ -54,19 +93,20 @@ public class ResourceAction extends BaseAction<Resource>  {
   */
  public String getResource() throws IOException{
 	 User user=(User) ActionContext.getContext().getSession().get("user");
-	 int resourceIds=this.getModel().getResourceId();
+	 HttpServletRequest request=ServletActionContext.getRequest();//获取request
+	int resourceIds=this.getModel().getResourceId();
 	 HttpServletResponse response = ServletActionContext.getResponse();
 	 if(user!=null){
          UseRecord useRecord=new UseRecord();
         ResourceService resourceService=new ResourceServiceImpl();
           resourceService.getResource(user,resourceIds,useRecord);
           ResourceDao resourceDao=new ResourceDaoImpl();
-          Resource resource=resourceDao.getResource(resourceIds);
-          String filename=resource.getResourceName();//文件名字
+          Resource resource1=resourceDao.getResource(resourceIds);
+          String filename=resource1.getResourceName();//文件名字
           filename = new String(filename.getBytes("UTF-8"), "ISO-8859-1");
           response.setContentType(ServletActionContext.getServletContext().getMimeType(filename));//设置文件mine
           response.setHeader("Content-Disposition", "attachment;filename="+filename);
-          String fullfileName=ServletActionContext.getServletContext().getRealPath("/WEB-INF"+resource.getResourcePath());
+          String fullfileName=ServletActionContext.getServletContext().getRealPath("/WEB-INF"+resource1.getResourcePath());
           InputStream in = new FileInputStream(fullfileName);
           OutputStream out = response.getOutputStream();
 
@@ -87,7 +127,7 @@ public class ResourceAction extends BaseAction<Resource>  {
          // response.sendRedirect("login.jsp");
           return "login";
       }
-
+	
 	 
  }
  /**
@@ -110,8 +150,9 @@ public class ResourceAction extends BaseAction<Resource>  {
  /**
   * 上传资料
   * @return
+ * @throws Exception 
   */
- public String insertResource(){
+ public String insertResource() throws Exception{
 	 User user=(User)ActionContext.getContext().getSession().get("user");
 	 HttpServletRequest request=ServletActionContext.getRequest();//获取request
 	 HttpServletResponse response = ServletActionContext.getResponse();//获取response
@@ -180,6 +221,5 @@ public class ResourceAction extends BaseAction<Resource>  {
      }
      else {
          return "notlogin";
-     }
- }
 }
+}}

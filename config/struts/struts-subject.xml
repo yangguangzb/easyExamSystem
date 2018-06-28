@@ -7,6 +7,8 @@
 		<action name="subjectAction_*" class="com.san.action.SubjectAction" method="{1}">
 			<!-- 显示成绩排名 -->
 			<result name="showGradeRank">/ordinary.jsp</result>
+			<!-- 没有题目 -->
+			<result name="notSubject" type="redirectAction">subjectAction_showGradeRank.action</result>
 			<!-- 显示题目 -->
 			<result name="display" type="redirect">/ordinary.jsp</result>
 			<!-- 显示下一题 -->

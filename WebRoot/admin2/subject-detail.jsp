@@ -44,13 +44,13 @@
           <div class="layui-form-item">
               <p><span class="x-red">*</span>C选项</p>
               <div class="layui-input-inline" style="width:1060px;font-size:14px;margin-left:30px;">
-                  ${sessionScope.subjectById.optionB}
+                  ${sessionScope.subjectById.optionC}
               </div>
           </div>
           <div class="layui-form-item">
           	  <p><span class="x-red">*</span>D选项</p>
               <div class="layui-input-inline" style="width:1060px;font-size:14px;margin-left:30px;">
-              	  ${sessionScope.subjectById.optionC}
+              	  ${sessionScope.subjectById.optionD}
               </div>
           </div>
           <div class="layui-form-item">

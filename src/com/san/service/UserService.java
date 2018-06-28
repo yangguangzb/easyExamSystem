@@ -45,4 +45,6 @@ public interface UserService {
       */
      public int addUser(String userName,String e_mail,String password);
      
+     //修改用户积分
+     public int updateIntegralNumber(int userId,int integralNumber);
 }

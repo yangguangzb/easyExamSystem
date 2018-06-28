@@ -85,7 +85,7 @@ public class IntegralServiceImpl {
 		try {
 			List<Map<String,Object>> integralListMap= integralDaoImpl.checkIntegralDaoImpl(start, end, useNum, username);
 			for (Map<String, Object> map : integralListMap) {
-				int a=Integer.parseInt(map.get("useNumber").toString());
+				int a=Integer.parseInt(map.get("useNubmer").toString());
 				map.put("money", DBUtil.transtateIntegral(a));
 			}
 			return integralListMap;
@@ -94,4 +94,6 @@ public class IntegralServiceImpl {
 		}
 		return null;
 	}
+	
+	
 }

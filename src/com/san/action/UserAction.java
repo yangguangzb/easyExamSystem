@@ -26,7 +26,7 @@ public class UserAction extends BaseAction<User> {
 	public String login(){
 		User user = userService.login(this.getModel());
 		if(user!=null){
-			if(user.getVerification()==0){
+			/*if(user.getVerification()==0){
 				//用户被拉入黑名单
 				addFieldError("","您被拉入黑名单，请与管理员联系");
 				return "login";
@@ -34,7 +34,10 @@ public class UserAction extends BaseAction<User> {
 				//登录成功
 				putSession("user",user);
 				return SUCCESS;
-			}
+			}*/
+			//登录成功
+			putSession("user",user);
+			return SUCCESS;
 		}else{
 			//登录失败
 			addFieldError("","用户名与密码不匹配");
@@ -197,7 +200,6 @@ public class UserAction extends BaseAction<User> {
 	public String signOut(){
 		//退出系统
 		ServletActionContext.getRequest().getSession().invalidate();
-		System.out.println("测试");
 		return "signOut";
 	}
 	

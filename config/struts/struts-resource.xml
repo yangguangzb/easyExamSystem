@@ -6,9 +6,9 @@
 <package name="resource" namespace="/" extends="common">
 
 <action name="ResourceAction_*" class="com.san.action.ResourceAction" method="{1}">
-<!-- <result name="data">/data.jsp</result> -->
+ <result name="data">/data.jsp</result> 
 <result name="login">/login.jsp</result> 
-<!--  <result name="showdata">/data.jsp</result>-->
+ <result name="showdata">/data.jsp</result>
 <result name="notlogin">/login.jsp</result>
 <result name="successupload">/data.jsp</result>
 <result name="upload">/dataupload.jsp</result>

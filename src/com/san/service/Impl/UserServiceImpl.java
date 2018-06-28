@@ -59,5 +59,10 @@ public class UserServiceImpl implements UserService{
 		
 		return userDaoImpl.save(userName,e_mail,password);
 	}
+	public int updateIntegralNumber(int userId, int integralNumber) {
+		
+		return userDaoImpl.modifyIntegralNumber(userId, integralNumber);
+		
+	}
 }
 

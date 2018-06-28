@@ -60,9 +60,11 @@
             </th>
             <th>用户编号</th>
             <th>用户名</th>
+            <th>用户积分</th>
             <th style="width:170px;">购买数目</th>
             <th style="width:170px;">金额</th>
             <th>时间</th>
+            <th>操作</th>
         </thead>
         <tbody>
            <c:if test="${integralListMap!=null}">
@@ -73,9 +75,17 @@
 	            </td>
 	              <td>${integralMap.userId }</td>
 		          <td>${integralMap.userName }</td>
+		          <td>${integralMap.integralNumber }</td>
 		          <td>${integralMap.useNumber }积分</td>
 		          <td>${integralMap.money }￥</td>
 		          <td>${integralMap.useTime }</td>
+		         <td class="td-manage" width="110px;">
+	              <a title="修改积分"  onclick="x_admin_show('修改积分',
+	              '${pageContext.request.contextPath}/admin2/integral-edit.jsp?userId=${integralMap.userId }&userName=${integralMap.userName}&integralNumber=${integralMap.integralNumber}')" 
+	              href="javascript:;">
+	                <i class="layui-icon">&#xe63c;</i>
+	              </a>
+	            </td>
 	          </tr>
 	        </c:forEach>
           </c:if>

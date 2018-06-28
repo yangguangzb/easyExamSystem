@@ -189,6 +189,17 @@ public class UserDaoImpl implements UserDao{
 		return 0;
 	}
 	
+	//修改用户积分
+	public int modifyIntegralNumber(int userId, int integralNumber) {
+		try {
+			return qr.update("update user set integralNumber=? where userId=?",integralNumber,userId);
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 }
 
 	

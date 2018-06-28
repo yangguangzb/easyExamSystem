@@ -7,7 +7,6 @@
 	<constant name="struts.devMode" value="true"></constant>
 	<!-- 标签主题，简单风格 -->
 	<constant name="struts.ui.theme" value="simple"></constant>
-	
 	<!-- 配置公共项 -->
 	<package name="common" namespace="/" extends="struts-default">
 		<!-- 登录拦截器 -->
@@ -54,7 +53,7 @@
 	<include file="struts/struts-gradeHistory.xml"></include>
 	<!-- 用户积分操作 -->
 	<include file="struts/struts-integration.xml"></include>
-		<!-- 资料使用记录 -->
+	<!-- 资料使用记录 -->
 	<include file="struts/struts-resourceHistory.xml"></include>
 	<!-- 修改密码 -->
 	<include file="struts/struts-changePassword.xml"></include>
