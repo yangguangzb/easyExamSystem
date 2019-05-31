@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=userName&userName="+userName);
+			xhr.open("get","userAction_isExistenceUserName?userName="+userName);
 			xhr.send(null);
 		}
 	}
@@ -43,7 +44,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=e_mail&e_mail="+e_mail);
+			xhr.open("get","userAction_isExistenceEmail?e_mail="+e_mail);
 			xhr.send(null);
 		}
 	}
@@ -57,7 +58,7 @@
 					
 				}
 			}
-			xhr.open("get","registerServlet?flag=password&password="+password);
+			xhr.open("get","userAction_savePassword.action?password="+password);
 			xhr.send(null);
 		}
 	}
@@ -70,7 +71,7 @@
 				
 			}
 		}
-		xhr.open("get","registerServlet?flag=jihuoma");
+		xhr.open("get","userAction_registerJihuoma.action");
 		xhr.send(null);
 	}
 	
@@ -96,7 +97,7 @@
 						$(".part4").show();
 						$(".step li").eq(2).addClass("on");
 						countdown({
-							maxTime:10000,
+							maxTime:10,
 							ing:function(c){
 								$("#times").text(c);
 							},
@@ -107,7 +108,7 @@
 					}
 				}
 			}
-			xhr.open("get","registerServlet?flag=yanEmail&verifyNo="+verifyNo);
+			xhr.open("get","userAction_registerYanEmail?verificationCode="+verifyNo);
 			xhr.send(null);
 		}
 	}

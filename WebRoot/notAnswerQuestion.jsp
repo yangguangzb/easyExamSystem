@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 	<script src="js/jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="./admin2/lib/layui/layui.js"></script>
-	
     
     <!-- 必须 -->
+    <script type="text/javascript" src="lib/layui/layui.js"></script>
     <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="admin2/js/xadmin.js"></script>
+    <link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="lib/layui/css/layui.css">
+	<link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
 	
 	<!-- Question的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
@@ -66,7 +68,6 @@
 </c:if>
 <div class="boxed_wrapper">
 <c:if test="${requestScope.notAnswer==null}">
-	<!--<jsp:forward page="questionServlet?flag=notAnswerQuestion"></jsp:forward>-->
 	<c:redirect url="questionServlet?flag=notAnswerQuestion"></c:redirect>
 </c:if>
 <!-- 头部 -->
@@ -89,10 +90,10 @@
         	<!-- 头部按钮 -->
         	<div class="top">
         		<ul class="topul">
-        			<li><a href="notAnswerQuestion.jsp">待答问题</a></li>
-        			<li><a href="highQuestion.jsp">高分问题</a></li>
-        			<li><a href="myQuestion.jsp">我的问题</a></li>
-        			<li><a href="myAnswer.jsp">我的回答</a></li>
+        			<li><a href="questionAction_notAnswerQuestion.action" style="color:#999">待答问题</a></li>
+        			<li><a href="questionAction_highQuestion.action">高分问题</a></li>
+        			<li><a href="questionAction_myQuestion.action">我的问题</a></li>
+        			<li><a href="questionAction_myAnswer.action">我的回答</a></li>
         			<li><a href="javascript:;" onclick="x_admin_show('提出问题','putQuestions.jsp')">我要提问</a></li>
         		</ul>
         	</div>
@@ -118,9 +119,17 @@
         				<tr>
 	        				<td>${question.questionReward}</td>
 	        				<td>[${question.courseName}]</td>
-	        				<td style="text-align:left;"><a href="answerQuestion.jsp?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">${question.questionTitle}</a></td>
-	        				<td>${question.questionState}</td>
-	        				<td>1小时</td>
+	        				<td style="text-align:left;">
+	        					<!-- 直接跳转到showAll,显示该问题所有的回答 -->
+	        					<a href="questionAction_showAllAnswer?questionId=${question.questionId}" style="color:#133DB6;" target="_blank">
+	        						${question.questionTitle}
+	        					</a>
+	        				</td>
+	        				<!-- 
+	        					<td>${question.questionState}</td>
+	        				 -->
+	        				<td>${question.answerNumber}</td>
+	        				<td style="font-size:14px;color:#999;">${question.showTime}</td>
         				</tr>
         			</c:forEach>
         		</tbody>

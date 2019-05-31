@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./css/xadmin.css">
     </head>
     <body>
+    	<!--  
         <div class="x-body">
             <blockquote class="layui-elem-quote">欢迎使用x-admin 后台模版！v2.0官方交流群： 519492808</blockquote>
             <fieldset class="layui-elem-field">
@@ -187,5 +188,6 @@
           s.parentNode.insertBefore(hm, s);
         })();
         </script>
+        -->
     </body>
 </html>

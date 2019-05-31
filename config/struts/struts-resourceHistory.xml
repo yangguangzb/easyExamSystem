@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="resourcehistory" namespace="/" extends="common">
+		<action name="resourceHistory_*" class="com.san.action.ResourceHistoryAction" method="{1}">
+		</action>
+	</package>
+</struts>

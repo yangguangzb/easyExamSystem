@@ -45,7 +45,7 @@
     <div class="x-body">
         <div class="layui-row">
 
-          <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="/other/integrationHistoryServlet">
+          <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="integration/integration_listUseRecord">
               <thead>
               <tr>
                   <th data-field="recordId">记录编号</th>

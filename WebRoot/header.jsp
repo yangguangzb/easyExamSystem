@@ -50,9 +50,7 @@
 						            <a href="user/index.jsp">个人中心</a>
 						        </li>
 						        <li>
-						            <s:a onclick="signOut()" namespace="/">
-						            	退出
-						            </s:a>
+						            <a onclick="signOut()">退出</a>
 						        </li>
 	                		</ul>
                 		</div>

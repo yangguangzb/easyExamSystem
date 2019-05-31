@@ -70,9 +70,9 @@ public class DBUtil {
     }
 	//数据库连接
 	private static String driverClass="com.mysql.jdbc.Driver";
-	private static String url="jdbc:mysql://119.29.151.185:3306/java_review?useUnicode=true&characterEncoding=UTF8";
-	private static String user="java";
-	private static String password="123456";
+	private static String url="jdbc:mysql://localhost:3306/java_review?useUnicode=true&characterEncoding=UTF8";
+	private static String user="root";
+	private static String password="root";
 	static{
 		try {
 			Class.forName(driverClass);

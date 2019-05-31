@@ -37,7 +37,7 @@
     --></div>
     <div class="x-body">
       <div class="layui-row">
-        <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="${pageContext.request.contextPath}/gradeHistoryServlet">
+        <table data-toggle="table"  data-pagination="true" data-search="true" data-toggle="table" data-dataType="json" data-method="get" data-url="gradehistory/gradeHistory_listGradeHistory">
           <thead>
           <tr>
             <th data-field="gradeId">成绩编号</th>

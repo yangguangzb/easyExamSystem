@@ -4,6 +4,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<!-- struts的配置 -->
+	<filter>
+		<filter-name>struts</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>struts</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	
 	<filter>
 		<filter-name>CodeFilter</filter-name>
 		<filter-class>com.san.filter.CodeFilter</filter-class>
@@ -24,113 +35,13 @@
 		<filter-name>CodeFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<!-- 用户是否登录过滤 -->
-	<!--<filter-mapping>
-		<filter-name>Login</filter-name>
-		<url-pattern>/*.java</url-pattern>	
-	</filter-mapping>
-	-->
+	
 	<!-- 后台过滤 -->
 	<filter-mapping>
 		<filter-name>UserFilter</filter-name>
 		<url-pattern>/admin2/*</url-pattern>
 	</filter-mapping>
-	
-	<servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.san.servlet.LoginServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.san.servlet.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>SubjectServlet</servlet-name>
-    <servlet-class>com.san.servlet.SubjectServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>log</servlet-name>
-    <servlet-class>com.san.servlet.log</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ManageUsers</servlet-name>
-    <servlet-class>com.san.servlet.ManageUsers</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>BoutiqueServlet</servlet-name>
-    <servlet-class>com.san.servlet.BoutiqueServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ManageSubject</servlet-name>
-    <servlet-class>com.san.servlet.ManageSubject</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>QuestionServlet</servlet-name>
-    <servlet-class>com.san.servlet.QuestionServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>IntegralServlet</servlet-name>
-    <servlet-class>com.san.servlet.IntegralServlet</servlet-class>
-  </servlet>
-
-
-
-
-
-
-
-
-
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/loginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/registerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SubjectServlet</servlet-name>
-    <url-pattern>/subjectServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ManageUsers</servlet-name>
-    <url-pattern>/servlet/ManageUsers</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BoutiqueServlet</servlet-name>
-    <url-pattern>/boutiqueServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ManageSubject</servlet-name>
-    <url-pattern>/servlet/ManageSubject</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>QuestionServlet</servlet-name>
-    <url-pattern>/questionServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>IntegralServlet</servlet-name>
-    <url-pattern>/integralServlet</url-pattern>
-  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>

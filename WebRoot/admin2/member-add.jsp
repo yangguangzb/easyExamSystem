@@ -28,7 +28,7 @@
                   <span class="x-red">*</span>邮箱
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_email" name="email" required="" lay-verify="email"
+                  <input type="text" id="L_email" name="e_mail" required="" lay-verify="e_mail"
                   autocomplete="off" class="layui-input">
               </div>
           </div>
@@ -37,7 +37,7 @@
                   <span class="x-red">*</span>用户名
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="L_username" name="username" required="" lay-verify="nikename"
+                  <input type="text" id="L_username" name="userName" required="" lay-verify="nikename"
                   autocomplete="off" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">
@@ -49,7 +49,7 @@
                   <span class="x-red">*</span>密码
               </label>
               <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required="" lay-verify="pass"
+                  <input type="password" id="L_pass" name="password" required="" lay-verify="pass"
                   autocomplete="off" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">
@@ -104,7 +104,7 @@
             //console.log(data);
             $.ajax({
             	type:'post',
-            	url:'${pageContext.request.contextPath}/servlet/ManageUsers?flag=addUser',
+            	url:'manageUsersAction_addUser.action',
             	data:$("#maddUser").serialize(),
             	cache:false,
             	//dataType:'json',

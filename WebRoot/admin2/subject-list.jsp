@@ -45,7 +45,7 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form method="post" action="${pageContext.request.contextPath}/servlet/ManageSubject?flag=manageSubject" class="layui-form layui-col-md12 x-so">
+        <form method="post" action="manageSubjectAction_manageSubject.action" class="layui-form layui-col-md12 x-so">
           <div class="layui-input-inline">
             <select name="brushName" id="brushName">
               <option value="">区类型</option>
@@ -108,13 +108,13 @@
 	            <td width="90px;">${manageSubject.subjectType}</td>
 	            <td >${manageSubject.subjectTitle}</td>
 	            <td class="td-manage" width="110px;">
-	              <a title="详情"  onclick="x_admin_show('查看详情','${pageContext.request.contextPath}/admin2/subject-detail.jsp?subjectId=${manageSubject.subjectId}')" href="javascript:;">
+	              <a title="详情"  onclick="x_admin_show('查看详情','manageSubjectAction_checkSubjectById.action?subjectId=${manageSubject.subjectId}')" href="javascript:;">
 	                <i class="layui-icon">&#xe63c;</i>
 	              </a>
 	              <a title="删除" onclick="member_del(this,${manageSubject.subjectId})" href="javascript:;">
-	                <i class="layui-icon">&#xe640;</i>
+	                <i class="layui-icon">&#xe640;</i><!-- ${pageContext.request.contextPath}/admin2/subject-edit.jsp? -->
 	              </a>
-	              <a title="修改" onclick="x_admin_show('修改信息','${pageContext.request.contextPath}/admin2/subject-edit.jsp?subjectId=${manageSubject.subjectId}')" href="javascript:;">
+	              <a title="修改" onclick="x_admin_show('修改信息','manageSubjectAction_checkSubjectById.action?flag2=edit&subjectId=${manageSubject.subjectId}')" href="javascript:;">
 	                <i class="layui-icon">&#xe639;</i>
 	              </a>
 	            </td>
@@ -176,7 +176,7 @@
           layer.confirm('确认要删除吗？',function(index){
               $.ajax({
               	type:'post',
-              	url:'${pageContext.request.contextPath}/servlet/ManageSubject?flag=delSubject&subjectId='+id,
+              	url:'manageSubjectAction_delSubject?subjectId='+id,
               	cache:false,
               	success:function(msg){
 					if(msg==1){

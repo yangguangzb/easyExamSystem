@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="sharearea" namespace="/" extends="common">
+	<action name="ShareAreaAction_*" class="com.san.action.ShareAreaAction" method="{1}">
+	<result name="sharecomment">/sharecomment.jsp</result>
+	<result name="share">/share.jsp</result>
+	</action>
+</package>
+</struts>

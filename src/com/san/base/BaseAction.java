@@ -1,5 +1,13 @@
 package com.san.base;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,15 +39,6 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 		}
 	}
 	//--------------------service层的方法-------------------------------
-	//用户service
-	private UserService userService;
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-	public UserService getUserService() {
-		return userService;
-	}
-	
 	
 	
 	//--------------------------------------------------------------
@@ -81,12 +80,56 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T>{
 	}
 	
 	/**
+	 * 获得putSession中的值
+	 * @param o
+	 * @return
+	 */
+	public Object getPutSession(Object o){
+		return ActionContext.getContext().getSession().get(o);
+	}
+	
+	/**
 	 * application的put
 	 * @param key
 	 * @param o
 	 */
 	public void putApplication(String key,Object o){
 		ActionContext.getContext().getApplication().put(key, o);
+	}
+	
+	/**
+	 * 获得session
+	 * @return
+	 */
+	public HttpSession getSession(){
+		return ServletActionContext.getRequest().getSession();
+	}
+	
+	/**
+	 * 向浏览器输出
+	 * @return
+	 * @throws IOException
+	 */
+	public PrintWriter getPrintWriter() throws IOException{
+		 ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+		 return ServletActionContext.getResponse().getWriter();
+	}
+	
+	/**
+	 * 获得response
+	 * @return
+	 */
+	public HttpServletResponse getResponse(){
+		
+		return ServletActionContext.getResponse();
+	}
+	
+	/**
+	 * 获得request
+	 * @return
+	 */
+	public HttpServletRequest getRequest(){
+		return ServletActionContext.getRequest();
 	}
 	
 }

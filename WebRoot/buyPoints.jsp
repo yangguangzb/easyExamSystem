@@ -46,7 +46,7 @@
 						}
 					}
 				}
-				xhr.open("get","integralServlet?flag=buyPoints&buyNum="+buyNum);
+				xhr.open("get","useRecordAction_buyPoints.action?buyNum="+buyNum);
 				xhr.send(null);
 			}
 		}

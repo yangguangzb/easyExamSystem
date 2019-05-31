@@ -37,7 +37,7 @@
 					}
 				}
 			}
-			xhr.open("get","boutiqueServlet?flag=detailSubject&boutiqueSubjectId="+boutiqueSubjectId);
+			xhr.open("get","boutiqueAction_detailSubject.action?boutiqueSubjectId="+boutiqueSubjectId);
 			xhr.send(null);
 		}
 		//显示解析
@@ -77,16 +77,12 @@
 					}
 				}
 			}
-			xhr.open("get","boutiqueServlet?flag=answerCl&submitAnswer="+b);
+			xhr.open("get","boutiqueAction_answerCl.action?submitAnswer="+b);
 			xhr.send(null);
 		}
 	</script>
 </head>
 <body>
-<!-- 判断精品信息session是否存在 -->
-<c:if test="${sessionScope.brushlist==null}">
-	<jsp:forward page="boutiqueServlet?flag=display"></jsp:forward>
-</c:if>
 <div class="boxed_wrapper">
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
@@ -124,7 +120,7 @@
 	    		<!-- 显示ABCD选项部分 -->
 	    		<div style="height:300px;width:70%;border:1px #999 solid;">
 	    			<c:if test="${sessionScope.nowBoutiqueSubject!=null}">
-		    			<form action="boutiqueServlet?flag=nextBoutSubject" id="nextBoutSubject" method="post">
+		    			<form action="boutiqueAction_nextBoutSubject.action" id="nextBoutSubject" method="post">
 		    				<input type="radio" name="choice" value="A" id="A" onclick="isSelect(this.value)"/>
 		    					<label for="A">${sessionScope.nowBoutiqueSubject.optionA }</label>
 		    				<input type="radio" name="choice" value="B" id="B" onclick="isSelect(this.value)"/>

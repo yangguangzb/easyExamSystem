@@ -9,6 +9,38 @@ public class UseRecord {
 	private String useType;	 //使用类型	
 	private int useNumber;	 //使用数目(整数表示加积分,负数表示减积分)
 	private Date useTime;		//使用时间	
+	
+	//临时字段
+	private String userName;
+	private String integralNumber;
+	private String end;
+	private String start;
+	
+	
+	public String getEnd() {
+		return end;
+	}
+	public void setEnd(String end) {
+		this.end = end;
+	}
+	public String getStart() {
+		return start;
+	}
+	public void setStart(String start) {
+		this.start = start;
+	}
+	public String getIntegralNumber() {
+		return integralNumber;
+	}
+	public void setIntegralNumber(String integralNumber) {
+		this.integralNumber = integralNumber;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public int getRecordId() {
 		return recordId;
 	}

@@ -18,7 +18,11 @@
     <!-- 必须 -->
     <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="admin2/js/xadmin.js"></script>
-	
+	<!-- 必须 -->
+    <script type="text/javascript" src="admin2/lib/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
+    <script type="text/javascript" src="admin2/js/xadmin.js"></script>
+	<link rel="stylesheet" href="admin2/lib/layui/css/layui.css">
 	<!-- problem的css -->
 	<link rel="stylesheet" href="css/myProblem.css"/>
 	<script type="text/javascript">
@@ -64,7 +68,7 @@
 		//异步提交答案
 		$.ajax({
 			type:'post',
-			url:'questionServlet?flag=answerQuestion&questionId='+${requestScope.questionById.questionId},
+			url:'questionAction_answerQuestion?questionId='+${requestScope.questionById.questionId},
 			data:$("#submitAnswer").serialize(),
 			cache:false,
 			success:function(msg){
@@ -73,7 +77,7 @@
 					//将原来的内容清空
 					document.getElementById("answerContent").value="";
 					//跳转刷新
-					location.href="questionServlet?flag=showAllAnswer&questionId="+${requestScope.questionById.questionId};
+					location.href="questionAction_showAllAnswer?questionId="+${requestScope.questionById.questionId};
 				}else{
 					alert("答案提交失败");
 				}
@@ -98,9 +102,6 @@
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
 
-<c:if test="${showAllAnswer==null}">
-	<c:redirect url="questionServlet?flag=showAllAnswer&questionId=${param.questionId}"></c:redirect>
-</c:if>
 <div class="boxed_wrapper">
 
 <!-- 头部 -->

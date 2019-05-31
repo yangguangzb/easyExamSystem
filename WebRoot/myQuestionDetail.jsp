@@ -75,9 +75,6 @@
 <c:if test="${sessionScope.user==null}">
 	<jsp:forward page="login.jsp"></jsp:forward>
 </c:if>
-<c:if test="${showAllAnswer==null}">
-	<c:redirect url="questionServlet?flag=showAllAnswer&flagdetail=detail&questionId=${param.questionId}"></c:redirect>
-</c:if>
 <div class="boxed_wrapper">
 
 <!-- 头部 -->
@@ -136,7 +133,7 @@
 	        						</c:if>
 	        					</c:if>
 	        					<c:if test="${requestScope.isAdoption!='1'}"><!-- 问题没有被采纳 -->
-	        						<input type="button" value="采纳" onclick="location.href='questionServlet?flag=myQuestionDetail&reviewerId=${answer.reviewerId}&questionId=${answer.questionId}'" 
+	        						<input type="button" value="采纳" onclick="location.href='questionAction_myQuestionIsSolve.action?reviewerId=${answer.reviewerId}&questionId=${answer.questionId}'" 
 	        						style="background-color:pink;font-size:14px; height:30px;width:80px;"/>
 	        					</c:if>
 	        					<hr style="border:1px dotted #999"/>

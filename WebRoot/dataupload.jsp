@@ -11,6 +11,7 @@
 
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s"uri="/struts-tags"%>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@
                 <h2>轻松考</h2>
             </div>
             <div>
-                <form method="post" action="resourceuploadservlet" enctype="multipart/form-data">
+                <form method="post" action="resource/ResourceAction_insertResource" enctype="multipart/form-data">
                 <c:if test="not empty message">
                 <div class="alert alert-danger" role="alert">
                 ${message}
@@ -62,8 +63,8 @@
                 </c:if>
             
                     <div class="form-group">
-                        <label for="course">课程</label>
-                        <select  class="custom-select form-control" id="course" name="course">
+                        <label for="courseName">课程</label>
+                        <select  class="custom-select form-control" id="courseName" name="courseName">
                             <option>高等数学</option>
                             <option>线性代数</option>
                             <option>大学英语</option>
@@ -90,7 +91,7 @@
                     </div>
                     <div class="form-group">
                         <label for="resource">上传资料</label>
-                        <input id="input-id" type="file" class="file" data-preview-file-type="text" id="resource" name="file" >
+                       <input type="file"   class="file" data-preview-file-type="text" id="resource" name="file"/> 
                     </div>
                     <button type="submit" class="btn btn-primary">确定</button>
                 </form>

@@ -15,6 +15,16 @@ public class Subject {
 	private String optionD;			//选项D	
 	private String subjectAnswer;	//答案	
 	private String analysis;		//答案解析	
+	
+	//临时字段
+	private String boutiqueSubjectId;
+	
+	public String getBoutiqueSubjectId() {
+		return boutiqueSubjectId;
+	}
+	public void setBoutiqueSubjectId(String boutiqueSubjectId) {
+		this.boutiqueSubjectId = boutiqueSubjectId;
+	}
 	public int getSubjectId() {
 		return subjectId;
 	}

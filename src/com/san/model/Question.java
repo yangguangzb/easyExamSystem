@@ -16,6 +16,17 @@ public class Question {
 	private String showTime;//新增时间转换
 	private int answerNumber;//新增问题回答次数,从answer表中查询得到
 	private String creatorName;//新增提问者名字
+	
+	//临时字段，回答者编号
+	private String reviewerId;
+	public String getReviewerId() {
+		return reviewerId;
+	}
+	public void setReviewerId(String reviewerId) {
+		this.reviewerId = reviewerId;
+	}
+	
+	
 	public String getCreatorName() {
 		return creatorName;
 	}

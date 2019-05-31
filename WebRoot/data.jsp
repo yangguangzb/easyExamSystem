@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("utf-8");response.setContentType("text/html;charset=utf-8"); %>
+<% String context=request.getContextPath(); %>
+<% 
+StringBuffer basePath=request.getRequestURL();
+%>
+<base href="<%=basePath %>">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +26,8 @@
 </head>
 <body>
 
-<div class="boxed_wrapper">
-
+<div class="boxed_wrapper">&nbsp; 
+ 
 <!-- 头部 -->
 <jsp:include page="header.jsp"></jsp:include>
 <!-- 导航栏 -->
@@ -118,7 +123,7 @@
     <script>
         $('#table').bootstrapTable({
             method:"get",
-            url: "resourceServlet?method=listResource",
+            url: "resource/ResourceAction_listResource",
             dataType: "json",
             striped: true,
             showColumns: true,
@@ -169,7 +174,7 @@
                       console.log(row);
                       console.log($element);
                       console.log(row.resourceId);*/
-                    window.location.href="resourceServlet?method=getResource&resourceId="+row.resourceId.toString();
+                    window.location.href="<%=context%>/resource/ResourceAction_getResource?resourceId="+row.resourceId.toString();
                 }
 
             }

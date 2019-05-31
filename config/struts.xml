@@ -7,14 +7,54 @@
 	<constant name="struts.devMode" value="true"></constant>
 	<!-- 标签主题，简单风格 -->
 	<constant name="struts.ui.theme" value="simple"></constant>
-	
 	<!-- 配置公共项 -->
 	<package name="common" namespace="/" extends="struts-default">
-	
-	
+		<!-- 登录拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.san.interceptor.LoginInterceptor"></interceptor>
+			<!-- 自定义拦截器 -->
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- 声明默认 -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		<!-- 全局结果集 -->
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
 	</package>
 	
 	<!-- 加载其他配置文件 -->
 	<!-- 用户 -->
 	<include file="struts/struts-user.xml"></include>
+	<!-- 普通区 -->
+	<include file="struts/struts-subject.xml"></include>
+	<!-- 问题配置 -->
+	<include file="struts/struts-question.xml"></include>
+	<!-- 精品区配置 -->
+	<include file="struts/struts-boutique.xml"></include>
+	<!-- 后台题目管理 -->
+	<include file="struts/struts-manageSubject.xml"></include>
+	<!-- 后台用户管理 -->
+	<include file="struts/struts-manageUsers.xml"></include>
+	<!-- 后台资源管理 -->
+	<include file="struts/struts-manageResource.xml"></include>
+	<!-- 积分使用记录 -->
+	<include file="struts/struts-useRecord.xml"></include>
+	<!--资料上传下载 -->
+	<include file="struts/struts-resource.xml"></include>
+	<!-- 分享区 -->
+	<include file="struts/struts-sharearea.xml"></include>
+	<!-- 成绩记录 -->
+	<include file="struts/struts-gradeHistory.xml"></include>
+	<!-- 用户积分操作 -->
+	<include file="struts/struts-integration.xml"></include>
+	<!-- 资料使用记录 -->
+	<include file="struts/struts-resourceHistory.xml"></include>
+	<!-- 修改密码 -->
+	<include file="struts/struts-changePassword.xml"></include>
 </struts>

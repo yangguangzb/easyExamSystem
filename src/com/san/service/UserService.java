@@ -23,4 +23,28 @@ public interface UserService {
       */
      public int isE_mail(String e_mail);
      
+     /**
+      * 用户找回密码
+      * @param e_mail
+      * @param password
+      * @return
+      */
+     public int backPassword(String e_mail,String password);
+     
+     /**
+      * 通过用户名查找用户
+      * @param userName
+      * @return
+      */
+     public User findUserByUserName(String userName);
+     
+     /**
+      * 添加用户
+      * @param user
+      * @return
+      */
+     public int addUser(String userName,String e_mail,String password);
+     
+     //修改用户积分
+     public int updateIntegralNumber(int userId,int integralNumber);
 }

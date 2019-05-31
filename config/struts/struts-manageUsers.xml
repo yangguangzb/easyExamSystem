@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="manageUser" namespace="/" extends="common">
+		<action name="manageUsersAction_*" class="com.san.action.ManageUsersAction" method="{1}">
+			<result name="checkUsers">../admin2/member-list.jsp</result>
+		</action>
+	</package>
+</struts>

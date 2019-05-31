@@ -118,7 +118,7 @@
         form.on('submit(add)', function(data){
           $.ajax({
           	type:'post',
-          	url:'${pageContext.request.contextPath}/servlet/ManageUsers?flag=modifyUser&userId='+${param.userId},
+          	url:'manageUsersAction_modifyUser?userId='+${param.userId},
           	data:$("#modifyUser").serialize(),
           	cache:false,
           	success:function(msg){
@@ -129,6 +129,7 @@
               		var index = parent.layer.getFrameIndex(window.name);
               		//关闭当前frame
               		parent.layer.close(index);
+              		
           		});
           		}else{
           			//修改失败

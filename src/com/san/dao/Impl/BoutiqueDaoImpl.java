@@ -46,7 +46,6 @@ public class BoutiqueDaoImpl {
 	 */
 	public int reducePoints(int userId,int BrushIntegral,int integralNumber) throws SQLException{
 		QueryRunner qr=new QueryRunner(C3p0Util.getDataSource());
-		System.out.println("扣除积分");
 		return qr.update("update user set integralNumber=? where userId=?"
 				,(integralNumber-BrushIntegral+3),userId);
 	}
